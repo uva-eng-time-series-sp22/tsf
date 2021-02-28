@@ -1,0 +1,11 @@
+# Saving and loading data files
+
+Your real analytic work can begin when you have a prepared, cleaned data file ready to load into memory. You probably don't want to re-do all the data preparation steps each time you start work.
+
+If you are working with a small data file, then it is probably not a problem to re-run the code to prepare your data file: it only takes a second. But especially if you are working with a larger file, re-doing the data prep for each work session is a hassle.
+
+Instead, you may wish to separate your data preparation code into its own script, then save the resulting prepared file to disk. Then, when you sit down to do analytic work, you can load your prepared file directly into memory.
+
+## Fast file reading and writing: The `arrow` package
+
+For saving and reading larger files, I recommend using the `feather` format supported by the [`arrow`](https://arrow.apache.org/docs/r/articles/arrow.html) package. Arrow's functions [`read_feather()`](https://arrow.apache.org/docs/r/reference/read_feather.html) and [`write_feather()`](https://arrow.apache.org/docs/r/reference/write_feather.html) work much faster than the corresponding read-write functions in base R. Arrow provides good support for work with large files, and [plays well with dplyr](https://arrow.apache.org/docs/r/articles/dataset.html). 

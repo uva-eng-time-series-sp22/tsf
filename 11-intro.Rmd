@@ -1,0 +1,36 @@
+# (PART) Introduction and Overview {-} 
+
+# Introduction {#intro}
+
+## Course introduction
+
+Topics:
+
+* What is time series analysis?
+
+Readings: FPP, Ch. 1
+
+
+## The project
+
+Readings: FPP, Section 5.1.
+
+Assignment: Write a concept note for a potential project.
+
+## Computing setup
+
+Topics: R, R Studio, git, Github, Markdown, R Markdown, Tidyverse and tidyverts packages for R
+
+Assignment: Follow instructions in the course [Computing setup guide](https://github.com/uva-eng-time-series-sp21/sys5581-course-materials/blob/master/computing_setup_guide.pdf).
+
+## Other helpful resources
+
+
+```{r nice-tab, tidy=FALSE, eval=FALSE, include=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+

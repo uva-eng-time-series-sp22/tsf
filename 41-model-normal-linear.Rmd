@@ -1,0 +1,28 @@
+# (PART) Modeling the data-generating process {-} 
+
+# The normal linear model
+
+$$ y_t = \beta_0 + \beta_1 x_t + \varepsilon_t $$
+
+## Assumptions of the linear model
+
+* Relationship between predictor $x$ and predictand $y$ is linear.
+* Both $x$ and $y$ are known, observed without error.
+
+* Errors have mean zero.
+* Errors are independent of each other.  
+* Errors are uncorrelated with predictor variables $x_t$.
+
+Often, assume stronger additional conditions that errors are *independent, identically normally distributed*: for all $t$, $\varepsilon_t \sim N(0, \sigma^2)$. for a constant $\sigma^2$.
+
+In compact vector and matrix notation, we may write: 
+
+$$ Y = X \beta + \varepsilon $$ 
+$$\varepsilon \sim N(0, \sigma^2 I_T) $$
+Readings: FPP, Section 7.1
+
+## Examples of the normal linear model
+
+
+
+

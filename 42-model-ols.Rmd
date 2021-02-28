@@ -1,0 +1,3 @@
+# Ordinary least squares estimation
+
+Regression coefficients $\beta$ and error variance $\sigma^2$ are unobserved: their values must be estimated from the data. Various estimation techniques may be used.

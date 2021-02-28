@@ -1,0 +1,21 @@
+# Preface {-}
+
+This document contains class notes and other materials related to SYS 5581 *Time Series and Forecasting* at the University of Virginia.
+
+
+## Readings  {-}
+
+FPP = Hyndman, R.J., & Athanasopoulos, G. [-@robjhyndmanForecastingPrinciplesPractice2021] [*Forecasting: principles and practice, 3rd edition*](https://otexts.com/fpp3/), OTexts: Melbourne, Australia. OTexts.com/fpp3
+
+R4DS = Wickham, Hadley, and Garrett Grolemund, [R for Data Science](https://r4ds.had.co.nz/)
+
+## Acknowledgements  {-}
+
+These notes are organized using the **bookdown** package [@R-bookdown], which was built on top of R Markdown and **knitr** [@xie2015].
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
