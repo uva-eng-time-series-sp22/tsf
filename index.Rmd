@@ -12,7 +12,7 @@ description: "Class notes for SYS 5581, Spring 2021"
 
 # {-}
 
-This document is a compilation of class notes for SYS 5585 *Time Series and Forecasting*, University of Virginia, Spring, 2021.
+This document is a compilation of class notes for SYS 5581 *Time Series and Forecasting*, University of Virginia, Spring, 2021.
 
 
 ```{r load basic packages, include=FALSE}

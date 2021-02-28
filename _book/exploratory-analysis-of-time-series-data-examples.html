@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Exploratory analysis of time series data: Examples | Time Series and Forecasting</title>
+  <meta name="description" content="Class notes for SYS 5581, Spring 2021" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Exploratory analysis of time series data: Examples | Time Series and Forecasting" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Class notes for SYS 5581, Spring 2021" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Exploratory analysis of time series data: Examples | Time Series and Forecasting" />
+  
+  <meta name="twitter:description" content="Class notes for SYS 5581, Spring 2021" />
+  
+
+<meta name="author" content="Arthur Small" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="exploratory-data-analysis-overview.html"/>
+<link rel="next" href="the-normal-linear-model.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Time Series and Forecasting</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#readings"><i class="fa fa-check"></i>Readings</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction and Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#course-introduction"><i class="fa fa-check"></i><b>1.1</b> Course introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#the-project"><i class="fa fa-check"></i><b>1.2</b> The project</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#computing-setup"><i class="fa fa-check"></i><b>1.3</b> Computing setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#other-helpful-resources"><i class="fa fa-check"></i><b>1.4</b> Other helpful resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html"><i class="fa fa-check"></i><b>2</b> A very simple time series analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#steps-in-a-very-simple-time-series-statistical-analysis"><i class="fa fa-check"></i><b>2.1</b> Steps in a very simple time series statistical analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#example-problem-estimating-the-probability-of-a-weather-event"><i class="fa fa-check"></i><b>2.2</b> Example problem: Estimating the probability of a weather event</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#state-your-question"><i class="fa fa-check"></i><b>2.2.1</b> 1. State your question</a></li>
+<li class="chapter" data-level="2.2.2" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#acquire-data-and-background-information"><i class="fa fa-check"></i><b>2.2.2</b> 2. Acquire data and background information</a></li>
+<li class="chapter" data-level="2.2.3" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#organize-your-data"><i class="fa fa-check"></i><b>2.2.3</b> 3. Organize your data</a></li>
+<li class="chapter" data-level="2.2.4" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#perform-exploratory-analysis-of-your-data"><i class="fa fa-check"></i><b>2.2.4</b> 4. Perform exploratory analysis of your data</a></li>
+<li class="chapter" data-level="2.2.5" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#write-down-your-model-of-the-data-generating-process"><i class="fa fa-check"></i><b>2.2.5</b> 5. Write down your model of the data generating process</a></li>
+<li class="chapter" data-level="2.2.6" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#if-necessary-transform-the-model-and-data-to-make-it-ready-for-analysis"><i class="fa fa-check"></i><b>2.2.6</b> 6. If necessary: transform the model and data to make it ready for analysis</a></li>
+<li class="chapter" data-level="2.2.7" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#choose-an-appropriate-technique-for-estimating-model-parameters-consistent-with-your-assumptions-about-your-data-generating-process"><i class="fa fa-check"></i><b>2.2.7</b> 7. Choose an appropriate technique for estimating model parameters, consistent with your assumptions about your data generating process</a></li>
+<li class="chapter" data-level="2.2.8" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#estimate-model-parameters"><i class="fa fa-check"></i><b>2.2.8</b> 8. Estimate model parameters</a></li>
+<li class="chapter" data-level="2.2.9" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#confirm-that-your-modeling-assumptions-are-satisfied"><i class="fa fa-check"></i><b>2.2.9</b> 9. Confirm that your modeling assumptions are satisfied</a></li>
+<li class="chapter" data-level="2.2.10" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#compute-measures-of-model-quality-confirm-that-your-model-is-good-enough-for-your-purpose"><i class="fa fa-check"></i><b>2.2.10</b> 10. compute measures of model quality; confirm that your model is good enough for your purpose</a></li>
+<li class="chapter" data-level="2.2.11" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#use-your-calibrated-model-to-address-your-original-question."><i class="fa fa-check"></i><b>2.2.11</b> 11. Use your calibrated model to address your original question.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#for-next-time-add-a-covariate"><i class="fa fa-check"></i><b>2.3</b> For next time: Add a covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html"><i class="fa fa-check"></i><b>3</b> Computing setup and guide</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#the-r-programming-language-and-related-resources"><i class="fa fa-check"></i><b>3.1</b> The R programming language, and related resources</a></li>
+<li class="chapter" data-level="3.2" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#git-and-github"><i class="fa fa-check"></i><b>3.2</b> Git and Github</a></li>
+<li class="chapter" data-level="3.3" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#markdown-and-r-markdown"><i class="fa fa-check"></i><b>3.3</b> Markdown and R Markdown</a></li>
+<li class="chapter" data-level="3.4" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#bibliographic-resources-zotero-and-bibtex"><i class="fa fa-check"></i><b>3.4</b> Bibliographic resources: Zotero and Bibtex</a></li>
+<li class="chapter" data-level="3.5" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#general-course-web-resources"><i class="fa fa-check"></i><b>3.5</b> General course web resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="finding-and-acquiring-a-dataset-for-your-project.html"><a href="finding-and-acquiring-a-dataset-for-your-project.html"><i class="fa fa-check"></i><b>4</b> Finding and acquiring a dataset for your project</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="finding-and-acquiring-a-dataset-for-your-project.html"><a href="finding-and-acquiring-a-dataset-for-your-project.html#appropriate-data-sets-for-time-series-analysis"><i class="fa fa-check"></i><b>4.1</b> Appropriate data sets for time series analysis</a></li>
+</ul></li>
+<li class="part"><span><b>II Data Wrangling</b></span></li>
+<li class="chapter" data-level="5" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html"><i class="fa fa-check"></i><b>5</b> Data extraction, transformation, and loading: Overview</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html#etl-strategy-design-your-end-point-data-tables"><i class="fa fa-check"></i><b>5.1</b> ETL strategy: Design your end-point data table(s)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html#design-your-end-point-first-at-least-in-your-head."><i class="fa fa-check"></i><b>5.1.1</b> Design your end point first (at least, in your head).</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html#typical-structure-for-a-time-series-data-table"><i class="fa fa-check"></i><b>5.1.2</b> Typical structure for a time series data table:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-extraction.html"><a href="data-extraction.html"><i class="fa fa-check"></i><b>6</b> Data extraction</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-extraction.html"><a href="data-extraction.html#data-types"><i class="fa fa-check"></i><b>6.1</b> Data types</a></li>
+<li class="chapter" data-level="6.2" data-path="data-extraction.html"><a href="data-extraction.html#time-indexing-in-data"><i class="fa fa-check"></i><b>6.2</b> Time indexing in data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-extraction-1.html"><a href="data-extraction-1.html"><i class="fa fa-check"></i><b>7</b> Data extraction</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-extraction-1.html"><a href="data-extraction-1.html#reading-in-data-from-source-files"><i class="fa fa-check"></i><b>7.1</b> Reading in data from source files</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="data-extraction-1.html"><a href="data-extraction-1.html#example-using-readrread_csv"><i class="fa fa-check"></i><b>7.1.1</b> Example using readr::read_csv</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>8</b> Data transformation</a></li>
+<li class="chapter" data-level="9" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html"><i class="fa fa-check"></i><b>9</b> Running diagnostics on your tsibble</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html#duplicate-values"><i class="fa fa-check"></i><b>9.1</b> Duplicate values</a></li>
+<li class="chapter" data-level="9.2" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html#missing-values"><i class="fa fa-check"></i><b>9.2</b> Missing values</a></li>
+<li class="chapter" data-level="9.3" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html#irregular-time-intervals"><i class="fa fa-check"></i><b>9.3</b> Irregular time intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>10</b> Data cleaning</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-cleaning.html"><a href="data-cleaning.html#dropping-empty-rows-and-columns"><i class="fa fa-check"></i><b>10.1</b> Dropping empty rows and columns</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html"><i class="fa fa-check"></i><b>11</b> Saving and loading data files</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html#fast-file-reading-and-writing-the-arrow-package"><i class="fa fa-check"></i><b>11.1</b> Fast file reading and writing: The <code>arrow</code> package</a></li>
+</ul></li>
+<li class="part"><span><b>III Exploratory Data Analysis</b></span></li>
+<li class="chapter" data-level="12" data-path="exploratory-data-analysis-overview.html"><a href="exploratory-data-analysis-overview.html"><i class="fa fa-check"></i><b>12</b> Exploratory data analysis: Overview</a></li>
+<li class="chapter" data-level="13" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html"><i class="fa fa-check"></i><b>13</b> Exploratory analysis of time series data: Examples</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-monthly-electricity-sales-for-virginia"><i class="fa fa-check"></i><b>13.1</b> Example: Monthly electricity sales for Virginia</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#extract-data-from-remote-database"><i class="fa fa-check"></i><b>13.1.1</b> Extract data from remote database</a></li>
+<li class="chapter" data-level="13.1.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#briefly-characterize-the-dataset"><i class="fa fa-check"></i><b>13.1.2</b> Briefly characterize the dataset</a></li>
+<li class="chapter" data-level="13.1.3" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#plot-the-time-series"><i class="fa fa-check"></i><b>13.1.3</b> Plot the time series</a></li>
+<li class="chapter" data-level="13.1.4" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#convert-the-data-frame-into-a-time-series-tsibble-object"><i class="fa fa-check"></i><b>13.1.4</b> Convert the data frame into a time series <code>tsibble</code> object</a></li>
+<li class="chapter" data-level="13.1.5" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#make-some-plots"><i class="fa fa-check"></i><b>13.1.5</b> Make some plots</a></li>
+<li class="chapter" data-level="13.1.6" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#scatterplots"><i class="fa fa-check"></i><b>13.1.6</b> Scatterplots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-australian-production"><i class="fa fa-check"></i><b>13.2</b> Example: Australian production</a></li>
+<li class="chapter" data-level="13.3" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-gross-domestic-product-data"><i class="fa fa-check"></i><b>13.3</b> Example: Gross Domestic Product data</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>13.3.1</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#fitting-data-to-simple-models"><i class="fa fa-check"></i><b>13.3.2</b> Fitting data to simple models</a></li>
+<li class="chapter" data-level="13.3.3" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#work-with-lngdp"><i class="fa fa-check"></i><b>13.3.3</b> Work with ln(GDP)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#producing-forecasts"><i class="fa fa-check"></i><b>13.4</b> Producing forecasts</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#model-residuals-vs.-forecast-errors"><i class="fa fa-check"></i><b>13.4.1</b> Model residuals vs. forecast errors</a></li>
+<li class="chapter" data-level="13.4.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#are-the-model-residuals-auto-correlated"><i class="fa fa-check"></i><b>13.4.2</b> Are the model residuals auto-correlated?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-gdp-several-countries"><i class="fa fa-check"></i><b>13.5</b> Example: GDP, several countries</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#plot-lagged-values"><i class="fa fa-check"></i><b>13.5.1</b> Plot lagged values</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Modeling the data-generating process</b></span></li>
+<li class="chapter" data-level="14" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html"><i class="fa fa-check"></i><b>14</b> The normal linear model</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#assumptions-of-the-linear-model"><i class="fa fa-check"></i><b>14.1</b> Assumptions of the linear model</a></li>
+<li class="chapter" data-level="14.2" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#examples-of-the-normal-linear-model"><i class="fa fa-check"></i><b>14.2</b> Examples of the normal linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>15</b> Ordinary least squares estimation</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="course-syllabus.html"><a href="course-syllabus.html"><i class="fa fa-check"></i><b>A</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="course-syllabus.html"><a href="course-syllabus.html#course-description"><i class="fa fa-check"></i><b>A.1</b> Course Description</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="course-syllabus.html"><a href="course-syllabus.html#prerequisites"><i class="fa fa-check"></i><b>A.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="A.1.2" data-path="course-syllabus.html"><a href="course-syllabus.html#expectations"><i class="fa fa-check"></i><b>A.1.2</b> Expectations</a></li>
+<li class="chapter" data-level="A.1.3" data-path="course-syllabus.html"><a href="course-syllabus.html#readings-1"><i class="fa fa-check"></i><b>A.1.3</b> Readings</a></li>
+<li class="chapter" data-level="A.1.4" data-path="course-syllabus.html"><a href="course-syllabus.html#course-objectives"><i class="fa fa-check"></i><b>A.1.4</b> Course Objectives</a></li>
+<li class="chapter" data-level="A.1.5" data-path="course-syllabus.html"><a href="course-syllabus.html#grading-policy"><i class="fa fa-check"></i><b>A.1.5</b> Grading Policy</a></li>
+<li class="chapter" data-level="A.1.6" data-path="course-syllabus.html"><a href="course-syllabus.html#attendance-policy"><i class="fa fa-check"></i><b>A.1.6</b> Attendance Policy</a></li>
+<li class="chapter" data-level="A.1.7" data-path="course-syllabus.html"><a href="course-syllabus.html#communications-protocols-including-emails-and-office-hours"><i class="fa fa-check"></i><b>A.1.7</b> Communications protocols, including emails and office hours</a></li>
+<li class="chapter" data-level="A.1.8" data-path="course-syllabus.html"><a href="course-syllabus.html#academic-dishonesty-policy"><i class="fa fa-check"></i><b>A.1.8</b> Academic Dishonesty Policy</a></li>
+<li class="chapter" data-level="A.1.9" data-path="course-syllabus.html"><a href="course-syllabus.html#disabilities-policy"><i class="fa fa-check"></i><b>A.1.9</b> Disabilities Policy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html"><i class="fa fa-check"></i><b>B</b> Assignment: Extract, Transform, and Load Your Data</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#overview-extraction-transformation-and-loading-of-data"><i class="fa fa-check"></i><b>B.1</b> Overview: Extraction, transformation, and loading of data</a></li>
+<li class="chapter" data-level="B.2" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-1-identify-a-time-series-data-set-you-want-to-work-with"><i class="fa fa-check"></i><b>B.2</b> Step 1: Identify a time series data set you want to work with</a></li>
+<li class="chapter" data-level="B.3" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-2-acquire-the-data-from-its-source-location-reproducibly"><i class="fa fa-check"></i><b>B.3</b> Step 2: Acquire the data from its source location, reproducibly</a></li>
+<li class="chapter" data-level="B.4" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-3-organize-your-data-into-a-tidy-data-frame"><i class="fa fa-check"></i><b>B.4</b> Step 3 Organize your data into a <em>tidy</em> data frame</a></li>
+<li class="chapter" data-level="B.5" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-4-convert-your-data-into-a-tsibble-object"><i class="fa fa-check"></i><b>B.5</b> Step 4: Convert your data into a <code>tsibble</code> object</a></li>
+<li class="chapter" data-level="B.6" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-5-generate-at-least-one-table-or-figure"><i class="fa fa-check"></i><b>B.6</b> Step 5: Generate at least one table or figure</a></li>
+<li class="chapter" data-level="B.7" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#additional-resources-and-next-steps"><i class="fa fa-check"></i><b>B.7</b> Additional resources and next steps</a></li>
+<li class="chapter" data-level="" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#announcement-one-more-week-to-revise-resubmit-data-etl-assignment"><i class="fa fa-check"></i>Announcement: One more week to revise &amp; resubmit data ETL assignment</a></li>
+<li class="chapter" data-level="B.8" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#references-1"><i class="fa fa-check"></i><b>B.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html"><i class="fa fa-check"></i><b>C</b> Assignment: Project Proposal</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#introduction"><i class="fa fa-check"></i><b>C.1</b> Introduction</a></li>
+<li class="chapter" data-level="C.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#the-data-and-the-data-generating-process"><i class="fa fa-check"></i><b>C.2</b> The data and the data-generating process</a></li>
+<li class="chapter" data-level="C.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#exploratory-data-analysis-1"><i class="fa fa-check"></i><b>C.3</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="C.4" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plot-the-time-series."><i class="fa fa-check"></i><b>C.4</b> Plot the time series.</a></li>
+<li class="chapter" data-level="C.5" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#perform-and-report-the-results-of-other-exploratory-data-analysis"><i class="fa fa-check"></i><b>C.5</b> Perform and report the results of other exploratory data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html"><i class="fa fa-check"></i><b>D</b> Example: Gross Domestic Product data</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html#exploratory-data-analysis-2"><i class="fa fa-check"></i><b>D.1</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="D.2" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html#fitting-data-to-simple-models-1"><i class="fa fa-check"></i><b>D.2</b> Fitting data to simple models</a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html#work-with-lngdp-1"><i class="fa fa-check"></i><b>D.2.1</b> Work with ln(GDP)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html"><i class="fa fa-check"></i><b>E</b> Producing forecasts</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#model-residuals-vs.-forecast-errors-1"><i class="fa fa-check"></i><b>E.1</b> Model residuals vs. forecast errors</a></li>
+<li class="chapter" data-level="E.2" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#are-the-model-residuals-auto-correlated-1"><i class="fa fa-check"></i><b>E.2</b> Are the model residuals auto-correlated?</a></li>
+</ul></li>
+<li class="chapter" data-level="F" data-path="example-gdp-several-models-several-countries.html"><a href="example-gdp-several-models-several-countries.html"><i class="fa fa-check"></i><b>F</b> Example: GDP, several models, several countries</a></li>
+<li class="chapter" data-level="G" data-path="statistical-model.html"><a href="statistical-model.html"><i class="fa fa-check"></i><b>G</b> Statistical model</a>
+<ul>
+<li class="chapter" data-level="G.1" data-path="statistical-model.html"><a href="statistical-model.html#formal-model-of-data-generating-process"><i class="fa fa-check"></i><b>G.1</b> Formal model of data-generating process</a></li>
+<li class="chapter" data-level="G.2" data-path="statistical-model.html"><a href="statistical-model.html#discussion-of-the-statistical-model"><i class="fa fa-check"></i><b>G.2</b> Discussion of the statistical model</a></li>
+</ul></li>
+<li class="chapter" data-level="H" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html"><i class="fa fa-check"></i><b>H</b> Plan for data analysis</a>
+<ul>
+<li class="chapter" data-level="H.1" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html#submission-requirements"><i class="fa fa-check"></i><b>H.1</b> Submission requirements</a></li>
+<li class="chapter" data-level="H.2" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html#comment"><i class="fa fa-check"></i><b>H.2</b> Comment</a></li>
+<li class="chapter" data-level="H.3" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html#references-2"><i class="fa fa-check"></i><b>H.3</b> References</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series and Forecasting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploratory-analysis-of-time-series-data-examples" class="section level1" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Exploratory analysis of time series data: Examples</h1>
+<div id="example-monthly-electricity-sales-for-virginia" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> Example: Monthly electricity sales for Virginia</h2>
+<div id="extract-data-from-remote-database" class="section level3" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> Extract data from remote database</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb22-1"></a>esales &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(db,<span class="st">&#39;SELECT * from eia_elec_sales_va_all_m&#39;</span>) <span class="co"># SQL code to retrieve data from a table in the remote database</span></span>
+<span id="cb22-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb22-2"></a><span class="co"># str(esales)</span></span>
+<span id="cb22-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb22-3"></a>esales &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(esales) <span class="co"># Convert dataframe to a &#39;tibble&#39; for tidyverse work</span></span>
+<span id="cb22-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb22-4"></a><span class="co"># str(esales)</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb23-1"></a><span class="co"># Reference: https://arrow.apache.org/docs/r/</span></span>
+<span id="cb23-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb23-2"></a><span class="co"># if(!(&#39;arrow&#39; %in% installed.packages())) install.packages(&#39;arrow&#39;)</span></span>
+<span id="cb23-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb23-3"></a><span class="kw">library</span>(arrow)</span>
+<span id="cb23-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb23-4"></a><span class="kw">write_feather</span>(esales, <span class="st">&quot;data/esales.feather&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb24-1"></a><span class="co"># Close connection -- this is good practice</span></span>
+<span id="cb24-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb24-2"></a><span class="kw">dbDisconnect</span>(db)</span>
+<span id="cb24-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb24-3"></a><span class="kw">dbUnloadDriver</span>(db_driver)</span></code></pre></div>
+</div>
+<div id="briefly-characterize-the-dataset" class="section level3" number="13.1.2">
+<h3><span class="header-section-number">13.1.2</span> Briefly characterize the dataset</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb25-1"></a><span class="kw">library</span>(arrow)</span>
+<span id="cb25-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb25-2"></a>esales &lt;-<span class="st"> </span><span class="kw">read_feather</span>(<span class="st">&quot;data/esales.feather&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb26-1"></a><span class="kw">print</span>(esales)    <span class="co"># print the data as a table</span></span></code></pre></div>
+<pre><code>## # A tibble: 233 x 4
+##     value date        year month
+##     &lt;dbl&gt; &lt;date&gt;     &lt;int&gt; &lt;int&gt;
+##  1  8282. 2020-05-01  2020     5
+##  2  7839. 2020-04-01  2020     4
+##  3  8889. 2020-03-01  2020     3
+##  4  9368. 2020-02-01  2020     2
+##  5  9209. 2020-01-01  2020     1
+##  6 10038. 2019-12-01  2019    12
+##  7  9291. 2019-11-01  2019    11
+##  8  8757. 2019-10-01  2019    10
+##  9  9874. 2019-09-01  2019     9
+## 10 10912. 2019-08-01  2019     8
+## # … with 223 more rows</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb28-1"></a><span class="kw">summary</span>(esales)  <span class="co"># compute basic summary statistics about the data</span></span></code></pre></div>
+<pre><code>##      value            date                 year          month       
+##  Min.   : 7153   Min.   :2001-01-01   Min.   :2001   Min.   : 1.000  
+##  1st Qu.: 8200   1st Qu.:2005-11-01   1st Qu.:2005   1st Qu.: 3.000  
+##  Median : 9019   Median :2010-09-01   Median :2010   Median : 6.000  
+##  Mean   : 9093   Mean   :2010-08-31   Mean   :2010   Mean   : 6.425  
+##  3rd Qu.: 9885   3rd Qu.:2015-07-01   3rd Qu.:2015   3rd Qu.: 9.000  
+##  Max.   :11724   Max.   :2020-05-01   Max.   :2020   Max.   :12.000</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb30-1"></a><span class="kw">boxplot</span>(esales)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-1"></a><span class="co"># References: https://www.tidyverse.org/, https://dplyr.tidyverse.org/</span></span>
+<span id="cb31-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-2"></a><span class="co"># filter(data object, condition) : syntax for filter() command</span></span>
+<span id="cb31-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-3"></a></span>
+<span id="cb31-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-4"></a>esales <span class="op">%&gt;%</span></span>
+<span id="cb31-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-5"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2019</span>) <span class="op">%&gt;%</span></span>
+<span id="cb31-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-6"></a><span class="st">  </span><span class="kw">filter</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">9000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb31-7"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-7"></a><span class="st">  </span><span class="kw">print</span>()</span>
+<span id="cb31-8"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-8"></a></span>
+<span id="cb31-9"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-9"></a>(esales <span class="op">%&gt;%</span></span>
+<span id="cb31-10"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-10"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb31-11"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-11"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(value)) -&gt;<span class="st"> </span>total_esales_by_year)</span>
+<span id="cb31-12"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-12"></a></span>
+<span id="cb31-13"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-13"></a>esales <span class="op">%&gt;%</span></span>
+<span id="cb31-14"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-14"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sales_TWh =</span> value<span class="op">/</span><span class="dv">1000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb31-15"><a href="exploratory-analysis-of-time-series-data-examples.html#cb31-15"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>value)</span></code></pre></div>
+</div>
+<div id="plot-the-time-series" class="section level3" number="13.1.3">
+<h3><span class="header-section-number">13.1.3</span> Plot the time series</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb32-1"></a><span class="co">#Reference: https://ggplot2.tidyverse.org/</span></span>
+<span id="cb32-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb32-2"></a></span>
+<span id="cb32-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb32-3"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>esales, <span class="kw">aes</span>(<span class="dt">x=</span>date,<span class="dt">y=</span>value)) <span class="op">+</span></span>
+<span id="cb32-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb32-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Virginia monthly total electricity sales (GWh)&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/use%20ggplot2%20to%20generate%20a%20plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb33-1"></a><span class="co"># library(lubridate) # Make it easy to deal with dates</span></span>
+<span id="cb33-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb33-2"></a></span>
+<span id="cb33-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb33-3"></a>esales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(month<span class="op">==</span><span class="dv">3</span>)                   <span class="co"># These three lines of code</span></span></code></pre></div>
+<pre><code>## # A tibble: 20 x 4
+##    value date        year month
+##    &lt;dbl&gt; &lt;date&gt;     &lt;int&gt; &lt;int&gt;
+##  1 8889. 2020-03-01  2020     3
+##  2 9466. 2019-03-01  2019     3
+##  3 9666. 2018-03-01  2018     3
+##  4 9372. 2017-03-01  2017     3
+##  5 8406. 2016-03-01  2016     3
+##  6 9435. 2015-03-01  2015     3
+##  7 9676. 2014-03-01  2014     3
+##  8 9506. 2013-03-01  2013     3
+##  9 8086. 2012-03-01  2012     3
+## 10 8688. 2011-03-01  2011     3
+## 11 8568. 2010-03-01  2010     3
+## 12 8926. 2009-03-01  2009     3
+## 13 8512. 2008-03-01  2008     3
+## 14 8632. 2007-03-01  2007     3
+## 15 8519. 2006-03-01  2006     3
+## 16 9125. 2005-03-01  2005     3
+## 17 8136. 2004-03-01  2004     3
+## 18 8108. 2003-03-01  2003     3
+## 19 7675. 2002-03-01  2002     3
+## 20 8070. 2001-03-01  2001     3</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb35-1"></a>esales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">month</span>(date)<span class="op">==</span><span class="dv">3</span>)             <span class="co">#   all do</span></span></code></pre></div>
+<pre><code>## # A tibble: 20 x 4
+##    value date        year month
+##    &lt;dbl&gt; &lt;date&gt;     &lt;int&gt; &lt;int&gt;
+##  1 8889. 2020-03-01  2020     3
+##  2 9466. 2019-03-01  2019     3
+##  3 9666. 2018-03-01  2018     3
+##  4 9372. 2017-03-01  2017     3
+##  5 8406. 2016-03-01  2016     3
+##  6 9435. 2015-03-01  2015     3
+##  7 9676. 2014-03-01  2014     3
+##  8 9506. 2013-03-01  2013     3
+##  9 8086. 2012-03-01  2012     3
+## 10 8688. 2011-03-01  2011     3
+## 11 8568. 2010-03-01  2010     3
+## 12 8926. 2009-03-01  2009     3
+## 13 8512. 2008-03-01  2008     3
+## 14 8632. 2007-03-01  2007     3
+## 15 8519. 2006-03-01  2006     3
+## 16 9125. 2005-03-01  2005     3
+## 17 8136. 2004-03-01  2004     3
+## 18 8108. 2003-03-01  2003     3
+## 19 7675. 2002-03-01  2002     3
+## 20 8070. 2001-03-01  2001     3</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb37-1"></a>esales <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(lubridate<span class="op">::</span><span class="kw">month</span>(date)<span class="op">==</span><span class="dv">3</span>)  <span class="co">#   the same thing.</span></span></code></pre></div>
+<pre><code>## # A tibble: 20 x 4
+##    value date        year month
+##    &lt;dbl&gt; &lt;date&gt;     &lt;int&gt; &lt;int&gt;
+##  1 8889. 2020-03-01  2020     3
+##  2 9466. 2019-03-01  2019     3
+##  3 9666. 2018-03-01  2018     3
+##  4 9372. 2017-03-01  2017     3
+##  5 8406. 2016-03-01  2016     3
+##  6 9435. 2015-03-01  2015     3
+##  7 9676. 2014-03-01  2014     3
+##  8 9506. 2013-03-01  2013     3
+##  9 8086. 2012-03-01  2012     3
+## 10 8688. 2011-03-01  2011     3
+## 11 8568. 2010-03-01  2010     3
+## 12 8926. 2009-03-01  2009     3
+## 13 8512. 2008-03-01  2008     3
+## 14 8632. 2007-03-01  2007     3
+## 15 8519. 2006-03-01  2006     3
+## 16 9125. 2005-03-01  2005     3
+## 17 8136. 2004-03-01  2004     3
+## 18 8108. 2003-03-01  2003     3
+## 19 7675. 2002-03-01  2002     3
+## 20 8070. 2001-03-01  2001     3</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb39-1"></a><span class="co"># We don&#39;t have to keep the &#39;year&#39; and &#39;month&#39; column: can recover them if needed</span></span>
+<span id="cb39-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb39-2"></a></span>
+<span id="cb39-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb39-3"></a>esales <span class="op">%&gt;%</span></span>
+<span id="cb39-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb39-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(date, <span class="dt">sales_GWh =</span> value) -&gt;<span class="st"> </span>esales_tbl</span>
+<span id="cb39-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb39-5"></a></span>
+<span id="cb39-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb39-6"></a><span class="kw">print</span>(esales_tbl)</span></code></pre></div>
+<pre><code>## # A tibble: 233 x 2
+##    date       sales_GWh
+##    &lt;date&gt;         &lt;dbl&gt;
+##  1 2020-05-01     8282.
+##  2 2020-04-01     7839.
+##  3 2020-03-01     8889.
+##  4 2020-02-01     9368.
+##  5 2020-01-01     9209.
+##  6 2019-12-01    10038.
+##  7 2019-11-01     9291.
+##  8 2019-10-01     8757.
+##  9 2019-09-01     9874.
+## 10 2019-08-01    10912.
+## # … with 223 more rows</code></pre>
+</div>
+<div id="convert-the-data-frame-into-a-time-series-tsibble-object" class="section level3" number="13.1.4">
+<h3><span class="header-section-number">13.1.4</span> Convert the data frame into a time series <code>tsibble</code> object</h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb41-1"></a><span class="co"># install.packages(&quot;tsibble&quot;)</span></span>
+<span id="cb41-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb41-2"></a><span class="kw">library</span>(tsibble) <span class="co"># Reference: https://tsibble.tidyverts.org/articles/intro-tsibble.html</span></span>
+<span id="cb41-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb41-3"></a></span>
+<span id="cb41-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb41-4"></a>esales_tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tsibble</span>(<span class="dt">index =</span> date) -&gt;<span class="st"> </span>elsales_tbl_ts</span>
+<span id="cb41-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb41-5"></a></span>
+<span id="cb41-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb41-6"></a><span class="kw">print</span>(elsales_tbl_ts)</span></code></pre></div>
+<pre><code>## # A tsibble: 233 x 2 [1D]
+##    date       sales_GWh
+##    &lt;date&gt;         &lt;dbl&gt;
+##  1 2001-01-01     9576.
+##  2 2001-02-01     7820.
+##  3 2001-03-01     8070.
+##  4 2001-04-01     7153.
+##  5 2001-05-01     7224.
+##  6 2001-06-01     8264.
+##  7 2001-07-01     8896.
+##  8 2001-08-01     9404.
+##  9 2001-09-01     7753.
+## 10 2001-10-01     7272.
+## # … with 223 more rows</code></pre>
+</div>
+<div id="make-some-plots" class="section level3" number="13.1.5">
+<h3><span class="header-section-number">13.1.5</span> Make some plots</h3>
+<div id="make-a-histogram-of-monthly-sales" class="section level4" number="13.1.5.1">
+<h4><span class="header-section-number">13.1.5.1</span> Make a histogram of monthly sales</h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb43-1"></a><span class="kw">hist</span>(elsales_tbl_ts<span class="op">$</span>sales_GWh, <span class="dt">breaks=</span><span class="dv">40</span>)</span></code></pre></div>
+<p><img src="graphics/make%20a%20histogram%20of%20the%20data-1.png" width="672" /></p>
+</div>
+<div id="make-a-seasonal-plot" class="section level4" number="13.1.5.2">
+<h4><span class="header-section-number">13.1.5.2</span> Make a seasonal plot</h4>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb44-1"></a><span class="co"># This plot won&#39;t work. Why not?</span></span>
+<span id="cb44-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb44-2"></a>elsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb44-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb44-3"></a><span class="st">  </span>feasts<span class="op">::</span><span class="kw">gg_season</span>(sales_GWh, <span class="dt">labels =</span> <span class="st">&quot;both&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Virginia electricity sales (GWh)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-1"></a><span class="co"># install.packages(&quot;feasts&quot;), Reference: https://feasts.tidyverts.org/</span></span>
+<span id="cb45-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-2"></a><span class="kw">library</span>(feasts)</span>
+<span id="cb45-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-3"></a></span>
+<span id="cb45-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-4"></a>elsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb45-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Month =</span> tsibble<span class="op">::</span><span class="kw">yearmonth</span>(date)) <span class="op">%&gt;%</span></span>
+<span id="cb45-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-6"></a><span class="st">  </span><span class="kw">as_tsibble</span>(<span class="dt">index =</span> Month) <span class="op">%&gt;%</span></span>
+<span id="cb45-7"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Month,sales_GWh) -&gt;<span class="st"> </span>vaelsales_tbl_ts</span>
+<span id="cb45-8"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-8"></a></span>
+<span id="cb45-9"><a href="exploratory-analysis-of-time-series-data-examples.html#cb45-9"></a><span class="kw">print</span>(vaelsales_tbl_ts)</span></code></pre></div>
+<pre><code>## # A tsibble: 233 x 2 [1M]
+##       Month sales_GWh
+##       &lt;mth&gt;     &lt;dbl&gt;
+##  1 2001 Jan     9576.
+##  2 2001 Feb     7820.
+##  3 2001 Mar     8070.
+##  4 2001 Apr     7153.
+##  5 2001 May     7224.
+##  6 2001 Jun     8264.
+##  7 2001 Jul     8896.
+##  8 2001 Aug     9404.
+##  9 2001 Sep     7753.
+## 10 2001 Oct     7272.
+## # … with 223 more rows</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb47-1"></a><span class="kw">autoplot</span>(vaelsales_tbl_ts, sales_GWh) <span class="op">+</span></span>
+<span id="cb47-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb47-2"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Virginia monthly total electricity sales (GWh)&quot;</span>) <span class="op">+</span></span>
+<span id="cb47-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb47-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)  <span class="co"># Leave horiz. axis label blank</span></span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-14-1.png" width="672" />
+### Seasonal plots and seasonal subseries plots</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb48-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_season</span>(sales_GWh, <span class="dt">labels =</span> <span class="st">&quot;both&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Virginia electricity sales (GWh)&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb49-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb49-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb49-2"></a><span class="st">  </span><span class="kw">gg_subseries</span>(sales_GWh) <span class="op">+</span></span>
+<span id="cb49-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb49-3"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb49-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb49-4"></a>    <span class="dt">y =</span> <span class="st">&quot;Sales (GWh)&quot;</span>,</span>
+<span id="cb49-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb49-5"></a>    <span class="dt">title =</span> <span class="st">&quot;Seasonal subseries plot: Virginia electricity sales&quot;</span></span>
+<span id="cb49-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb49-6"></a>  )</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+</div>
+<div id="scatterplots" class="section level3" number="13.1.6">
+<h3><span class="header-section-number">13.1.6</span> Scatterplots</h3>
+<p>Investigating relationships between two variables. Scatterplots. Correlation. Scatterplot matrices.</p>
+<p>Readings: FPP Sect. 2.6</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb50-1"></a>vic_elec</span></code></pre></div>
+<pre><code>## # A tsibble: 52,608 x 5 [30m] &lt;Australia/Melbourne&gt;
+##    Time                Demand Temperature Date       Holiday
+##    &lt;dttm&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;     &lt;lgl&gt;  
+##  1 2012-01-01 00:00:00  4383.        21.4 2012-01-01 TRUE   
+##  2 2012-01-01 00:30:00  4263.        21.0 2012-01-01 TRUE   
+##  3 2012-01-01 01:00:00  4049.        20.7 2012-01-01 TRUE   
+##  4 2012-01-01 01:30:00  3878.        20.6 2012-01-01 TRUE   
+##  5 2012-01-01 02:00:00  4036.        20.4 2012-01-01 TRUE   
+##  6 2012-01-01 02:30:00  3866.        20.2 2012-01-01 TRUE   
+##  7 2012-01-01 03:00:00  3694.        20.1 2012-01-01 TRUE   
+##  8 2012-01-01 03:30:00  3562.        19.6 2012-01-01 TRUE   
+##  9 2012-01-01 04:00:00  3433.        19.1 2012-01-01 TRUE   
+## 10 2012-01-01 04:30:00  3359.        19.0 2012-01-01 TRUE   
+## # … with 52,598 more rows</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb52-1"></a><span class="kw">summary</span>(vic_elec)</span></code></pre></div>
+<pre><code>##       Time                         Demand      Temperature   
+##  Min.   :2012-01-01 00:00:00   Min.   :2858   Min.   : 1.50  
+##  1st Qu.:2012-09-30 22:52:30   1st Qu.:3969   1st Qu.:12.30  
+##  Median :2013-07-01 22:45:00   Median :4635   Median :15.40  
+##  Mean   :2013-07-01 22:45:00   Mean   :4665   Mean   :16.27  
+##  3rd Qu.:2014-04-01 23:37:30   3rd Qu.:5244   3rd Qu.:19.40  
+##  Max.   :2014-12-31 23:30:00   Max.   :9345   Max.   :43.20  
+##       Date             Holiday       
+##  Min.   :2012-01-01   Mode :logical  
+##  1st Qu.:2012-09-30   FALSE:51120    
+##  Median :2013-07-01   TRUE :1488     
+##  Mean   :2013-07-01                  
+##  3rd Qu.:2014-04-01                  
+##  Max.   :2014-12-31</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-1"></a>vic_elec <span class="op">%&gt;%</span></span>
+<span id="cb54-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">year</span>(Time) <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
+<span id="cb54-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-3"></a><span class="st">  </span><span class="kw">autoplot</span>(Demand) <span class="op">+</span></span>
+<span id="cb54-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb54-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Demand (GW)&quot;</span>,</span>
+<span id="cb54-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-6"></a>    <span class="dt">title =</span> <span class="st">&quot;Half-hourly electricity demand: Victoria&quot;</span></span>
+<span id="cb54-7"><a href="exploratory-analysis-of-time-series-data-examples.html#cb54-7"></a>  )</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-1"></a>vic_elec <span class="op">%&gt;%</span></span>
+<span id="cb55-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">year</span>(Time) <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
+<span id="cb55-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-3"></a><span class="st">  </span><span class="kw">autoplot</span>(Temperature) <span class="op">+</span></span>
+<span id="cb55-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb55-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Temperature (degrees Celsius)&quot;</span>,</span>
+<span id="cb55-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-6"></a>    <span class="dt">title =</span> <span class="st">&quot;Half-hourly temperatures: Melbourne, Australia&quot;</span></span>
+<span id="cb55-7"><a href="exploratory-analysis-of-time-series-data-examples.html#cb55-7"></a>  )</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb56-1"></a>vic_elec <span class="op">%&gt;%</span></span>
+<span id="cb56-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb56-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">year</span>(Time) <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span></span>
+<span id="cb56-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb56-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Temperature, <span class="dt">y =</span> Demand)) <span class="op">+</span></span>
+<span id="cb56-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb56-4"></a><span class="co">#  geom_density2d() +</span></span>
+<span id="cb56-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb56-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.1</span>, <span class="kw">aes</span>(<span class="dt">colour=</span>Holiday), <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb56-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb56-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Demand (GW)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Temperature (degrees Celsius)&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-19-1.png" width="672" />
+A Scatterplot matrix</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb57-1"></a>vic_elec</span></code></pre></div>
+<pre><code>## # A tsibble: 52,608 x 5 [30m] &lt;Australia/Melbourne&gt;
+##    Time                Demand Temperature Date       Holiday
+##    &lt;dttm&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;     &lt;lgl&gt;  
+##  1 2012-01-01 00:00:00  4383.        21.4 2012-01-01 TRUE   
+##  2 2012-01-01 00:30:00  4263.        21.0 2012-01-01 TRUE   
+##  3 2012-01-01 01:00:00  4049.        20.7 2012-01-01 TRUE   
+##  4 2012-01-01 01:30:00  3878.        20.6 2012-01-01 TRUE   
+##  5 2012-01-01 02:00:00  4036.        20.4 2012-01-01 TRUE   
+##  6 2012-01-01 02:30:00  3866.        20.2 2012-01-01 TRUE   
+##  7 2012-01-01 03:00:00  3694.        20.1 2012-01-01 TRUE   
+##  8 2012-01-01 03:30:00  3562.        19.6 2012-01-01 TRUE   
+##  9 2012-01-01 04:00:00  3433.        19.1 2012-01-01 TRUE   
+## 10 2012-01-01 04:30:00  3359.        19.0 2012-01-01 TRUE   
+## # … with 52,598 more rows</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb59-1"></a><span class="kw">boxplot</span>(vic_elec<span class="op">$</span>Temperature)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb60-1"></a><span class="co"># install.packages(&quot;GGally&quot;)</span></span>
+<span id="cb60-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb60-2"></a>vic_elec <span class="op">%&gt;%</span></span>
+<span id="cb60-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb60-3"></a><span class="st">  </span><span class="co"># mutate(Temperature = round(Temperature)) %&gt;%</span></span>
+<span id="cb60-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb60-4"></a><span class="st">  </span><span class="co"># pivot_wider(values_from=c(Demand,Temperature), names_from=Holiday) %&gt;%</span></span>
+<span id="cb60-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb60-5"></a><span class="st">  </span>GGally<span class="op">::</span><span class="kw">ggpairs</span>(<span class="dt">columns =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-20-2.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb61-1"></a>vic_elec <span class="op">%&gt;%</span></span>
+<span id="cb61-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb61-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Year =</span> <span class="kw">factor</span>(<span class="kw">year</span>(Date))) <span class="op">%&gt;%</span></span>
+<span id="cb61-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb61-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(Date, Holiday)) <span class="op">%&gt;%</span></span>
+<span id="cb61-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb61-4"></a><span class="st">  </span>GGally<span class="op">::</span><span class="kw">ggpairs</span>(<span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-20-3.png" width="672" /></p>
+</div>
+</div>
+<div id="example-australian-production" class="section level2" number="13.2">
+<h2><span class="header-section-number">13.2</span> Example: Australian production</h2>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb62-1"></a><span class="co"># install.packages(&#39;tsibbledata&#39;)</span></span>
+<span id="cb62-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb62-2"></a><span class="kw">library</span>(tsibbledata)</span>
+<span id="cb62-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb62-3"></a></span>
+<span id="cb62-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb62-4"></a>aus_production</span></code></pre></div>
+<pre><code>## # A tsibble: 218 x 7 [1Q]
+##    Quarter  Beer Tobacco Bricks Cement Electricity   Gas
+##      &lt;qtr&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 1956 Q1   284    5225    189    465        3923     5
+##  2 1956 Q2   213    5178    204    532        4436     6
+##  3 1956 Q3   227    5297    208    561        4806     7
+##  4 1956 Q4   308    5681    197    570        4418     6
+##  5 1957 Q1   262    5577    187    529        4339     5
+##  6 1957 Q2   228    5651    214    604        4811     7
+##  7 1957 Q3   236    5317    227    603        5259     7
+##  8 1957 Q4   320    6152    222    582        4735     6
+##  9 1958 Q1   272    5758    199    554        4608     5
+## 10 1958 Q2   233    5641    229    620        5196     7
+## # … with 208 more rows</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb64-1"></a>aus_production <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_season</span>(Electricity)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb65-1"></a>aus_production <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_season</span>(Beer)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-21-2.png" width="672" /></p>
+</div>
+<div id="example-gross-domestic-product-data" class="section level2" number="13.3">
+<h2><span class="header-section-number">13.3</span> Example: Gross Domestic Product data</h2>
+<div id="exploratory-data-analysis" class="section level3" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> Exploratory data analysis</h3>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb66-1"></a><span class="kw">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
+<span id="cb66-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb66-2"></a></span>
+<span id="cb66-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb66-3"></a><span class="kw">print</span>(global_economy)</span></code></pre></div>
+<pre><code>## # A tsibble: 15,150 x 9 [1Y]
+## # Key:       Country [263]
+##    Country     Code   Year         GDP Growth   CPI Imports Exports Population
+##    &lt;fct&gt;       &lt;fct&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Afghanistan AFG    1960  537777811.     NA    NA    7.02    4.13    8996351
+##  2 Afghanistan AFG    1961  548888896.     NA    NA    8.10    4.45    9166764
+##  3 Afghanistan AFG    1962  546666678.     NA    NA    9.35    4.88    9345868
+##  4 Afghanistan AFG    1963  751111191.     NA    NA   16.9     9.17    9533954
+##  5 Afghanistan AFG    1964  800000044.     NA    NA   18.1     8.89    9731361
+##  6 Afghanistan AFG    1965 1006666638.     NA    NA   21.4    11.3     9938414
+##  7 Afghanistan AFG    1966 1399999967.     NA    NA   18.6     8.57   10152331
+##  8 Afghanistan AFG    1967 1673333418.     NA    NA   14.2     6.77   10372630
+##  9 Afghanistan AFG    1968 1373333367.     NA    NA   15.2     8.90   10604346
+## 10 Afghanistan AFG    1969 1408888922.     NA    NA   15.0    10.1    10854428
+## # … with 15,140 more rows</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb68-1"></a>global_economy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country<span class="op">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>()</span></code></pre></div>
+<pre><code>## # A tsibble: 58 x 9 [1Y]
+## # Key:       Country [1]
+##    Country Code   Year          GDP Growth   CPI Imports Exports Population
+##    &lt;fct&gt;   &lt;fct&gt; &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Sweden  SWE    1960 14842870293.  NA     9.21    23.4    23.0    7484656
+##  2 Sweden  SWE    1961 16147160123.   5.68  9.41    21.7    22.3    7519998
+##  3 Sweden  SWE    1962 17511477311.   4.26  9.86    21.4    21.9    7561588
+##  4 Sweden  SWE    1963 18954132366.   5.33 10.1     21.5    21.9    7604328
+##  5 Sweden  SWE    1964 21137242561.   6.82 10.5     21.9    22.3    7661354
+##  6 Sweden  SWE    1965 23260320646.   3.82 11.0     22.5    21.9    7733853
+##  7 Sweden  SWE    1966 25302033132.   2.09 11.7     21.9    21.4    7807797
+##  8 Sweden  SWE    1967 27463409202.   3.37 12.2     21.0    21.1    7867931
+##  9 Sweden  SWE    1968 29143383491.   3.64 12.5     21.6    21.6    7912273
+## 10 Sweden  SWE    1969 31649203886.   5.01 12.8     23.0    22.8    7968072
+## # … with 48 more rows</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb70-1"></a>global_economy <span class="op">%&gt;%</span></span>
+<span id="cb70-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb70-2"></a><span class="st">  </span><span class="kw">filter</span>(Country<span class="op">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb70-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb70-3"></a><span class="st">  </span><span class="kw">autoplot</span>(GDP) <span class="op">+</span></span>
+<span id="cb70-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb70-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;GDP for Sweden&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="fitting-data-to-simple-models" class="section level3" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> Fitting data to simple models</h3>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb71-1"></a>global_economy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">model</span>(<span class="dt">trend_model =</span> <span class="kw">TSLM</span>(GDP <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>())) -&gt;<span class="st"> </span>fit</span>
+<span id="cb71-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb71-2"></a></span>
+<span id="cb71-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb71-3"></a>fit</span></code></pre></div>
+<pre><code>## # A mable: 263 x 2
+## # Key:     Country [263]
+##    Country             trend_model
+##    &lt;fct&gt;                   &lt;model&gt;
+##  1 Afghanistan              &lt;TSLM&gt;
+##  2 Albania                  &lt;TSLM&gt;
+##  3 Algeria                  &lt;TSLM&gt;
+##  4 American Samoa           &lt;TSLM&gt;
+##  5 Andorra                  &lt;TSLM&gt;
+##  6 Angola                   &lt;TSLM&gt;
+##  7 Antigua and Barbuda      &lt;TSLM&gt;
+##  8 Arab World               &lt;TSLM&gt;
+##  9 Argentina                &lt;TSLM&gt;
+## 10 Armenia                  &lt;TSLM&gt;
+## # … with 253 more rows</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb73-1"></a>fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">residuals</span>()</span></code></pre></div>
+<pre><code>## # A tsibble: 58 x 4 [1Y]
+## # Key:       Country, .model [1]
+##    Country .model       Year       .resid
+##    &lt;fct&gt;   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Sweden  trend_model  1960 79973991821.
+##  2 Sweden  trend_model  1961 71110300270.
+##  3 Sweden  trend_model  1962 62306636078.
+##  4 Sweden  trend_model  1963 53581309752.
+##  5 Sweden  trend_model  1964 45596438566.
+##  6 Sweden  trend_model  1965 37551535271.
+##  7 Sweden  trend_model  1966 29425266377.
+##  8 Sweden  trend_model  1967 21418661066.
+##  9 Sweden  trend_model  1968 12930653974.
+## 10 Sweden  trend_model  1969  5268492989.
+## # … with 48 more rows</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb75-1"></a>fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>(.resid)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="work-with-lngdp" class="section level3" number="13.3.3">
+<h3><span class="header-section-number">13.3.3</span> Work with ln(GDP)</h3>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb76-1"></a>global_economy <span class="op">%&gt;%</span></span>
+<span id="cb76-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb76-2"></a><span class="st">  </span><span class="kw">filter</span>(Country<span class="op">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb76-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb76-3"></a><span class="st">  </span><span class="kw">autoplot</span>(<span class="kw">log</span>(GDP)) <span class="op">+</span></span>
+<span id="cb76-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb76-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;ln(GDP) for Sweden&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb77-1"></a>global_economy <span class="op">%&gt;%</span></span>
+<span id="cb77-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb77-2"></a><span class="st">  </span><span class="kw">model</span>(<span class="dt">trend_model =</span> <span class="kw">TSLM</span>(<span class="kw">log</span>(GDP) <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>())) -&gt;<span class="st"> </span>logfit</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb78-1"></a>logfit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb79-1"></a>global_economy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">model</span>(<span class="dt">trend_model =</span> <span class="kw">TSLM</span>(<span class="kw">log</span>(GDP) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(Population))) -&gt;<span class="st"> </span>fit3</span>
+<span id="cb79-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb79-2"></a></span>
+<span id="cb79-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb79-3"></a>fit3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+</div>
+<div id="producing-forecasts" class="section level2" number="13.4">
+<h2><span class="header-section-number">13.4</span> Producing forecasts</h2>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb80-1"></a>fit <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(<span class="dt">h =</span> <span class="st">&quot;3 years&quot;</span>) -&gt;<span class="st"> </span>fcast3yrs</span>
+<span id="cb80-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb80-2"></a></span>
+<span id="cb80-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb80-3"></a>fcast3yrs</span></code></pre></div>
+<pre><code>## # A fable: 789 x 5 [1Y]
+## # Key:     Country, .model [263]
+##    Country        .model       Year                 GDP         .mean
+##    &lt;fct&gt;          &lt;chr&gt;       &lt;dbl&gt;              &lt;dist&gt;         &lt;dbl&gt;
+##  1 Afghanistan    trend_model  2018 N(1.6e+10, 1.3e+19)  16205101654.
+##  2 Afghanistan    trend_model  2019 N(1.7e+10, 1.3e+19)  16511878141.
+##  3 Afghanistan    trend_model  2020 N(1.7e+10, 1.3e+19)  16818654627.
+##  4 Albania        trend_model  2018 N(1.4e+10, 3.9e+18)  13733734164.
+##  5 Albania        trend_model  2019 N(1.4e+10, 3.9e+18)  14166852711.
+##  6 Albania        trend_model  2020 N(1.5e+10, 3.9e+18)  14599971258.
+##  7 Algeria        trend_model  2018 N(1.6e+11, 9.4e+20) 157895153441.
+##  8 Algeria        trend_model  2019 N(1.6e+11, 9.4e+20) 161100952126.
+##  9 Algeria        trend_model  2020 N(1.6e+11, 9.4e+20) 164306750811.
+## 10 American Samoa trend_model  2018 N(6.8e+08, 1.7e+15)    682475000 
+## # … with 779 more rows</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb82-1"></a>fcast3yrs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>, Year <span class="op">==</span><span class="st"> </span><span class="dv">2020</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str</span>()</span></code></pre></div>
+<pre><code>## fable [1 × 5] (S3: fbl_ts/tbl_ts/tbl_df/tbl/data.frame)
+##  $ Country: Factor w/ 263 levels &quot;Afghanistan&quot;,..: 232
+##  $ .model : chr &quot;trend_model&quot;
+##  $ Year   : num 2020
+##  $ GDP    : dist [1:1] 
+##   ..$ 3:List of 2
+##   .. ..$ mu   : num 5.45e+11
+##   .. ..$ sigma: num 5.34e+10
+##   .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;dist_normal&quot; &quot;dist_default&quot;
+##   ..@ vars: chr &quot;GDP&quot;
+##  $ .mean  : num 5.45e+11
+##  - attr(*, &quot;key&quot;)= tibble [1 × 3] (S3: tbl_df/tbl/data.frame)
+##   ..$ Country: Factor w/ 263 levels &quot;Afghanistan&quot;,..: 232
+##   ..$ .model : chr &quot;trend_model&quot;
+##   ..$ .rows  : list&lt;int&gt; [1:1] 
+##   .. ..$ : int 1
+##   .. ..@ ptype: int(0) 
+##   ..- attr(*, &quot;.drop&quot;)= logi TRUE
+##  - attr(*, &quot;index&quot;)= chr &quot;Year&quot;
+##   ..- attr(*, &quot;ordered&quot;)= logi TRUE
+##  - attr(*, &quot;index2&quot;)= chr &quot;Year&quot;
+##  - attr(*, &quot;interval&quot;)= interval [1:1] 1Y
+##   ..@ .regular: logi TRUE
+##  - attr(*, &quot;response&quot;)= chr &quot;GDP&quot;
+##  - attr(*, &quot;dist&quot;)= chr &quot;GDP&quot;
+##  - attr(*, &quot;model_cn&quot;)= chr &quot;.model&quot;</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb84-1"></a>fcast3yrs <span class="op">%&gt;%</span></span>
+<span id="cb84-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb84-2"></a><span class="st">  </span><span class="kw">filter</span>(Country<span class="op">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb84-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb84-3"></a><span class="st">  </span><span class="kw">autoplot</span>(global_economy) <span class="op">+</span></span>
+<span id="cb84-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb84-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;GDP for Sweden&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/visualize%20forecasts-1.png" width="672" /></p>
+<div id="model-residuals-vs.-forecast-errors" class="section level3" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Model residuals vs. forecast errors</h3>
+<p>Model residuals:</p>
+<p>Your data: <span class="math inline">\(y_1, y_2, \ldots, y_T\)</span></p>
+<p>Fitted values: <span class="math inline">\(\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_T\)</span></p>
+<p>Model residuals: <span class="math inline">\(e_t = y_t - \hat{y}_t\)</span></p>
+<p>Forecast errors:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb85-1"></a><span class="kw">augment</span>(fit)</span></code></pre></div>
+<pre><code>## # A tsibble: 15,150 x 7 [1Y]
+## # Key:       Country, .model [263]
+##    Country     .model       Year         GDP      .fitted      .resid     .innov
+##    &lt;fct&gt;       &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Afghanistan trend_model  1960  537777811. -1587934559. 2125712370.     2.13e9
+##  2 Afghanistan trend_model  1961  548888896. -1281158073. 1830046968.     1.83e9
+##  3 Afghanistan trend_model  1962  546666678.  -974381586. 1521048264.     1.52e9
+##  4 Afghanistan trend_model  1963  751111191.  -667605100. 1418716291.     1.42e9
+##  5 Afghanistan trend_model  1964  800000044.  -360828613. 1160828658.     1.16e9
+##  6 Afghanistan trend_model  1965 1006666638.   -54052127. 1060718765.     1.06e9
+##  7 Afghanistan trend_model  1966 1399999967.   252724359. 1147275607.     1.15e9
+##  8 Afghanistan trend_model  1967 1673333418.   559500846. 1113832572.     1.11e9
+##  9 Afghanistan trend_model  1968 1373333367.   866277332.  507056034.     5.07e8
+## 10 Afghanistan trend_model  1969 1408888922.  1173053819.  235835103.     2.36e8
+## # … with 15,140 more rows</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb87-1"></a><span class="kw">augment</span>(fit) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb87-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb87-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .resid)) <span class="op">+</span></span>
+<span id="cb87-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb87-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb87-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb87-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-35-1.png" width="672" /></p>
+</div>
+<div id="are-the-model-residuals-auto-correlated" class="section level3" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Are the model residuals auto-correlated?</h3>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb88-1"></a><span class="kw">augment</span>(fit) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) -&gt;<span class="st"> </span>augSweden</span>
+<span id="cb88-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb88-2"></a></span>
+<span id="cb88-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb88-3"></a>augSweden <span class="op">%&gt;%</span></span>
+<span id="cb88-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb88-4"></a><span class="st">  </span><span class="kw">ACF</span>(.resid) <span class="op">%&gt;%</span></span>
+<span id="cb88-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb88-5"></a><span class="st">  </span><span class="kw">autoplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb89-1"></a><span class="kw">augment</span>(fit3) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Sweden&quot;</span>) -&gt;<span class="st"> </span>augSweden3</span>
+<span id="cb89-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb89-2"></a></span>
+<span id="cb89-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb89-3"></a>augSweden3 <span class="op">%&gt;%</span></span>
+<span id="cb89-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb89-4"></a><span class="st">  </span><span class="kw">ACF</span>(.resid) <span class="op">%&gt;%</span></span>
+<span id="cb89-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb89-5"></a><span class="st">  </span><span class="kw">autoplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+</div>
+<div id="example-gdp-several-countries" class="section level2" number="13.5">
+<h2><span class="header-section-number">13.5</span> Example: GDP, several countries</h2>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb90-1"></a><span class="kw">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
+<span id="cb90-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb90-2"></a></span>
+<span id="cb90-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb90-3"></a>nordic &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sweden&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Finland&quot;</span>)</span>
+<span id="cb90-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb90-4"></a></span>
+<span id="cb90-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb90-5"></a>(global_economy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">%in%</span><span class="st"> </span>nordic) -&gt;<span class="st"> </span>nordic_economy)</span></code></pre></div>
+<pre><code>## # A tsibble: 232 x 9 [1Y]
+## # Key:       Country [4]
+##    Country Code   Year          GDP Growth   CPI Imports Exports Population
+##    &lt;fct&gt;   &lt;fct&gt; &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Denmark DNK    1960  6248946880. NA      8.25    34.3    32.3    4579603
+##  2 Denmark DNK    1961  6933842099.  6.38   8.53    32.3    30.0    4611687
+##  3 Denmark DNK    1962  7812968114.  5.67   9.16    32.5    28.6    4647727
+##  4 Denmark DNK    1963  8316692386.  0.637  9.72    30.8    30.4    4684483
+##  5 Denmark DNK    1964  9506678763.  9.27  10.0     32.6    29.9    4722072
+##  6 Denmark DNK    1965 10678897387.  4.56  10.6     31.5    29.3    4759012
+##  7 Denmark DNK    1966 11721248101.  2.74  11.3     30.8    28.6    4797381
+##  8 Denmark DNK    1967 12788479692.  3.42  12.2     30.0    27.3    4835354
+##  9 Denmark DNK    1968 13196541952   3.97  13.2     29.7    27.7    4864883
+## 10 Denmark DNK    1969 15009384585.  6.32  13.7     30.4    27.6    4891860
+## # … with 222 more rows</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb92-1"></a>nordic_economy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>(GDP)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-1"></a>fitnord &lt;-<span class="st"> </span>nordic_economy <span class="op">%&gt;%</span></span>
+<span id="cb93-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-2"></a><span class="st">  </span><span class="kw">model</span>(</span>
+<span id="cb93-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-3"></a>    <span class="dt">trend_model =</span> <span class="kw">TSLM</span>(GDP <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>()),</span>
+<span id="cb93-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-4"></a>    <span class="dt">trend_model_ln =</span> <span class="kw">TSLM</span>(<span class="kw">log</span>(GDP) <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>()),</span>
+<span id="cb93-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-5"></a>    <span class="dt">ets =</span> <span class="kw">ETS</span>(GDP <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>(<span class="st">&quot;A&quot;</span>)),</span>
+<span id="cb93-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-6"></a>    <span class="dt">arima =</span> <span class="kw">ARIMA</span>(GDP)</span>
+<span id="cb93-7"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-7"></a>  )</span>
+<span id="cb93-8"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-8"></a></span>
+<span id="cb93-9"><a href="exploratory-analysis-of-time-series-data-examples.html#cb93-9"></a>fitnord</span></code></pre></div>
+<pre><code>## # A mable: 4 x 5
+## # Key:     Country [4]
+##   Country trend_model trend_model_ln          ets          arima
+##   &lt;fct&gt;       &lt;model&gt;        &lt;model&gt;      &lt;model&gt;        &lt;model&gt;
+## 1 Denmark      &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(1,1,1)&gt;
+## 2 Finland      &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(0,1,2)&gt;
+## 3 Norway       &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(0,1,1)&gt;
+## 4 Sweden       &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(0,1,2)&gt;</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb95-1"></a>fitnord <span class="op">%&gt;%</span></span>
+<span id="cb95-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb95-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(arima) <span class="op">%&gt;%</span></span>
+<span id="cb95-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb95-3"></a><span class="st">  </span><span class="kw">coef</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 7
+##   Country .model term  estimate std.error statistic    p.value
+##   &lt;fct&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Denmark arima  ar1     -0.390     0.206     -1.89 0.0636    
+## 2 Denmark arima  ma1      0.724     0.143      5.05 0.00000484
+## 3 Finland arima  ma1      0.406     0.120      3.39 0.00126   
+## 4 Finland arima  ma2     -0.221     0.108     -2.05 0.0450    
+## 5 Norway  arima  ma1      0.410     0.155      2.65 0.0104    
+## 6 Sweden  arima  ma1      0.241     0.121      1.99 0.0510    
+## 7 Sweden  arima  ma2     -0.188     0.101     -1.87 0.0670</code></pre>
+<p>Denmark: ARMA(1,1)</p>
+<p>Finland: MA(2)</p>
+<p>Norway: MA(1)</p>
+<p>Sweden: MA(2)</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb97-1"></a>nordic_economy <span class="op">%&gt;%</span></span>
+<span id="cb97-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb97-2"></a><span class="st">  </span><span class="kw">model</span>(<span class="dt">arima_constrained =</span> <span class="kw">ARIMA</span>(GDP <span class="op">~</span><span class="st"> </span><span class="kw">pdq</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">2</span>))) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(arima_constrained) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">coef</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 0 x 4
+## # … with 4 variables: Country &lt;fct&gt;, .model &lt;chr&gt;, term &lt;chr&gt;, estimate &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb99-1"></a>fitnord <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">coef</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 39 x 7
+##    Country .model         term         estimate std.error statistic   p.value
+##    &lt;fct&gt;   &lt;chr&gt;          &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Denmark trend_model    (Intercept) -5.65e+10   8.75e+9     -6.46  2.70e- 8
+##  2 Denmark trend_model    trend()      6.63e+ 9   2.58e+8     25.7   1.14e-32
+##  3 Denmark trend_model_ln (Intercept)  2.30e+ 1   8.55e-2    269.    7.68e-89
+##  4 Denmark trend_model_ln trend()      7.12e- 2   2.52e-3     28.3   7.68e-35
+##  5 Denmark ets            alpha        1.00e+ 0  NA           NA    NA       
+##  6 Denmark ets            beta         3.67e- 1  NA           NA    NA       
+##  7 Denmark ets            l            4.92e+ 9  NA           NA    NA       
+##  8 Denmark ets            b            1.24e+ 9  NA           NA    NA       
+##  9 Denmark arima          ar1         -3.90e- 1   2.06e-1     -1.89  6.36e- 2
+## 10 Denmark arima          ma1          7.24e- 1   1.43e-1      5.05  4.84e- 6
+## # … with 29 more rows</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb101-1"></a>fitnord <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">glance</span>()  </span></code></pre></div>
+<pre><code>## # A tibble: 16 x 21
+##    Country .model r_squared adj_r_squared   sigma2 statistic   p_value    df
+##    &lt;fct&gt;   &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 Denmark trend…     0.922         0.920 1.08e+21      660.  1.14e-32     2
+##  2 Denmark trend…     0.935         0.933 1.03e- 1      800.  7.68e-35     2
+##  3 Denmark ets       NA            NA     1.04e- 2       NA  NA           NA
+##  4 Denmark arima     NA            NA     2.41e+20       NA  NA           NA
+##  5 Finland trend…     0.914         0.912 7.34e+20      594.  1.70e-31     2
+##  6 Finland trend…     0.930         0.929 1.14e- 1      745.  4.96e-34     2
+##  7 Finland ets       NA            NA     1.32e- 2       NA  NA           NA
+##  8 Finland arima     NA            NA     1.89e+20       NA  NA           NA
+##  9 Norway  trend…     0.824         0.821 4.60e+21      262.  8.54e-23     2
+## 10 Norway  trend…     0.959         0.958 8.37e- 2     1307.  1.64e-40     2
+## 11 Norway  ets       NA            NA     8.23e- 3       NA  NA           NA
+## 12 Norway  arima     NA            NA     6.78e+20       NA  NA           NA
+## 13 Sweden  trend…     0.919         0.918 2.65e+21      635.  3.07e-32     2
+## 14 Sweden  trend…     0.935         0.933 8.19e- 2      800.  7.57e-35     2
+## 15 Sweden  ets       NA            NA     1.16e- 2       NA  NA           NA
+## 16 Sweden  arima     NA            NA     8.84e+20       NA  NA           NA
+## # … with 13 more variables: log_lik &lt;dbl&gt;, AIC &lt;dbl&gt;, AICc &lt;dbl&gt;, BIC &lt;dbl&gt;,
+## #   CV &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, rank &lt;int&gt;, MSE &lt;dbl&gt;,
+## #   AMSE &lt;dbl&gt;, MAE &lt;dbl&gt;, ar_roots &lt;list&gt;, ma_roots &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb103-1"></a>fitnord <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Country <span class="op">==</span><span class="st"> &quot;Denmark&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(arima) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">report</span>()</span></code></pre></div>
+<pre><code>## Series: GDP 
+## Model: ARIMA(1,1,1) 
+## 
+## Coefficients:
+##           ar1     ma1
+##       -0.3898  0.7240
+## s.e.   0.2061  0.1434
+## 
+## sigma^2 estimated as 2.407e+20:  log likelihood=-1417.5
+## AIC=2840.99   AICc=2841.45   BIC=2847.12</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb105-1"></a>fitnord <span class="op">%&gt;%</span></span>
+<span id="cb105-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb105-2"></a><span class="st">  </span><span class="kw">accuracy</span>() <span class="op">%&gt;%</span></span>
+<span id="cb105-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb105-3"></a><span class="st">  </span><span class="kw">arrange</span>(Country, MPE)</span></code></pre></div>
+<pre><code>## # A tibble: 16 x 11
+##    Country .model .type        ME    RMSE     MAE     MPE   MAPE  MASE RMSSE
+##    &lt;fct&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Denmark trend… Trai… -1.12e+10 6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
+##  2 Denmark ets    Trai…  4.50e+ 7 1.65e10 1.04e10   0.518   7.09 0.946 1.02 
+##  3 Denmark arima  Trai…  4.40e+ 9 1.51e10 1.04e10   5.05    8.16 0.945 0.930
+##  4 Denmark trend… Trai… -2.20e- 6 3.23e10 2.63e10  51.1    80.8  2.40  1.99 
+##  5 Finland trend… Trai… -8.61e+ 9 5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
+##  6 Finland ets    Trai…  1.36e+ 8 1.47e10 9.41e 9   0.795   8.36 0.927 0.996
+##  7 Finland arima  Trai…  3.54e+ 9 1.34e10 9.14e 9   5.03    8.92 0.900 0.906
+##  8 Finland trend… Trai…  2.33e- 6 2.66e10 2.21e10  46.1    80.5  2.18  1.80 
+##  9 Norway  trend… Trai… -1.31e+10 8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
+## 10 Norway  ets    Trai… -5.29e+ 8 2.75e10 1.37e10   0.755   6.94 0.870 1.01 
+## 11 Norway  arima  Trai…  4.90e+ 9 2.56e10 1.40e10   5.04    8.11 0.890 0.938
+## 12 Norway  trend… Trai… -1.10e- 5 6.67e10 5.48e10 130.    181.   3.49  2.45 
+## 13 Sweden  trend… Trai… -1.18e+10 8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
+## 14 Sweden  ets    Trai…  1.19e+ 9 3.02e10 1.86e10   0.745   7.64 0.875 0.984
+## 15 Sweden  arima  Trai…  8.48e+ 9 2.89e10 2.01e10   5.18    9.37 0.942 0.944
+## 16 Sweden  trend… Trai…  3.22e- 6 5.05e10 3.90e10  29.4    53.3  1.83  1.65 
+## # … with 1 more variable: ACF1 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb107-1"></a><span class="co"># ETS forecasts</span></span>
+<span id="cb107-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb107-2"></a>USAccDeaths <span class="op">%&gt;%</span></span>
+<span id="cb107-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb107-3"></a><span class="st">  </span><span class="kw">ets</span>() <span class="op">%&gt;%</span></span>
+<span id="cb107-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb107-4"></a><span class="st">  </span><span class="kw">forecast</span>() <span class="op">%&gt;%</span></span>
+<span id="cb107-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb107-5"></a><span class="st">  </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb108-1"></a><span class="kw">str</span>(taylor)</span>
+<span id="cb108-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb108-2"></a><span class="kw">plot</span>(taylor)</span></code></pre></div>
+<div id="plot-lagged-values" class="section level3" number="13.5.1">
+<h3><span class="header-section-number">13.5.1</span> Plot lagged values</h3>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb109-1"></a>vaelsales_tbl_ts  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">month</span>(Month) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_lag</span>(sales_GWh, <span class="dt">lags =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="graphics/plot%20lagged%20values-1.png" width="672" /></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb110-1"></a>vaelsales_tbl_ts  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">month</span>(Month) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_lag</span>(sales_GWh, <span class="dt">lags =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="graphics/plot%20lagged%20values-2.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb111-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ACF</span>(sales_GWh) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb112-1"></a><span class="co"># decompose(vaelsales_tbl_ts)</span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb113-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb113-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb113-2"></a><span class="st">  </span><span class="kw">model</span>(<span class="kw">STL</span>(sales_GWh <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>(<span class="dt">window=</span><span class="dv">21</span>) <span class="op">+</span><span class="st"> </span><span class="kw">season</span>(<span class="dt">window=</span><span class="st">&#39;periodic&#39;</span>), <span class="dt">robust =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb113-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb113-3"></a><span class="st">  </span><span class="kw">components</span>() <span class="op">%&gt;%</span></span>
+<span id="cb113-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb113-4"></a><span class="st">  </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/perform%20additive%20STL%20decomposition%20of%20the%20VA%20electricity%20sales%20time%20series-1.png" width="672" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb114-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb114-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb114-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ln_sales_GWh =</span> <span class="kw">log</span>(sales_GWh)) <span class="op">%&gt;%</span></span>
+<span id="cb114-3"><a href="exploratory-analysis-of-time-series-data-examples.html#cb114-3"></a><span class="st">  </span><span class="kw">model</span>(<span class="kw">STL</span>(ln_sales_GWh <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>(<span class="dt">window=</span><span class="dv">21</span>) <span class="op">+</span><span class="st"> </span><span class="kw">season</span>(<span class="dt">window=</span><span class="st">&#39;periodic&#39;</span>),</span>
+<span id="cb114-4"><a href="exploratory-analysis-of-time-series-data-examples.html#cb114-4"></a>    <span class="dt">robust =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb114-5"><a href="exploratory-analysis-of-time-series-data-examples.html#cb114-5"></a><span class="st">  </span><span class="kw">components</span>() <span class="op">%&gt;%</span></span>
+<span id="cb114-6"><a href="exploratory-analysis-of-time-series-data-examples.html#cb114-6"></a><span class="st">  </span><span class="kw">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/perform%20multiplicative%20STL%20decomposition%20of%20the%20VA%20electricity%20sales%20time%20series-1.png" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb115-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb115-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb115-2"></a><span class="st">  </span><span class="kw">features</span>(sales_GWh, feat_stl)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 9
+##   trend_strength seasonal_streng… seasonal_peak_y… seasonal_trough… spikiness
+##            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1          0.597            0.863                7                4   862916.
+## # … with 4 more variables: linearity &lt;dbl&gt;, curvature &lt;dbl&gt;, stl_e_acf1 &lt;dbl&gt;,
+## #   stl_e_acf10 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="exploratory-analysis-of-time-series-data-examples.html#cb117-1"></a>vaelsales_tbl_ts <span class="op">%&gt;%</span></span>
+<span id="cb117-2"><a href="exploratory-analysis-of-time-series-data-examples.html#cb117-2"></a><span class="st">  </span><span class="kw">features</span>(sales_GWh, <span class="kw">feature_set</span>(<span class="dt">pkgs=</span><span class="st">&quot;feasts&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 48
+##   trend_strength seasonal_streng… seasonal_peak_y… seasonal_trough… spikiness
+##            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1          0.597            0.863                7                4   862916.
+## # … with 43 more variables: linearity &lt;dbl&gt;, curvature &lt;dbl&gt;, stl_e_acf1 &lt;dbl&gt;,
+## #   stl_e_acf10 &lt;dbl&gt;, acf1 &lt;dbl&gt;, acf10 &lt;dbl&gt;, diff1_acf1 &lt;dbl&gt;,
+## #   diff1_acf10 &lt;dbl&gt;, diff2_acf1 &lt;dbl&gt;, diff2_acf10 &lt;dbl&gt;, season_acf1 &lt;dbl&gt;,
+## #   pacf5 &lt;dbl&gt;, diff1_pacf5 &lt;dbl&gt;, diff2_pacf5 &lt;dbl&gt;, season_pacf &lt;dbl&gt;,
+## #   zero_run_mean &lt;dbl&gt;, nonzero_squared_cv &lt;dbl&gt;, zero_start_prop &lt;dbl&gt;,
+## #   zero_end_prop &lt;dbl&gt;, lambda_guerrero &lt;dbl&gt;, kpss_stat &lt;dbl&gt;,
+## #   kpss_pvalue &lt;dbl&gt;, pp_stat &lt;dbl&gt;, pp_pvalue &lt;dbl&gt;, ndiffs &lt;int&gt;,
+## #   nsdiffs &lt;int&gt;, bp_stat &lt;dbl&gt;, bp_pvalue &lt;dbl&gt;, lb_stat &lt;dbl&gt;,
+## #   lb_pvalue &lt;dbl&gt;, var_tiled_var &lt;dbl&gt;, var_tiled_mean &lt;dbl&gt;,
+## #   shift_level_max &lt;dbl&gt;, shift_level_index &lt;dbl&gt;, shift_var_max &lt;dbl&gt;,
+## #   shift_var_index &lt;dbl&gt;, shift_kl_max &lt;dbl&gt;, shift_kl_index &lt;dbl&gt;,
+## #   spectral_entropy &lt;dbl&gt;, n_crossing_points &lt;int&gt;, longest_flat_spot &lt;int&gt;,
+## #   coef_hurst &lt;dbl&gt;, stat_arch_lm &lt;dbl&gt;</code></pre>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploratory-data-analysis-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-normal-linear-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["tsf.pdf", "tsf.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

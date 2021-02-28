@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Running diagnostics on your tsibble | Time Series and Forecasting</title>
+  <meta name="description" content="Class notes for SYS 5581, Spring 2021" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Running diagnostics on your tsibble | Time Series and Forecasting" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Class notes for SYS 5581, Spring 2021" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Running diagnostics on your tsibble | Time Series and Forecasting" />
+  
+  <meta name="twitter:description" content="Class notes for SYS 5581, Spring 2021" />
+  
+
+<meta name="author" content="Arthur Small" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-transformation.html"/>
+<link rel="next" href="data-cleaning.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Time Series and Forecasting</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#readings"><i class="fa fa-check"></i>Readings</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction and Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#course-introduction"><i class="fa fa-check"></i><b>1.1</b> Course introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#the-project"><i class="fa fa-check"></i><b>1.2</b> The project</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#computing-setup"><i class="fa fa-check"></i><b>1.3</b> Computing setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#other-helpful-resources"><i class="fa fa-check"></i><b>1.4</b> Other helpful resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html"><i class="fa fa-check"></i><b>2</b> A very simple time series analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#steps-in-a-very-simple-time-series-statistical-analysis"><i class="fa fa-check"></i><b>2.1</b> Steps in a very simple time series statistical analysis</a></li>
+<li class="chapter" data-level="2.2" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#example-problem-estimating-the-probability-of-a-weather-event"><i class="fa fa-check"></i><b>2.2</b> Example problem: Estimating the probability of a weather event</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#state-your-question"><i class="fa fa-check"></i><b>2.2.1</b> 1. State your question</a></li>
+<li class="chapter" data-level="2.2.2" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#acquire-data-and-background-information"><i class="fa fa-check"></i><b>2.2.2</b> 2. Acquire data and background information</a></li>
+<li class="chapter" data-level="2.2.3" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#organize-your-data"><i class="fa fa-check"></i><b>2.2.3</b> 3. Organize your data</a></li>
+<li class="chapter" data-level="2.2.4" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#perform-exploratory-analysis-of-your-data"><i class="fa fa-check"></i><b>2.2.4</b> 4. Perform exploratory analysis of your data</a></li>
+<li class="chapter" data-level="2.2.5" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#write-down-your-model-of-the-data-generating-process"><i class="fa fa-check"></i><b>2.2.5</b> 5. Write down your model of the data generating process</a></li>
+<li class="chapter" data-level="2.2.6" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#if-necessary-transform-the-model-and-data-to-make-it-ready-for-analysis"><i class="fa fa-check"></i><b>2.2.6</b> 6. If necessary: transform the model and data to make it ready for analysis</a></li>
+<li class="chapter" data-level="2.2.7" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#choose-an-appropriate-technique-for-estimating-model-parameters-consistent-with-your-assumptions-about-your-data-generating-process"><i class="fa fa-check"></i><b>2.2.7</b> 7. Choose an appropriate technique for estimating model parameters, consistent with your assumptions about your data generating process</a></li>
+<li class="chapter" data-level="2.2.8" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#estimate-model-parameters"><i class="fa fa-check"></i><b>2.2.8</b> 8. Estimate model parameters</a></li>
+<li class="chapter" data-level="2.2.9" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#confirm-that-your-modeling-assumptions-are-satisfied"><i class="fa fa-check"></i><b>2.2.9</b> 9. Confirm that your modeling assumptions are satisfied</a></li>
+<li class="chapter" data-level="2.2.10" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#compute-measures-of-model-quality-confirm-that-your-model-is-good-enough-for-your-purpose"><i class="fa fa-check"></i><b>2.2.10</b> 10. compute measures of model quality; confirm that your model is good enough for your purpose</a></li>
+<li class="chapter" data-level="2.2.11" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#use-your-calibrated-model-to-address-your-original-question."><i class="fa fa-check"></i><b>2.2.11</b> 11. Use your calibrated model to address your original question.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="a-very-simple-time-series-analysis.html"><a href="a-very-simple-time-series-analysis.html#for-next-time-add-a-covariate"><i class="fa fa-check"></i><b>2.3</b> For next time: Add a covariate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html"><i class="fa fa-check"></i><b>3</b> Computing setup and guide</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#the-r-programming-language-and-related-resources"><i class="fa fa-check"></i><b>3.1</b> The R programming language, and related resources</a></li>
+<li class="chapter" data-level="3.2" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#git-and-github"><i class="fa fa-check"></i><b>3.2</b> Git and Github</a></li>
+<li class="chapter" data-level="3.3" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#markdown-and-r-markdown"><i class="fa fa-check"></i><b>3.3</b> Markdown and R Markdown</a></li>
+<li class="chapter" data-level="3.4" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#bibliographic-resources-zotero-and-bibtex"><i class="fa fa-check"></i><b>3.4</b> Bibliographic resources: Zotero and Bibtex</a></li>
+<li class="chapter" data-level="3.5" data-path="computing-setup-and-guide.html"><a href="computing-setup-and-guide.html#general-course-web-resources"><i class="fa fa-check"></i><b>3.5</b> General course web resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="finding-and-acquiring-a-dataset-for-your-project.html"><a href="finding-and-acquiring-a-dataset-for-your-project.html"><i class="fa fa-check"></i><b>4</b> Finding and acquiring a dataset for your project</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="finding-and-acquiring-a-dataset-for-your-project.html"><a href="finding-and-acquiring-a-dataset-for-your-project.html#appropriate-data-sets-for-time-series-analysis"><i class="fa fa-check"></i><b>4.1</b> Appropriate data sets for time series analysis</a></li>
+</ul></li>
+<li class="part"><span><b>II Data Wrangling</b></span></li>
+<li class="chapter" data-level="5" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html"><i class="fa fa-check"></i><b>5</b> Data extraction, transformation, and loading: Overview</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html#etl-strategy-design-your-end-point-data-tables"><i class="fa fa-check"></i><b>5.1</b> ETL strategy: Design your end-point data table(s)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html#design-your-end-point-first-at-least-in-your-head."><i class="fa fa-check"></i><b>5.1.1</b> Design your end point first (at least, in your head).</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-extraction-transformation-and-loading-overview.html"><a href="data-extraction-transformation-and-loading-overview.html#typical-structure-for-a-time-series-data-table"><i class="fa fa-check"></i><b>5.1.2</b> Typical structure for a time series data table:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-extraction.html"><a href="data-extraction.html"><i class="fa fa-check"></i><b>6</b> Data extraction</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-extraction.html"><a href="data-extraction.html#data-types"><i class="fa fa-check"></i><b>6.1</b> Data types</a></li>
+<li class="chapter" data-level="6.2" data-path="data-extraction.html"><a href="data-extraction.html#time-indexing-in-data"><i class="fa fa-check"></i><b>6.2</b> Time indexing in data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-extraction-1.html"><a href="data-extraction-1.html"><i class="fa fa-check"></i><b>7</b> Data extraction</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-extraction-1.html"><a href="data-extraction-1.html#reading-in-data-from-source-files"><i class="fa fa-check"></i><b>7.1</b> Reading in data from source files</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="data-extraction-1.html"><a href="data-extraction-1.html#example-using-readrread_csv"><i class="fa fa-check"></i><b>7.1.1</b> Example using readr::read_csv</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>8</b> Data transformation</a></li>
+<li class="chapter" data-level="9" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html"><i class="fa fa-check"></i><b>9</b> Running diagnostics on your tsibble</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html#duplicate-values"><i class="fa fa-check"></i><b>9.1</b> Duplicate values</a></li>
+<li class="chapter" data-level="9.2" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html#missing-values"><i class="fa fa-check"></i><b>9.2</b> Missing values</a></li>
+<li class="chapter" data-level="9.3" data-path="running-diagnostics-on-your-tsibble.html"><a href="running-diagnostics-on-your-tsibble.html#irregular-time-intervals"><i class="fa fa-check"></i><b>9.3</b> Irregular time intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>10</b> Data cleaning</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-cleaning.html"><a href="data-cleaning.html#dropping-empty-rows-and-columns"><i class="fa fa-check"></i><b>10.1</b> Dropping empty rows and columns</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html"><i class="fa fa-check"></i><b>11</b> Saving and loading data files</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html#fast-file-reading-and-writing-the-arrow-package"><i class="fa fa-check"></i><b>11.1</b> Fast file reading and writing: The <code>arrow</code> package</a></li>
+</ul></li>
+<li class="part"><span><b>III Exploratory Data Analysis</b></span></li>
+<li class="chapter" data-level="12" data-path="exploratory-data-analysis-overview.html"><a href="exploratory-data-analysis-overview.html"><i class="fa fa-check"></i><b>12</b> Exploratory data analysis: Overview</a></li>
+<li class="chapter" data-level="13" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html"><i class="fa fa-check"></i><b>13</b> Exploratory analysis of time series data: Examples</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-monthly-electricity-sales-for-virginia"><i class="fa fa-check"></i><b>13.1</b> Example: Monthly electricity sales for Virginia</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#extract-data-from-remote-database"><i class="fa fa-check"></i><b>13.1.1</b> Extract data from remote database</a></li>
+<li class="chapter" data-level="13.1.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#briefly-characterize-the-dataset"><i class="fa fa-check"></i><b>13.1.2</b> Briefly characterize the dataset</a></li>
+<li class="chapter" data-level="13.1.3" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#plot-the-time-series"><i class="fa fa-check"></i><b>13.1.3</b> Plot the time series</a></li>
+<li class="chapter" data-level="13.1.4" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#convert-the-data-frame-into-a-time-series-tsibble-object"><i class="fa fa-check"></i><b>13.1.4</b> Convert the data frame into a time series <code>tsibble</code> object</a></li>
+<li class="chapter" data-level="13.1.5" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#make-some-plots"><i class="fa fa-check"></i><b>13.1.5</b> Make some plots</a></li>
+<li class="chapter" data-level="13.1.6" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#scatterplots"><i class="fa fa-check"></i><b>13.1.6</b> Scatterplots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-australian-production"><i class="fa fa-check"></i><b>13.2</b> Example: Australian production</a></li>
+<li class="chapter" data-level="13.3" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-gross-domestic-product-data"><i class="fa fa-check"></i><b>13.3</b> Example: Gross Domestic Product data</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>13.3.1</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="13.3.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#fitting-data-to-simple-models"><i class="fa fa-check"></i><b>13.3.2</b> Fitting data to simple models</a></li>
+<li class="chapter" data-level="13.3.3" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#work-with-lngdp"><i class="fa fa-check"></i><b>13.3.3</b> Work with ln(GDP)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#producing-forecasts"><i class="fa fa-check"></i><b>13.4</b> Producing forecasts</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#model-residuals-vs.-forecast-errors"><i class="fa fa-check"></i><b>13.4.1</b> Model residuals vs. forecast errors</a></li>
+<li class="chapter" data-level="13.4.2" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#are-the-model-residuals-auto-correlated"><i class="fa fa-check"></i><b>13.4.2</b> Are the model residuals auto-correlated?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#example-gdp-several-countries"><i class="fa fa-check"></i><b>13.5</b> Example: GDP, several countries</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="exploratory-analysis-of-time-series-data-examples.html"><a href="exploratory-analysis-of-time-series-data-examples.html#plot-lagged-values"><i class="fa fa-check"></i><b>13.5.1</b> Plot lagged values</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Modeling the data-generating process</b></span></li>
+<li class="chapter" data-level="14" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html"><i class="fa fa-check"></i><b>14</b> The normal linear model</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#assumptions-of-the-linear-model"><i class="fa fa-check"></i><b>14.1</b> Assumptions of the linear model</a></li>
+<li class="chapter" data-level="14.2" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#examples-of-the-normal-linear-model"><i class="fa fa-check"></i><b>14.2</b> Examples of the normal linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>15</b> Ordinary least squares estimation</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="course-syllabus.html"><a href="course-syllabus.html"><i class="fa fa-check"></i><b>A</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="course-syllabus.html"><a href="course-syllabus.html#course-description"><i class="fa fa-check"></i><b>A.1</b> Course Description</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="course-syllabus.html"><a href="course-syllabus.html#prerequisites"><i class="fa fa-check"></i><b>A.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="A.1.2" data-path="course-syllabus.html"><a href="course-syllabus.html#expectations"><i class="fa fa-check"></i><b>A.1.2</b> Expectations</a></li>
+<li class="chapter" data-level="A.1.3" data-path="course-syllabus.html"><a href="course-syllabus.html#readings-1"><i class="fa fa-check"></i><b>A.1.3</b> Readings</a></li>
+<li class="chapter" data-level="A.1.4" data-path="course-syllabus.html"><a href="course-syllabus.html#course-objectives"><i class="fa fa-check"></i><b>A.1.4</b> Course Objectives</a></li>
+<li class="chapter" data-level="A.1.5" data-path="course-syllabus.html"><a href="course-syllabus.html#grading-policy"><i class="fa fa-check"></i><b>A.1.5</b> Grading Policy</a></li>
+<li class="chapter" data-level="A.1.6" data-path="course-syllabus.html"><a href="course-syllabus.html#attendance-policy"><i class="fa fa-check"></i><b>A.1.6</b> Attendance Policy</a></li>
+<li class="chapter" data-level="A.1.7" data-path="course-syllabus.html"><a href="course-syllabus.html#communications-protocols-including-emails-and-office-hours"><i class="fa fa-check"></i><b>A.1.7</b> Communications protocols, including emails and office hours</a></li>
+<li class="chapter" data-level="A.1.8" data-path="course-syllabus.html"><a href="course-syllabus.html#academic-dishonesty-policy"><i class="fa fa-check"></i><b>A.1.8</b> Academic Dishonesty Policy</a></li>
+<li class="chapter" data-level="A.1.9" data-path="course-syllabus.html"><a href="course-syllabus.html#disabilities-policy"><i class="fa fa-check"></i><b>A.1.9</b> Disabilities Policy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html"><i class="fa fa-check"></i><b>B</b> Assignment: Extract, Transform, and Load Your Data</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#overview-extraction-transformation-and-loading-of-data"><i class="fa fa-check"></i><b>B.1</b> Overview: Extraction, transformation, and loading of data</a></li>
+<li class="chapter" data-level="B.2" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-1-identify-a-time-series-data-set-you-want-to-work-with"><i class="fa fa-check"></i><b>B.2</b> Step 1: Identify a time series data set you want to work with</a></li>
+<li class="chapter" data-level="B.3" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-2-acquire-the-data-from-its-source-location-reproducibly"><i class="fa fa-check"></i><b>B.3</b> Step 2: Acquire the data from its source location, reproducibly</a></li>
+<li class="chapter" data-level="B.4" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-3-organize-your-data-into-a-tidy-data-frame"><i class="fa fa-check"></i><b>B.4</b> Step 3 Organize your data into a <em>tidy</em> data frame</a></li>
+<li class="chapter" data-level="B.5" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-4-convert-your-data-into-a-tsibble-object"><i class="fa fa-check"></i><b>B.5</b> Step 4: Convert your data into a <code>tsibble</code> object</a></li>
+<li class="chapter" data-level="B.6" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#step-5-generate-at-least-one-table-or-figure"><i class="fa fa-check"></i><b>B.6</b> Step 5: Generate at least one table or figure</a></li>
+<li class="chapter" data-level="B.7" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#additional-resources-and-next-steps"><i class="fa fa-check"></i><b>B.7</b> Additional resources and next steps</a></li>
+<li class="chapter" data-level="" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#announcement-one-more-week-to-revise-resubmit-data-etl-assignment"><i class="fa fa-check"></i>Announcement: One more week to revise &amp; resubmit data ETL assignment</a></li>
+<li class="chapter" data-level="B.8" data-path="assignment-extract-transform-and-load-your-data.html"><a href="assignment-extract-transform-and-load-your-data.html#references-1"><i class="fa fa-check"></i><b>B.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html"><i class="fa fa-check"></i><b>C</b> Assignment: Project Proposal</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#introduction"><i class="fa fa-check"></i><b>C.1</b> Introduction</a></li>
+<li class="chapter" data-level="C.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#the-data-and-the-data-generating-process"><i class="fa fa-check"></i><b>C.2</b> The data and the data-generating process</a></li>
+<li class="chapter" data-level="C.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#exploratory-data-analysis-1"><i class="fa fa-check"></i><b>C.3</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="C.4" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plot-the-time-series."><i class="fa fa-check"></i><b>C.4</b> Plot the time series.</a></li>
+<li class="chapter" data-level="C.5" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#perform-and-report-the-results-of-other-exploratory-data-analysis"><i class="fa fa-check"></i><b>C.5</b> Perform and report the results of other exploratory data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html"><i class="fa fa-check"></i><b>D</b> Example: Gross Domestic Product data</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html#exploratory-data-analysis-2"><i class="fa fa-check"></i><b>D.1</b> Exploratory data analysis</a></li>
+<li class="chapter" data-level="D.2" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html#fitting-data-to-simple-models-1"><i class="fa fa-check"></i><b>D.2</b> Fitting data to simple models</a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="example-gross-domestic-product-data-1.html"><a href="example-gross-domestic-product-data-1.html#work-with-lngdp-1"><i class="fa fa-check"></i><b>D.2.1</b> Work with ln(GDP)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html"><i class="fa fa-check"></i><b>E</b> Producing forecasts</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#model-residuals-vs.-forecast-errors-1"><i class="fa fa-check"></i><b>E.1</b> Model residuals vs. forecast errors</a></li>
+<li class="chapter" data-level="E.2" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#are-the-model-residuals-auto-correlated-1"><i class="fa fa-check"></i><b>E.2</b> Are the model residuals auto-correlated?</a></li>
+</ul></li>
+<li class="chapter" data-level="F" data-path="example-gdp-several-models-several-countries.html"><a href="example-gdp-several-models-several-countries.html"><i class="fa fa-check"></i><b>F</b> Example: GDP, several models, several countries</a></li>
+<li class="chapter" data-level="G" data-path="statistical-model.html"><a href="statistical-model.html"><i class="fa fa-check"></i><b>G</b> Statistical model</a>
+<ul>
+<li class="chapter" data-level="G.1" data-path="statistical-model.html"><a href="statistical-model.html#formal-model-of-data-generating-process"><i class="fa fa-check"></i><b>G.1</b> Formal model of data-generating process</a></li>
+<li class="chapter" data-level="G.2" data-path="statistical-model.html"><a href="statistical-model.html#discussion-of-the-statistical-model"><i class="fa fa-check"></i><b>G.2</b> Discussion of the statistical model</a></li>
+</ul></li>
+<li class="chapter" data-level="H" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html"><i class="fa fa-check"></i><b>H</b> Plan for data analysis</a>
+<ul>
+<li class="chapter" data-level="H.1" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html#submission-requirements"><i class="fa fa-check"></i><b>H.1</b> Submission requirements</a></li>
+<li class="chapter" data-level="H.2" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html#comment"><i class="fa fa-check"></i><b>H.2</b> Comment</a></li>
+<li class="chapter" data-level="H.3" data-path="plan-for-data-analysis.html"><a href="plan-for-data-analysis.html#references-2"><i class="fa fa-check"></i><b>H.3</b> References</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Time Series and Forecasting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="running-diagnostics-on-your-tsibble" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Running diagnostics on your tsibble</h1>
+<p>** Ideally, should have exactly one row (i.e., one vector of measured values) for each time interval (<code>index</code>) and each value of the <code>key</code> variables.
+– May not have any duplicates.
+– May have missing values</p>
+<div id="duplicate-values" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Duplicate values</h2>
+</div>
+<div id="missing-values" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Missing values</h2>
+</div>
+<div id="irregular-time-intervals" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Irregular time intervals</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-cleaning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["tsf.pdf", "tsf.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
