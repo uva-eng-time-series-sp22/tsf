@@ -1,0 +1,30 @@
+# Assignment: Write a concept note
+
+Write a concept note for a potential time series analysis project. 
+
+## Assignment Instructions
+
+In just a few paragraphs (1 page max), describe an application of time series analysis that you might undertake in connection with your own research, or for a class project.
+
+## Submission procedure
+
+Prepare your note in R Markdown within R Studio. Use `knitr` to generate a PDF output.
+
+Commit your saved .Rmd and .pdf files to your (local) repo, then push your changes to your repo on the course site on Github.
+
+When all is ready, submit your assignment on Collab. But don't attach your pdf file. Instead, a link to your .pdf file on Github. 
+
+Generate your output as a PDF rather than as HTML: Github makes is complicated to download and view .html files.
+ 
+
+## Choosing a topic
+
+Your topic might depend on which type of degree program you are in, and how far along you are in that program.
+
+If you are well along in a research-oriented graduate degree program, then you likely have already a fairly clear notion of the research question(s) you are addressing or plan to address, and the methods you will use to approach your question. Ideally, you will have already secured access to a time series data set that you hope to analyze. In this case, please describe the data set, and the type of useful information you hope to learn about it. If applicable, describe how this analysis could inform your research program.
+
+If you at the beginning stages of a research-oriented degree program, you likely have some idea of the topics and methods you will use, but may not have much idea of what data sets you will use or what insights you hope to extract from those data. In this case, please think about what kinds of time series data analysis might help advance your work. It is likely that a consultation with your research advisor will be helpful. Write about your research question(s), and how analysis of time series data might help your research program. Ideally, please try to identify a data set that you could use, and describe how you can access these data.
+
+If you are not in a research-oriented degree program, think about how a time series analysis could be applied to some aspect of your work, professional practice, or personal or career interests.
+
+If you don't have any ideas at all, and are looking for help finding one, let me know. We will identify together a project idea and data set you can work with, possibly related to energy.

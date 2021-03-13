@@ -1,0 +1,21 @@
+---
+Title: "Graphics files included in this directory"
+output:
+  html_document:
+    fig_caption: yes
+    keep_md: yes
+---
+
+## Graphics files included in this directory:
+
+```{r include all figures, results ="asis", echo = FALSE}
+# Knit this file README.Rmd to create a new file README.md
+# displaying all the graphics in the directory as one file
+# that can be viewed on Github
+
+graph_ext <- "(png|jpg|jpeg|gif|pdf)$"   # List file extensions for graphic images
+
+fig_files <- dir(pattern = graph_ext)    # List all the graphics files
+
+cat(paste0("\n\n***\n\n##### ", fig_files, "\n\n***\n\n<center>![](", fig_files, ")</center>\n\n***\n\n"))
+```

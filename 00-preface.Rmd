@@ -5,9 +5,11 @@ This document contains class notes and other materials related to SYS 5581 *Time
 
 ## Readings  {-}
 
-FPP = Hyndman, R.J., & Athanasopoulos, G. [-@robjhyndmanForecastingPrinciplesPractice2021] [*Forecasting: principles and practice, 3rd edition*](https://otexts.com/fpp3/), OTexts: Melbourne, Australia. OTexts.com/fpp3
+FPP3 = Hyndman, R.J., & Athanasopoulos, G. [-@robjhyndmanForecastingPrinciplesPractice2021] [*Forecasting: principles and practice, 3rd edition*](https://otexts.com/fpp3/), OTexts: Melbourne, Australia. OTexts.com/fpp3
 
 R4DS = Wickham, Hadley, and Garrett Grolemund, [R for Data Science](https://r4ds.had.co.nz/)
+
+TFS = [these notes]
 
 ## Acknowledgements  {-}
 

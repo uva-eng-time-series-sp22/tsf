@@ -1,13 +1,18 @@
 --- 
-title: "Time Series and Forecasting"
+title: "Time Series and Forecasting with R"
 author: "Arthur Small"
 date: "Version of: `r Sys.Date()`"
 site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    config:
+      toc:
+        collapse: section
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Class notes for SYS 5581, Spring 2021"
+description: "Class notes for University of Virginia SYS 5581, Spring 2021"
 ---
 
 # {-}

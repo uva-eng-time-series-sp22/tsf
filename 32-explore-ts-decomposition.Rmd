@@ -1,0 +1,256 @@
+# Time series decomposition
+
+Readings: FPP3, Sections 3.1, 3.2
+
+
+### Example: Gross Domestic Product data
+
+
+```{r}
+library(tsibbledata) # Data sets package
+
+print(global_economy)
+```
+
+```{r}
+global_economy %>% filter(Country=="Sweden") %>% print()
+```
+
+```{r}
+global_economy %>%
+  filter(Country=="Sweden") %>%
+  autoplot(GDP) +
+  ggtitle("GDP for Sweden") + ylab("$US billions")
+```
+
+
+
+### Fitting data to simple models
+
+```{r}
+global_economy %>% model(trend_model = TSLM(GDP ~ trend())) -> fit
+
+fit
+```
+
+```{r}
+fit %>% filter(Country == "Sweden") %>% residuals()
+```
+
+```{r}
+
+fit %>% filter(Country == "Sweden") %>% residuals() %>% autoplot(.resid)
+```
+
+### Work with ln(GDP)
+
+```{r}
+global_economy %>%
+  filter(Country=="Sweden") %>%
+  autoplot(log(GDP)) +
+  ggtitle("ln(GDP) for Sweden") + ylab("$US billions")
+```
+
+```{r}
+global_economy %>%
+  model(trend_model = TSLM(log(GDP) ~ trend())) -> logfit
+```
+
+```{r}
+logfit %>% filter(Country == "Sweden") %>% residuals() %>% autoplot()
+```
+
+```{r}
+global_economy %>% model(trend_model = TSLM(log(GDP) ~ log(Population))) -> fit3
+
+fit3 %>% filter(Country == "Sweden") %>% residuals() %>% autoplot()
+
+```
+
+## Producing forecasts
+
+```{r}
+fit %>% forecast(h = "3 years") -> fcast3yrs
+
+fcast3yrs
+
+```
+
+```{r}
+
+fcast3yrs %>% filter(Country == "Sweden", Year == 2020) %>% str()
+```
+
+```{r visualize forecasts}
+fcast3yrs %>%
+  filter(Country=="Sweden") %>%
+  autoplot(global_economy) +
+  ggtitle("GDP for Sweden") + ylab("$US billions")
+```
+
+### Model residuals vs. forecast errors
+
+Model residuals:
+
+Your data: $y_1, y_2, \ldots, y_T$
+
+Fitted values: $\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_T$
+
+Model residuals: $e_t = y_t - \hat{y}_t$
+
+Forecast errors:
+
+```{r}
+augment(fit)
+```
+
+```{r}
+augment(fit) %>% filter(Country == "Sweden") %>%
+  ggplot(aes(x = .resid)) +
+  geom_histogram(bins = 20) +
+  ggtitle("Histogram of residuals")
+```
+
+### Are the model residuals auto-correlated?
+
+```{r}
+augment(fit) %>% filter(Country == "Sweden") -> augSweden
+
+augSweden %>%
+  ACF(.resid) %>%
+  autoplot() + ggtitle("ACF of residuals")
+```
+
+```{r}
+augment(fit3) %>% filter(Country == "Sweden") -> augSweden3
+
+augSweden3 %>%
+  ACF(.resid) %>%
+  autoplot() + ggtitle("ACF of residuals")
+```
+
+
+## Example: GDP, several countries
+
+
+```{r}
+library(tsibbledata) # Data sets package
+
+nordic <- c("Sweden", "Denmark", "Norway", "Finland")
+
+(global_economy %>% filter(Country %in% nordic) -> nordic_economy)
+
+```
+
+```{r}
+nordic_economy %>% autoplot(GDP)
+```
+
+```{r}
+fitnord <- nordic_economy %>%
+  model(
+    trend_model = TSLM(GDP ~ trend()),
+    trend_model_ln = TSLM(log(GDP) ~ trend()),
+    ets = ETS(GDP ~ trend("A")),
+    arima = ARIMA(GDP)
+  )
+
+fitnord
+```
+
+```{r}
+fitnord %>%
+  dplyr::select(arima) %>%
+  coef()
+```
+
+
+Denmark: ARMA(1,1)
+
+Finland: MA(2)
+
+Norway: MA(1)
+
+Sweden: MA(2)
+
+```{r}
+nordic_economy %>%
+  model(arima_constrained = ARIMA(GDP ~ pdq(1,0,2))) %>% dplyr::select(arima_constrained) %>% coef()
+```
+
+```{r}
+fitnord %>% coef()
+```
+
+```{r}
+fitnord %>%  glance()  
+```
+
+```{r}
+fitnord %>% filter(Country == "Denmark") %>% dplyr::select(arima) %>% report()
+```
+
+```{r}
+fitnord %>%
+  accuracy() %>%
+  arrange(Country, MPE)
+```
+
+
+
+```{r, eval=FALSE}
+# ETS forecasts
+USAccDeaths %>%
+  ets() %>%
+  forecast() %>%
+  autoplot()
+```
+
+```{r, eval=FALSE}
+str(taylor)
+plot(taylor)
+```
+
+### Plot lagged values
+
+```{r plot lagged values}
+vaelsales_tbl_ts  %>% filter(month(Month) %in% c(3,6,9,12)) %>% gg_lag(sales_GWh, lags = 1:2)
+
+vaelsales_tbl_ts  %>% filter(month(Month) == 1) %>% gg_lag(sales_GWh, lags = 1:2)
+```
+
+```{r}
+vaelsales_tbl_ts %>% ACF(sales_GWh) %>% autoplot()
+```
+
+```{r perform automated time series decomposition}
+
+
+# decompose(vaelsales_tbl_ts)
+```
+
+```{r perform additive STL decomposition of the VA electricity sales time series}
+vaelsales_tbl_ts %>%
+  model(STL(sales_GWh ~ trend(window=21) + season(window='periodic'), robust = TRUE)) %>%
+  components() %>%
+  autoplot()
+```
+
+```{r perform multiplicative STL decomposition of the VA electricity sales time series}
+vaelsales_tbl_ts %>%
+  mutate(ln_sales_GWh = log(sales_GWh)) %>%
+  model(STL(ln_sales_GWh ~ trend(window=21) + season(window='periodic'),
+    robust = TRUE)) %>%
+  components() %>%
+  autoplot()
+```
+
+```{r}
+vaelsales_tbl_ts %>%
+  features(sales_GWh, feat_stl)
+```
+
+```{r}
+vaelsales_tbl_ts %>%
+  features(sales_GWh, feature_set(pkgs="feasts"))
+```

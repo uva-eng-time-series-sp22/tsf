@@ -1,0 +1,63 @@
+# (PART) Data Preparation {-} 
+
+# Data preparation: Overview
+
+Topics:
+
+* Tidy data
+* `tsibble` objects for storing, manipulating, and visualizing time series data. Frequency of time series: the `index` parameter. `key` parameter(s).
+* Applying `dplyr` verbs to `tsibble` objects: `filter`, `select`, `mutate`, `group_by`, `summarize`
+* Periodicity. Seasonal periods.
+
+
+Readings:
+
+* FPP, Section 2.1
+* Optional: To learn how to wrangle and visualize data using the Tidyverse packages, you may find it useful to go through the [Tidyverse Fundamentals with R](https://learn.datacamp.com/skill-tracks/tidyverse-fundamentals) modules on [Datacamp](https://learn.datacamp.com/). Datacamp also offers [a range of other learning modules for developing data science skills in R](https://learn.datacamp.com/career-tracks/data-scientist-with-r). 
+
+Assignment: [Extract, transform, and load your data](https://github.com/uva-eng-time-series-sp21/sys5581-course-materials/blob/master/assignments/assignment_data_etl.pdf).
+
+
+
+## Data preparation strategy: Design your end-point data table(s)
+
+Starting point: Multiple source files, mess, etc. This is real life as a data scientist!
+
+What's your desired end point?
+
+Data ETL is a creative activity! (Your jobs are secure.)
+
+### Design your end point first (at least, in your head).
+
+* Which columns? In which order?
+* Which data types should the different columns have?
+* For `tsibble` objects: 
+  - Which column is the `index`? Must have date+time values, at regular intervals.
+  - Which columns contain `key` values? 
+      - These are values that *don't* change with time.
+      - Each value of the `key` corresponds to a distinct time series.
+      - Cannot have duplicate rows that share an `index` + `key` value.
+  - Remaining columns contain observational data: one row for each time step and `key` value.
+      - What data types should these be?
+      - Might choose to drop columns you aren't going to use, to reduce clutter.
+
+
+### Typical structure for a time series data table:
+
+ | Date + time  |  Series |  Value_1 | Value_2 | Value_3 |
+ |:-----------:|:----------:|:-------:|:-------:|:--------:|
+ | 2020-02-01  |   "Virginia" | 33.57  | 29     |  "friendly" |
+ | 2020-02-01  |   "Idaho" | 0.22  | 18     |  "hostile" |
+ |   ...          |  ...   | ...    | ... | ... |       
+ |  `index`     |   `key`  |         |          |          |
+ |  [date]      |   [fctr] |  [dbl]  |  [int]   |  [fctr]  | 
+
+
+Then wrangle your data to get to your desired end point.
+
+Recommended practices:
+
+* Put `index` field in the left-most column.
+* Next, put all the `key` fields.
+* Then finally the data values. Start with the most important ones.
+

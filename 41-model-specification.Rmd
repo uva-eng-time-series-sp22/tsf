@@ -1,0 +1,22 @@
+# (PART) Model Specification and Estimation {-} 
+
+# The data-generating process
+
+For the electricity sales data, maybe the process looks like:
+
+$$ y_t = Trend_t X Seasonal_t X Residual_t $$
+
+$$ y_t = \beta_0 + \beta_1 t + \beta_2 m + \varepsilon_t $$
+
+```{r, eval=FALSE}
+# ETS forecasts
+USAccDeaths %>%
+  ets() %>%
+  forecast() %>%
+  autoplot()
+```
+
+```{r, eval=FALSE}
+str(taylor)
+plot(taylor)
+```

@@ -1,0 +1,11 @@
+# Project set up: Good practices
+
+## Reproducible workflows
+
+## Setting up new project
+
+## Folder structure
+
+## Naming things
+
+Readings: [naming things](https://speakerdeck.com/jennybc/how-to-name-files) slide deck, Reproducible Science Workshop, 2015.

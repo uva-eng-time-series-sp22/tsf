@@ -1,0 +1,236 @@
+# (PART) Exploratory Data Analysis {-} 
+
+# Exploratory analysis of time series data
+
+```{r set up coding environment, include=FALSE, message=FALSE}
+# library(dplyr) -- don't need this if you are loading the entire 'tidyverse' suite
+library(tidyverse)
+library(lubridate) # For easy handling of time-indexed objects
+
+# if(!('fpp3' %in% installed.packages())) install.packages('fpp3')
+library(fpp3)
+```
+
+## Overview
+
+Readings: FPP, Sections 2.2--2.6. 
+
+Topics:
+
+* Time series plots.
+* Trends. Seasonal (periodic) patterns. Cycles.
+* Seasonal plots. Seasonal sub-series.
+* Investigating relationships between two variables. Scatterplots. Correlation. Scatterplot matrices.
+
+Assignment: Explore your data.
+
+
+## Briefly characterize the dataset
+
+Provide a brief example of the data, showing how they are structured.
+
+Example: Monthly electricity sales for Virginia
+
+Previously we extracted monthly electricity sales data for Virginia from a remote database, converted the data frame into a `tibble` object, and saved the result to a file in feather format.
+
+
+```{r read in data}
+library(arrow)
+esales <- read_feather("data/esales.feather")
+```
+
+```{r make basic data summaries}
+print(esales)    # print the data as a table
+summary(esales)  # compute basic summary statistics about the data
+boxplot(esales)
+hist(elsales_tbl_ts$sales_GWh, breaks=40) #  Make a histogram of monthly sales
+```
+
+
+### Examine subsets of the data
+
+```{r use tidyverse syntax to perform some simple data manipulations, eval=FALSE}
+# References: https://www.tidyverse.org/, https://dplyr.tidyverse.org/
+# filter(data object, condition) : syntax for filter() command
+
+esales %>%
+  filter(year == 2019) %>%
+  filter(value > 9000) %>%
+  print()
+
+(esales %>%
+  group_by(year) %>%
+  summarise(Total = sum(value)) -> total_esales_by_year)
+
+esales %>%
+  mutate(sales_TWh = value/1000) %>%
+  dplyr::select(-value)
+```
+
+
+```{r}
+# library(lubridate) # Make it easy to deal with dates
+
+esales %>% filter(month==3)                   # These three lines of code
+esales %>% filter(month(date)==3)             #   all do
+esales %>% filter(lubridate::month(date)==3)  #   the same thing.
+
+# We don't have to keep the 'year' and 'month' column: can recover them if needed
+
+esales %>%
+  dplyr::select(date, sales_GWh = value) -> esales_tbl
+
+print(esales_tbl)
+```
+
+
+## Plot the time series
+
+Ref: FPP3, Section 2.2
+
+
+```{r use ggplot2 to generate a plot}
+#Reference: https://ggplot2.tidyverse.org/
+
+ggplot(data=esales, aes(x=date,y=value)) +
+  geom_line() + xlab("Year") + ylab("Virginia monthly total electricity sales (GWh)")
+```
+
+```{r use feasts autoplot}
+# feasts::autoplot() is handy for quickly generating time series plots
+
+autoplot(vaelsales_tbl_ts, sales_GWh) +
+  ylab("Virginia monthly total electricity sales (GWh)") +
+  xlab("")  # Leave horiz. axis label blank
+```
+
+
+## Sesaonal plots
+
+Ref: FPP3, Sections 2.3, 2.4
+
+### Example: Virginia monthly electricity
+
+Recall how we readied these data:
+
+```{r}
+esales <- arrow::read_feather("data/esales.feather")
+esales %>%
+  dplyr::select(date, sales_GWh = value) -> esales_tbl
+
+esales_tbl %>% as_tsibble(index = date) -> elsales_tbl_ts
+
+print(elsales_tbl_ts)
+```
+
+
+```{r, eval=FALSE}
+# This plot won't work. Why not?
+elsales_tbl_ts %>%
+  feasts::gg_season(sales_GWh, labels = "both") + ylab("Virginia electricity sales (GWh)")
+```
+
+```{r Change the tsibble so index is monthly}
+# install.packages("feasts"), Reference: https://feasts.tidyverts.org/
+library(feasts)
+
+elsales_tbl_ts %>%
+  mutate(Month = tsibble::yearmonth(date)) %>%
+  as_tsibble(index = Month) %>%
+  dplyr::select(Month,sales_GWh) -> vaelsales_tbl_ts
+
+print(vaelsales_tbl_ts)
+```
+
+
+```{r , warning=FALSE}
+vaelsales_tbl_ts %>% gg_season(sales_GWh, labels = "both") + ylab("Virginia electricity sales (GWh)")
+```
+
+### Example: Australian production
+
+```{r, warning=FALSE}
+# install.packages('tsibbledata')
+library(tsibbledata)
+
+aus_production
+
+aus_production %>% gg_season(Electricity)
+
+aus_production %>% gg_season(Beer)
+```
+
+
+### Seasonal subseries plots
+
+Ref: FPP3, Section 2.5
+
+```{r}
+vaelsales_tbl_ts %>%
+  gg_subseries(sales_GWh) +
+  labs(
+    y = "Sales (GWh)",
+    title = "Seasonal subseries plot: Virginia electricity sales"
+  )
+```
+
+
+## Scatterplots
+
+Readings: FPP Sect. 2.6
+
+Investigating relationships between two variables. Scatterplots. Correlation. Scatterplot matrices.
+
+```{r}
+vic_elec
+
+summary(vic_elec)
+
+vic_elec %>%
+  filter(year(Time) == 2013) %>%
+  autoplot(Demand) +
+  labs(
+    y = "Demand (GW)",
+    title = "Half-hourly electricity demand: Victoria"
+  )
+```
+
+```{r}
+vic_elec %>%
+  filter(year(Time) == 2013) %>%
+  autoplot(Temperature) +
+  labs(
+    y = "Temperature (degrees Celsius)",
+    title = "Half-hourly temperatures: Melbourne, Australia"
+  )
+```
+
+```{r}
+vic_elec %>%
+  filter(year(Time) == 2013) %>%
+  ggplot(aes(x = Temperature, y = Demand)) +
+#  geom_density2d() +
+  geom_point(size=0.1, aes(colour=Holiday), alpha = 0.4) +
+  labs(y = "Demand (GW)", x = "Temperature (degrees Celsius)")
+```
+
+### A Scatterplot matrix
+
+```{r, warning=FALSE}
+vic_elec
+
+boxplot(vic_elec$Temperature)
+
+# install.packages("GGally")
+vic_elec %>%
+  # mutate(Temperature = round(Temperature)) %>%
+  # pivot_wider(values_from=c(Demand,Temperature), names_from=Holiday) %>%
+  GGally::ggpairs(columns = 3:2)
+
+vic_elec %>%
+  mutate(Year = factor(year(Date))) %>%
+  dplyr::select(-c(Date, Holiday)) %>%
+  GGally::ggpairs(columns = 4:2)
+```
+
+

@@ -1,0 +1,54 @@
+# Reading in data from source files
+
+
+## First, examine text files in a text editor 
+
+It's generally a good idea to examine the contents of an unfamiliar text data file visually, in text editor, before starting to work on it. You can open smaller files inside RStudio. For files too big to open inside RStudio, you can use a dedicated text editor like [Atom](https://atom.io/).
+
+This code prints out the first ten lines of the text file "PetroStocks.csv".
+
+```{r}
+# Print out first ten rows of file "data/PetroStocks.csv"
+readLines("data/PetroStocks.csv", n=10) %>% paste0(collapse="\n") %>% cat
+```
+
+What do you see?
+
+## Read in CSV files
+
+Using `read_csv()`: Example:
+
+```{r Read in data from listed source}
+# Data Source: https://www.eia.gov/petroleum/supply/weekly/
+library(readr)
+
+# Original code:
+PetroStocksData <- readr::read_csv("data/PetroStocks.csv")
+names(PetroStocksData) <- PetroStocksData[2,] # assign names to columns
+PetroStocksData <- PetroStocksData[-1,]       # remove first unused row
+PetroStocksData <- PetroStocksData[-1,]       # remove another unused row
+```
+
+### Declaring data types
+
+Declaring data types as you read in data.
+
+Choose your data types!
+
+Reference: R4DS Ch. 15, 16
+
+```{r Read in data from listed source - a more elegant solution}
+### Revised using readr::read_csv() to skip empty rows and declare data types
+### Declare column types within the read_csv() function call, to save yourself trouble later:
+ps_tbl <- readr::read_csv("data/PetroStocks.csv", skip = 2, col_types = cols(.default = col_double(),
+                                                                       "Date"   = col_character())) 
+
+### Reference: https://readr.tidyverse.org/reference/read_delim.html
+```
+
+
+
+
+
+
+

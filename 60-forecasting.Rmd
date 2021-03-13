@@ -1,0 +1,23 @@
+# (PART) Forecasting {-}
+
+
+# Producing forecasts
+
+```{r}
+fit %>% forecast(h = "3 years") -> fcast3yrs
+
+fcast3yrs
+
+```
+
+```{r}
+
+fcast3yrs %>% filter(Country == "Sweden", Year == 2020) %>% str()
+```
+
+```{r visualize forecasts 2}
+fcast3yrs %>% 
+  filter(Country=="Sweden") %>%
+  autoplot(global_economy) +
+  ggtitle("GDP for Sweden") + ylab("$US billions")
+```

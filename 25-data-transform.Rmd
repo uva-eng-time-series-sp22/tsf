@@ -1,0 +1,54 @@
+# Transform a data frame to `tsibble` object
+
+Readings: FPP3, Section 2.1
+
+Convert the data frame into a time series `tsibble` object.
+
+```{r}
+# install.packages("tsibble")
+library(tsibble) # Reference: https://tsibble.tidyverts.org/articles/intro-tsibble.html
+
+esales <- arrow::read_feather("data/esales.feather")
+esales %>%
+  dplyr::select(date, sales_GWh = value) -> esales_tbl
+esales_tbl %>% as_tsibble(index = date) -> elsales_tbl_ts
+
+print(elsales_tbl_ts)
+```
+
+
+## Time indexing
+
+See R4DS ch. 16.
+
+Depending on how dates and times are recorded in your raw data, you may face more or less work to organize them into form(s) suitable as `tsibble` index variable.
+
+
+The `lubridate` and `hms` packages may be valuable.
+
+```{r Change the tsibble to index monthly}
+# install.packages("feasts"), Reference: https://feasts.tidyverts.org/
+library(feasts)
+
+elsales_tbl_ts %>%
+  mutate(Month = tsibble::yearmonth(date)) %>%
+  as_tsibble(index = Month) %>%
+  dplyr::select(Month,sales_GWh) -> vaelsales_tbl_ts
+
+print(vaelsales_tbl_ts)
+```
+
+
+## Running diagnostics on your tsibble
+
+** Ideally, should have exactly one row (i.e., one vector of measured values) for each time interval (`index`) and each value of the `key` variables. 
+ -- May not have any duplicates.
+ -- May have missing values
+ 
+### Duplicate values 
+
+
+### Missing values
+
+
+### Irregular time intervals

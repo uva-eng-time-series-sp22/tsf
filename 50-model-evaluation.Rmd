@@ -1,0 +1,102 @@
+# (PART) Model evaluation {-}
+
+# Evaluating model residuals
+
+
+## Model residuals vs. forecast errors
+
+Model residuals:
+
+Your data: $y_1, y_2, \ldots, y_T$
+
+Fitted values: $\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_T$
+
+Model residuals: $e_t = y_t - \hat{y}_t$
+
+Forecast errors:
+
+```{r}
+augment(fit)
+```
+
+```{r}
+augment(fit) %>% filter(Country == "Sweden") %>%
+  ggplot(aes(x = .resid)) +
+  geom_histogram(bins = 20) +
+  ggtitle("Histogram of residuals")
+```
+
+## Are the model residuals auto-correlated?
+
+```{r}
+augment(fit) %>% filter(Country == "Sweden") -> augSweden
+
+augSweden %>%
+  ACF(.resid) %>%
+  autoplot() + ggtitle("ACF of residuals")
+```
+
+```{r}
+augment(fit3) %>% filter(Country == "Sweden") -> augSweden3
+
+augSweden3 %>%
+  ACF(.resid) %>%
+  autoplot() + ggtitle("ACF of residuals")
+```
+
+
+## Example: GDP, several models, several countries
+
+
+```{r}
+library(tsibbledata) # Data sets package
+
+nordic <- c("Sweden", "Denmark", "Norway", "Finland")
+
+(global_economy %>% filter(Country %in% nordic) -> nordic_economy)
+
+```
+
+```{r}
+nordic_economy %>% autoplot(GDP)
+```
+
+```{r}
+fitnord <- nordic_economy %>%
+  model(
+    trend_model = TSLM(GDP ~ trend()),
+    trend_model_ln = TSLM(log(GDP) ~ trend()),
+    ets = ETS(GDP ~ trend("A")),
+    arima = ARIMA(GDP)
+  )
+
+fitnord
+```
+
+
+
+Denmark: ARMA(1,1)
+
+Finland: MA(2)
+
+Norway: MA(1)
+
+Sweden: MA(2)
+
+
+```{r}
+fitnord %>% coef() 
+```
+
+```{r}
+fitnord %>%  glance()  
+```
+
+
+```{r}
+fitnord %>%
+  accuracy() %>%
+  arrange(Country, MPE)
+```
+
+
