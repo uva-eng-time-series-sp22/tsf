@@ -4,7 +4,7 @@ Write a concept note for a potential time series analysis project.
 
 ## Assignment Instructions
 
-In just a few paragraphs (1 page max), describe an application of time series analysis that you might undertake in connection with your own research, or for a class project.
+In just a few paragraphs (1 page max), describe an application of time series analysis that you might undertake in connection with your own research, your professional practice, or for a class project.
 
 ## Submission procedure
 
@@ -27,4 +27,5 @@ If you at the beginning stages of a research-oriented degree program, you likely
 
 If you are not in a research-oriented degree program, think about how a time series analysis could be applied to some aspect of your work, professional practice, or personal or career interests.
 
-If you don't have any ideas at all, and are looking for help finding one, let me know. We will identify together a project idea and data set you can work with, possibly related to energy.
+If you don't have any ideas at all, and are looking for help finding one, let me know. We will identify together a project idea and data set you can work with, possibly related to energy. But try first to think of one on your own, one that you care about.
+

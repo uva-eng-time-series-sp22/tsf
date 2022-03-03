@@ -13,7 +13,10 @@ library(fpp3)
 
 ## Overview
 
-Readings: FPP, Sections 2.2--2.6. 
+Readings: 
+
+* FPP3, Sections 2.2--2.6. 
+* [TSDS, Section 3.10](https://jhudatascience.org/tidyversecourse/wrangle-data.html#exploratory-data-analysis), [Chapter 4](https://jhudatascience.org/tidyversecourse/dataviz.html) and [Section 5.5](https://jhudatascience.org/tidyversecourse/model.html#descriptive-and-exploratory-analysis)
 
 Topics:
 

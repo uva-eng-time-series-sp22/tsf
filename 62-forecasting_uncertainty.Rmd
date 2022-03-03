@@ -1,0 +1,21 @@
+# Communicating forecast uncertainty
+
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("graphics","forecast_communications","nas-completing_the_forecast-cover_image.jpg"))
+```
+
+## The Red River Flood of 1997
+
+
+
+```{r, echo=FALSE, caption }
+knitr::include_graphics(here::here("graphics","forecast_communications","Headline_from_The_Forum_newspaper_April_24_1997.png"))
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("graphics","forecast_communications","Deterministic_forecasts_issued_by_NWS_prior_to_the_Red_River_flood_of_1997.png"))
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("graphics","forecast_communications","Probabilistic_river_stage_forecast_from_AHPS-SOURCE_NWS.png"))
+```

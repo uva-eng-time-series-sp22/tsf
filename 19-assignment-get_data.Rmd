@@ -1,0 +1,40 @@
+# Assignment: Update your concept and get your data
+
+
+
+## Refine your concept note
+
+  - State clearly the question(s) you will attempt to answer. 
+  - Make sure this is a clear, answerable question. Don't do "a study of... ". 
+  - Make sure this is genuinely a question about a *time series process*. 
+    - Imagine a metronome: each time you hear a 'click', another row of data values gets added to your table.
+
+
+## Identify a time series data set you want to work with
+
+Ideally, identify a data set that you that you might use as the basis for your class project. You need not necessarily commit at this time to using this data set for your project. However, bear in mind that you will in this assignment be investing time and effort in acquiring, cleaning, and organizing the data set. It is better for you if you invest that effort on the data set you will later analyze.
+
+Please do not use a data set that already come packaged with `R` or that is otherwise already cleaned up. The point of this assignment is to learn how to use tools from the Tidyverse and tidyverts packages when working with data you acquire "in the wild".
+
+## Acquire the data from its source location, reproducibly
+
+You typically will need first to *extract* your data from its original source (e.g., an Excel file, an API, a database, a cloud hosting service). 
+
+## Stage your raw data
+
+If your data files are smaller than 25 MB, you may synch them to Github with the rest of your repo. Put them in the `raw_data` folder.
+
+Files larger than 25 MB should not be posted to Github. Instead, post them to a cloud storage service such as Google Drive, One Drive, Box, or Dropbox. Your code should include a reproducible procedure for downloading the data in these files to a local drive.
+
+
+## Submission procedure
+
+Create a new R Markdown document for this work, inside R Studio. Code and document all these steps in a single .Rmd file. 
+
+To submit your work: knit your .Rmd file to generate a .pdf file. Push both the .Rmd and .pdf files to your Repo on Github, along with any supporting files. Submit your assignment on Collab, enclosing a link to your .pdf file on Github. 
+
+## Other comments
+
+All steps should be fully *reproducible*. This means: If I, or anyone, rerun the code in your R Markdown file and reknit the .Rmd file to generate a new PDF output, I should be able to execute all your computational steps and regenerate your PDF essentially exactly. 
+
+

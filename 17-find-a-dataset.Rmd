@@ -1,10 +1,20 @@
+# (PART) Data Acquisition and Preparation {-} 
+
 # Finding a dataset for your project
+
+```{r, out.width='100%', fig.align='center', fig.cap='New York City 311 calls by time of day, September 8--15, 2010. Source: [Wired Magazine](https://www.wired.com/2010/11/ff_311_new_york/)', echo=FALSE}
+knitr::include_graphics('graphics/ff_311_newyork1b_f.jpg')
+```
+
+Readings:
+
+[TSDS, Section 5.4](https://jhudatascience.org/tidyversecourse/model.html#data-needs)
 
 ## Appropriate data sets for time series analysis
 
 Just because your data set has some dates and times in it, doesn't mean it is appropriate for a time series analysis.
 
-Time series methods are generally appropriate when data are measured at regular intervals, over a period fairly long period.
+Time series methods are generally appropriate when data are measured at regular intervals, over a fairly long period.
 
 ## Data resources
 
@@ -21,10 +31,6 @@ Some data sources you might check out:
 * [Charlottesville, Virginia open data](https://opendata.charlottesville.org/)
 * [New York City 311 Data](https://portal.311.nyc.gov/article/?kanumber=KA-02893).
 
-
-```{r, out.width='100%', fig.align='center', fig.cap='NYC 311 calls by hour. Source: https://www.wired.com/2010/11/ff_311_new_york/'}
-knitr::include_graphics('graphics/ff_311_newyork1b_f.jpg')
-```
 
 
 

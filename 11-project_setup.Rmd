@@ -1,11 +1,22 @@
+# (PART) Set up {-} 
+
 # Project set up: Good practices
 
 ## Reproducible workflows
 
-## Setting up new project
+## Setting up a new project
 
 ## Folder structure
 
+Readings:
+
+[TSDS Section 1.6](https://jhudatascience.org/tidyversecourse/intro.html#data-science-project-organization)
+
 ## Naming things
 
-Readings: [naming things](https://speakerdeck.com/jennybc/how-to-name-files) slide deck, Reproducible Science Workshop, 2015.
+Readings: 
+
+Jenny Bryan, [naming things](https://speakerdeck.com/jennybc/how-to-name-files) slide deck, Reproducible Science Workshop, 2015.
+
+Hadley Wickham, [The tidyverse style guide. Section 1: "Files"](https://style.tidyverse.org/files.html#names)
+

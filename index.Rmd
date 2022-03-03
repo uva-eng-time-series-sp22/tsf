@@ -1,5 +1,5 @@
 --- 
-title: "Time Series and Forecasting with R"
+title: "Time Series and Forecasting:\n A Project-based Approach with R"
 author: "Arthur Small"
 date: "Version of: `r Sys.Date()`"
 site: bookdown::bookdown_site

@@ -1,5 +1,3 @@
-# (PART) Set up {-} 
-
 # Assignment: Set up your computing environment
 
 The course relies on computing resources. Please install the software as indicated on your local machine, and familiarize yourself with the associated documentation. 
@@ -71,6 +69,27 @@ A collection of files associated with a single project is in git-speak called a 
 As you get going, you will likely want to learn more about how to work with git and Github. [Review the documentation for git](https://git-scm.com/) and [this Github Guide](https://guides.github.com/introduction/flow/). Learn the basics.
 
 
+### Using personal tokens to access Github
+
+Github is phasing out the use of passwords for authorizations. 
+```
+---- Forwarded Message -----
+From: GitHub <noreply@github.com>
+To: Arthur Small <asmall@virginia.edu>
+Sent: Sunday, February 21, 2021, 6:20:58 AM EST
+Subject: [GitHub] Deprecation Notice
+
+Hi @arthursmalliii,
+
+You recently used a password to access the repository at uva-eng-time-series-sp21/coronato-nicholas with git using git/2.30.0.
+
+Basic authentication using a password to Git is deprecated and will soon no longer work. Visit https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information around suggested workarounds and removal dates.
+
+Thanks,
+The GitHub Team
+```
+
+Instead, you must create a personal access token. See the Github documentation.
 
 ## Markdown and R Markdown
 

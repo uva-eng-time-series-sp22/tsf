@@ -15,8 +15,11 @@ Often, assume stronger additional conditions that errors are *independent, ident
 
 In compact vector and matrix notation, we may write: 
 
-$$ Y = X \beta + \varepsilon $$ 
-$$\varepsilon \sim N(0, \sigma^2 I_T) $$
+$$ 
+Y = X \beta + \varepsilon,
+\quad \text{where $\varepsilon \sim N(0, \sigma^2 I_T)$} 
+$$ 
+
 Readings: FPP, Section 7.1
 
 ## Examples of the normal linear model

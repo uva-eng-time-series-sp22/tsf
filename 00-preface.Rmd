@@ -3,13 +3,28 @@
 This document contains class notes and other materials related to SYS 5581 *Time Series and Forecasting* at the University of Virginia.
 
 
-## Readings  {-}
+## Readings and references {-}
+
+### Time series {-}
 
 FPP3 = Hyndman, R.J., & Athanasopoulos, G. [-@robjhyndmanForecastingPrinciplesPractice2021] [*Forecasting: principles and practice, 3rd edition*](https://otexts.com/fpp3/), OTexts: Melbourne, Australia. OTexts.com/fpp3
 
-R4DS = Wickham, Hadley, and Garrett Grolemund, [R for Data Science](https://r4ds.had.co.nz/)
-
 TFS = [these notes]
+
+### Statistics with R {-}
+
+### Data science with R, general {-}
+
+R4DS = Wickham, Hadley, and Garrett Grolemund, [*R for Data Science*](https://r4ds.had.co.nz/)
+
+TSDS = Carrie Wright, Shannon E. Ellis, Stephanie C. Hicks and Roger D. Peng, [*Tidyverse Skills for Data Science*](https://jhudatascience.org/tidyversecourse/)
+
+Tibshirani, Ryan, [Statistics 36-350 *Statistical Computing*](https://www.stat.cmu.edu/~ryantibs/statcomp/), Carnegie-Mellon University, Fall 2019
+
+### Other references on Zotero {-}
+
+A variety of other references to resources on time series and forecasting are gathered in [the Zotero library for this course](https://www.zotero.org/groups/2555186/uva_engineering_time_series_and_forecasting/library).
+
 
 ## Acknowledgements  {-}
 
