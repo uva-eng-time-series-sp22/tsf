@@ -3,6 +3,15 @@
 
 # Producing forecasts
 
+## Example: Gross Domestic Product data
+
+
+```{r}
+library(tsibbledata) # Data sets package
+global_economy %>% model(trend_model = TSLM(GDP ~ trend())) -> fit
+```
+
+
 ```{r}
 fit %>% forecast(h = "3 years") -> fcast3yrs
 

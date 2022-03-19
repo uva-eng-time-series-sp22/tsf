@@ -15,15 +15,18 @@ link-citations: yes
 description: "Class notes for University of Virginia SYS 5581, Spring 2021"
 ---
 
-# {-}
+# Preface {-}
 
 This document is a compilation of class notes for SYS 5581 *Time Series and Forecasting*, University of Virginia, Spring, 2021.
 
 
-```{r load basic packages, include=FALSE}
+
+
+```{r}
 library(tidyverse)
 library(fpp3)
 ```
+
 
 ```{r setup, include=FALSE, cache=F, message=F, warning=F, results="show"}
 knitr::opts_chunk$set(cache=TRUE)
@@ -32,3 +35,4 @@ knitr::opts_chunk$set(cache.path='_cache/')
 knitr::opts_chunk$set(warning=F, message=F)
 # knitr::opts_knit$get(kable.force.latex = TRUE)
 ```
+

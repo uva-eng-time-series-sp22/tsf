@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 Time series decomposition | Time Series and Forecasting: A Project-based Approach with R</title>
   <meta name="description" content="Class notes for University of Virginia SYS 5581, Spring 2021" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 Time series decomposition | Time Series and Forecasting: A Project-based Approach with R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Class notes for University of Virginia SYS 5581, Spring 2021" />
   
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="exploratory-analysis-of-time-series-data.html"/>
 <link rel="next" href="autocorrelation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,8 +48,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -158,239 +157,242 @@ div.csl-indent {
 <li><a href="./">Time Series and Forecasting</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#section"></a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<li><a href="index.html#preface">Preface<span></span></a></li>
+<li><a href="preface-1.html#preface-1">Preface<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#readings-and-references"><i class="fa fa-check"></i>Readings and references</a>
+<li><a href="preface-1.html#readings-and-references">Readings and references<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#time-series"><i class="fa fa-check"></i>Time series</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#statistics-with-r"><i class="fa fa-check"></i>Statistics with R</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#data-science-with-r-general"><i class="fa fa-check"></i>Data science with R, general</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#other-references-on-zotero"><i class="fa fa-check"></i>Other references on Zotero</a></li>
+<li><a href="preface-1.html#time-series">Time series<span></span></a></li>
+<li><a href="preface-1.html#statistics-with-r">Statistics with R<span></span></a></li>
+<li><a href="preface-1.html#data-science-with-r-general">Data science with R, general<span></span></a></li>
+<li><a href="preface-1.html#other-references-on-zotero">Other references on Zotero<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li><a href="preface-1.html#acknowledgements">Acknowledgements<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html"><i class="fa fa-check"></i>Course Syllabus</a>
+<li><a href="course-syllabus.html#course-syllabus">Course Syllabus<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#course-description"><i class="fa fa-check"></i>Course Description</a>
+<li><a href="course-syllabus.html#course-description">Course Description<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#expectations"><i class="fa fa-check"></i>Expectations</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#readings"><i class="fa fa-check"></i>Readings</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#course-objectives"><i class="fa fa-check"></i>Course Objectives</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#grading-policy"><i class="fa fa-check"></i>Grading Policy</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#attendance-policy"><i class="fa fa-check"></i>Attendance Policy</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#communications-protocols-including-emails-and-office-hours"><i class="fa fa-check"></i>Communications protocols, including emails and office hours</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#academic-dishonesty-policy"><i class="fa fa-check"></i>Academic Dishonesty Policy</a></li>
-<li class="chapter" data-level="" data-path="course-syllabus.html"><a href="course-syllabus.html#disabilities-policy"><i class="fa fa-check"></i>Disabilities Policy</a></li>
-</ul></li>
-</ul></li>
-<li class="part"><span><b>I Introduction and Overview</b></span></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-time-series-analysis"><i class="fa fa-check"></i><b>1.1</b> What is time series analysis?</a></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#time-series-data"><i class="fa fa-check"></i><b>1.2</b> Time series data</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#time-series-patterns"><i class="fa fa-check"></i><b>1.3</b> Time series patterns</a></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#types-of-problems-that-are-amenable-to-time-series-analysis"><i class="fa fa-check"></i><b>1.4</b> Types of problems that are amenable to time series analysis</a></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#time-series-and-forecasting"><i class="fa fa-check"></i><b>1.5</b> Time series and forecasting</a></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#overview-of-the-course"><i class="fa fa-check"></i><b>1.6</b> Overview of the course</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="project-workflow.html"><a href="project-workflow.html"><i class="fa fa-check"></i><b>2</b> Project workflow</a>
-<ul>
-<li class="chapter" data-level="" data-path="project-workflow.html"><a href="project-workflow.html#example-problem-estimating-the-probability-of-a-weather-event"><i class="fa fa-check"></i>Example problem: Estimating the probability of a weather event</a></li>
-<li class="chapter" data-level="2.1" data-path="project-workflow.html"><a href="project-workflow.html#state-your-question"><i class="fa fa-check"></i><b>2.1</b> State your question</a></li>
-<li class="chapter" data-level="2.2" data-path="project-workflow.html"><a href="project-workflow.html#acquire-data-and-background-information"><i class="fa fa-check"></i><b>2.2</b> Acquire data and background information</a></li>
-<li class="chapter" data-level="2.3" data-path="project-workflow.html"><a href="project-workflow.html#organize-your-data"><i class="fa fa-check"></i><b>2.3</b> Organize your data</a></li>
-<li class="chapter" data-level="2.4" data-path="project-workflow.html"><a href="project-workflow.html#perform-exploratory-analysis-of-your-data"><i class="fa fa-check"></i><b>2.4</b> Perform exploratory analysis of your data</a></li>
-<li class="chapter" data-level="2.5" data-path="project-workflow.html"><a href="project-workflow.html#white-noise-model"><i class="fa fa-check"></i><b>2.5</b> Write down your model of the data generating process</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="project-workflow.html"><a href="project-workflow.html#comments-on-this-statistical-model-the-risk-of-model-mis-specification"><i class="fa fa-check"></i><b>2.5.1</b> Comments on this statistical model: The risk of model mis-specification</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="project-workflow.html"><a href="project-workflow.html#if-necessary-transform-the-model-and-data-to-make-it-ready-for-analysis"><i class="fa fa-check"></i><b>2.6</b> If necessary: transform the model and data to make it ready for analysis</a></li>
-<li class="chapter" data-level="2.7" data-path="project-workflow.html"><a href="project-workflow.html#choose-an-appropriate-technique-for-estimating-model-parameters-consistent-with-your-assumptions-about-your-data-generating-process"><i class="fa fa-check"></i><b>2.7</b> Choose an appropriate technique for estimating model parameters, consistent with your assumptions about your data generating process</a></li>
-<li class="chapter" data-level="2.8" data-path="project-workflow.html"><a href="project-workflow.html#estimate-model-parameters"><i class="fa fa-check"></i><b>2.8</b> Estimate model parameters</a></li>
-<li class="chapter" data-level="2.9" data-path="project-workflow.html"><a href="project-workflow.html#confirm-that-your-modeling-assumptions-are-satisfied"><i class="fa fa-check"></i><b>2.9</b> Confirm that your modeling assumptions are satisfied</a></li>
-<li class="chapter" data-level="2.10" data-path="project-workflow.html"><a href="project-workflow.html#compute-measures-of-model-quality-confirm-that-your-model-is-good-enough-for-your-purpose"><i class="fa fa-check"></i><b>2.10</b> Compute measures of model quality; confirm that your model is good enough for your purpose</a></li>
-<li class="chapter" data-level="2.11" data-path="project-workflow.html"><a href="project-workflow.html#use-your-calibrated-model-to-address-your-original-question"><i class="fa fa-check"></i><b>2.11</b> Use your calibrated model to address your original question</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html"><i class="fa fa-check"></i><b>3</b> Assignment: Write a concept note</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html#assignment-instructions"><i class="fa fa-check"></i><b>3.1</b> Assignment Instructions</a></li>
-<li class="chapter" data-level="3.2" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html#submission-procedure"><i class="fa fa-check"></i><b>3.2</b> Submission procedure</a></li>
-<li class="chapter" data-level="3.3" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html#choosing-a-topic"><i class="fa fa-check"></i><b>3.3</b> Choosing a topic</a></li>
-</ul></li>
-<li class="part"><span><b>II Set up</b></span></li>
-<li class="chapter" data-level="4" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html"><i class="fa fa-check"></i><b>4</b> Project set up: Good practices</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#reproducible-workflows"><i class="fa fa-check"></i><b>4.1</b> Reproducible workflows</a></li>
-<li class="chapter" data-level="4.2" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#setting-up-a-new-project"><i class="fa fa-check"></i><b>4.2</b> Setting up a new project</a></li>
-<li class="chapter" data-level="4.3" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#folder-structure"><i class="fa fa-check"></i><b>4.3</b> Folder structure</a></li>
-<li class="chapter" data-level="4.4" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#naming-things"><i class="fa fa-check"></i><b>4.4</b> Naming things</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html"><i class="fa fa-check"></i><b>5</b> Assignment: Set up your computing environment</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#the-r-programming-language-and-related-resources"><i class="fa fa-check"></i><b>5.1</b> The R programming language, and related resources</a></li>
-<li class="chapter" data-level="5.2" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#git-and-github"><i class="fa fa-check"></i><b>5.2</b> Git and Github</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#using-personal-tokens-to-access-github"><i class="fa fa-check"></i><b>5.2.1</b> Using personal tokens to access Github</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#markdown-and-r-markdown"><i class="fa fa-check"></i><b>5.3</b> Markdown and R Markdown</a></li>
-<li class="chapter" data-level="5.4" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#bibliographic-resources-zotero-and-bibtex"><i class="fa fa-check"></i><b>5.4</b> Bibliographic resources: Zotero and Bibtex</a></li>
-<li class="chapter" data-level="5.5" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#general-course-web-resources"><i class="fa fa-check"></i><b>5.5</b> General course web resources</a></li>
-</ul></li>
-<li class="part"><span><b>III Data Acquisition and Preparation</b></span></li>
-<li class="chapter" data-level="6" data-path="finding-a-dataset-for-your-project.html"><a href="finding-a-dataset-for-your-project.html"><i class="fa fa-check"></i><b>6</b> Finding a dataset for your project</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="finding-a-dataset-for-your-project.html"><a href="finding-a-dataset-for-your-project.html#appropriate-data-sets-for-time-series-analysis"><i class="fa fa-check"></i><b>6.1</b> Appropriate data sets for time series analysis</a></li>
-<li class="chapter" data-level="6.2" data-path="finding-a-dataset-for-your-project.html"><a href="finding-a-dataset-for-your-project.html#data-resources"><i class="fa fa-check"></i><b>6.2</b> Data resources</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html"><i class="fa fa-check"></i><b>7</b> Data acquisition and extraction</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html#access-protocols-and-permissions"><i class="fa fa-check"></i><b>7.1</b> Access protocols and permissions</a></li>
-<li class="chapter" data-level="7.2" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html#accessing-databases"><i class="fa fa-check"></i><b>7.2</b> Accessing databases</a></li>
-<li class="chapter" data-level="7.3" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html#other-comments"><i class="fa fa-check"></i><b>7.3</b> Other comments</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html"><i class="fa fa-check"></i><b>8</b> Assignment: Update your concept and get your data</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#refine-your-concept-note"><i class="fa fa-check"></i><b>8.1</b> Refine your concept note</a></li>
-<li class="chapter" data-level="8.2" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#identify-a-time-series-data-set-you-want-to-work-with"><i class="fa fa-check"></i><b>8.2</b> Identify a time series data set you want to work with</a></li>
-<li class="chapter" data-level="8.3" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#acquire-the-data-from-its-source-location-reproducibly"><i class="fa fa-check"></i><b>8.3</b> Acquire the data from its source location, reproducibly</a></li>
-<li class="chapter" data-level="8.4" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#stage-your-raw-data"><i class="fa fa-check"></i><b>8.4</b> Stage your raw data</a></li>
-<li class="chapter" data-level="8.5" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#submission-procedure-1"><i class="fa fa-check"></i><b>8.5</b> Submission procedure</a></li>
-<li class="chapter" data-level="8.6" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#other-comments-1"><i class="fa fa-check"></i><b>8.6</b> Other comments</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html"><i class="fa fa-check"></i><b>9</b> Data preparation strategy</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#overview-extraction-transformation-and-loading-of-data"><i class="fa fa-check"></i><b>9.1</b> Overview: Extraction, transformation, and loading of data</a></li>
-<li class="chapter" data-level="9.2" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#organize-your-data-into-a-tidy-data-frame"><i class="fa fa-check"></i><b>9.2</b> Organize your data into a <em>tidy</em> data frame</a></li>
-<li class="chapter" data-level="9.3" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#convert-your-data-into-a-tsibble-object"><i class="fa fa-check"></i><b>9.3</b> Convert your data into a <code>tsibble</code> object</a></li>
-<li class="chapter" data-level="9.4" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#data-preparation-strategy-design-your-end-point-data-tables"><i class="fa fa-check"></i><b>9.4</b> Data preparation strategy: Design your end-point data table(s)</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#design-your-end-point-first-at-least-in-your-head."><i class="fa fa-check"></i><b>9.4.1</b> Design your end point first (at least, in your head).</a></li>
-<li class="chapter" data-level="9.4.2" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#ts-table"><i class="fa fa-check"></i><b>9.4.2</b> Typical structure for a time series data table</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#additional-resources-and-next-steps"><i class="fa fa-check"></i><b>9.5</b> Additional resources and next steps</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html"><i class="fa fa-check"></i><b>10</b> Reading in data from source files</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html#first-examine-text-files-in-a-text-editor"><i class="fa fa-check"></i><b>10.1</b> First, examine text files in a text editor</a></li>
-<li class="chapter" data-level="10.2" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html#read-in-csv-files"><i class="fa fa-check"></i><b>10.2</b> Read in CSV files</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html#declaring-data-types"><i class="fa fa-check"></i><b>10.2.1</b> Declaring data types</a></li>
+<li><a href="course-syllabus.html#prerequisites">Prerequisites<span></span></a></li>
+<li><a href="course-syllabus.html#expectations">Expectations<span></span></a></li>
+<li><a href="course-syllabus.html#readings">Readings<span></span></a></li>
+<li><a href="course-syllabus.html#course-objectives">Course Objectives<span></span></a></li>
+<li><a href="course-syllabus.html#grading-policy">Grading Policy<span></span></a></li>
+<li><a href="course-syllabus.html#attendance-policy">Attendance Policy<span></span></a></li>
+<li><a href="course-syllabus.html#communications-protocols-including-emails-and-office-hours">Communications protocols, including emails and office hours<span></span></a></li>
+<li><a href="course-syllabus.html#academic-dishonesty-policy">Academic Dishonesty Policy<span></span></a></li>
+<li><a href="course-syllabus.html#disabilities-policy">Disabilities Policy<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>11</b> Data cleaning</a>
+<li class="part"><span><b>I Introduction and Overview<span></span></b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-cleaning.html"><a href="data-cleaning.html#dropping-empty-rows-and-columns"><i class="fa fa-check"></i><b>11.1</b> Dropping empty rows and columns</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-time-series-analysis"><i class="fa fa-check"></i><b>1.1</b> What is time series analysis?<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#time-series-data"><i class="fa fa-check"></i><b>1.2</b> Time series data<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#time-series-patterns"><i class="fa fa-check"></i><b>1.3</b> Time series patterns<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#types-of-problems-that-are-amenable-to-time-series-analysis"><i class="fa fa-check"></i><b>1.4</b> Types of problems that are amenable to time series analysis<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#time-series-and-forecasting"><i class="fa fa-check"></i><b>1.5</b> Time series and forecasting<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#overview-of-the-course"><i class="fa fa-check"></i><b>1.6</b> Overview of the course<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html"><i class="fa fa-check"></i><b>12</b> Transform a data frame to <code>tsibble</code> object</a>
+<li class="chapter" data-level="2" data-path="project-workflow.html"><a href="project-workflow.html"><i class="fa fa-check"></i><b>2</b> Project workflow<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#time-indexing"><i class="fa fa-check"></i><b>12.1</b> Time indexing</a></li>
-<li class="chapter" data-level="12.2" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#running-diagnostics-on-your-tsibble"><i class="fa fa-check"></i><b>12.2</b> Running diagnostics on your tsibble</a>
+<li><a href="project-workflow.html#example-problem-estimating-the-probability-of-a-weather-event">Example problem: Estimating the probability of a weather event<span></span></a></li>
+<li class="chapter" data-level="2.1" data-path="project-workflow.html"><a href="project-workflow.html#state-your-question"><i class="fa fa-check"></i><b>2.1</b> State your question<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="project-workflow.html"><a href="project-workflow.html#acquire-data-and-background-information"><i class="fa fa-check"></i><b>2.2</b> Acquire data and background information<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="project-workflow.html"><a href="project-workflow.html#organize-your-data"><i class="fa fa-check"></i><b>2.3</b> Organize your data<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="project-workflow.html"><a href="project-workflow.html#perform-exploratory-analysis-of-your-data"><i class="fa fa-check"></i><b>2.4</b> Perform exploratory analysis of your data<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="project-workflow.html"><a href="project-workflow.html#white-noise-model"><i class="fa fa-check"></i><b>2.5</b> Write down your model of the data generating process<span></span></a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#duplicate-values"><i class="fa fa-check"></i><b>12.2.1</b> Duplicate values</a></li>
-<li class="chapter" data-level="12.2.2" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#missing-values"><i class="fa fa-check"></i><b>12.2.2</b> Missing values</a></li>
-<li class="chapter" data-level="12.2.3" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#irregular-time-intervals"><i class="fa fa-check"></i><b>12.2.3</b> Irregular time intervals</a></li>
+<li class="chapter" data-level="2.5.1" data-path="project-workflow.html"><a href="project-workflow.html#comments-on-this-statistical-model-the-risk-of-model-mis-specification"><i class="fa fa-check"></i><b>2.5.1</b> Comments on this statistical model: The risk of model mis-specification<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="project-workflow.html"><a href="project-workflow.html#if-necessary-transform-the-model-and-data-to-make-it-ready-for-analysis"><i class="fa fa-check"></i><b>2.6</b> If necessary: transform the model and data to make it ready for analysis<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="project-workflow.html"><a href="project-workflow.html#choose-an-appropriate-technique-for-estimating-model-parameters-consistent-with-your-assumptions-about-your-data-generating-process"><i class="fa fa-check"></i><b>2.7</b> Choose an appropriate technique for estimating model parameters, consistent with your assumptions about your data generating process<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="project-workflow.html"><a href="project-workflow.html#estimate-model-parameters"><i class="fa fa-check"></i><b>2.8</b> Estimate model parameters<span></span></a></li>
+<li class="chapter" data-level="2.9" data-path="project-workflow.html"><a href="project-workflow.html#confirm-that-your-modeling-assumptions-are-satisfied"><i class="fa fa-check"></i><b>2.9</b> Confirm that your modeling assumptions are satisfied<span></span></a></li>
+<li class="chapter" data-level="2.10" data-path="project-workflow.html"><a href="project-workflow.html#compute-measures-of-model-quality-confirm-that-your-model-is-good-enough-for-your-purpose"><i class="fa fa-check"></i><b>2.10</b> Compute measures of model quality; confirm that your model is good enough for your purpose<span></span></a></li>
+<li class="chapter" data-level="2.11" data-path="project-workflow.html"><a href="project-workflow.html#use-your-calibrated-model-to-address-your-original-question"><i class="fa fa-check"></i><b>2.11</b> Use your calibrated model to address your original question<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html"><i class="fa fa-check"></i><b>13</b> Saving and loading data files</a>
+<li class="chapter" data-level="3" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html"><i class="fa fa-check"></i><b>3</b> Assignment: Write a concept note<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html#fast-file-reading-and-writing-the-arrow-package"><i class="fa fa-check"></i><b>13.1</b> Fast file reading and writing: The <code>arrow</code> package</a></li>
+<li class="chapter" data-level="3.1" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html#assignment-instructions"><i class="fa fa-check"></i><b>3.1</b> Assignment Instructions<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html#submission-procedure"><i class="fa fa-check"></i><b>3.2</b> Submission procedure<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="assignment-write-a-concept-note.html"><a href="assignment-write-a-concept-note.html#choosing-a-topic"><i class="fa fa-check"></i><b>3.3</b> Choosing a topic<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="assignment-prepare-your-data.html"><a href="assignment-prepare-your-data.html"><i class="fa fa-check"></i><b>14</b> Assignment: Prepare your data</a>
+<li class="part"><span><b>II Set up<span></span></b></span></li>
+<li class="chapter" data-level="4" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html"><i class="fa fa-check"></i><b>4</b> Project set up: Good practices<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="assignment-prepare-your-data.html"><a href="assignment-prepare-your-data.html#generate-at-least-one-table-or-figure"><i class="fa fa-check"></i><b>14.1</b> Generate at least one table or figure</a></li>
+<li class="chapter" data-level="4.1" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#reproducible-workflows"><i class="fa fa-check"></i><b>4.1</b> Reproducible workflows<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#setting-up-a-new-project"><i class="fa fa-check"></i><b>4.2</b> Setting up a new project<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#folder-structure"><i class="fa fa-check"></i><b>4.3</b> Folder structure<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="project-set-up-good-practices.html"><a href="project-set-up-good-practices.html#naming-things"><i class="fa fa-check"></i><b>4.4</b> Naming things<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>IV Exploratory Data Analysis</b></span></li>
-<li class="chapter" data-level="15" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html"><i class="fa fa-check"></i><b>15</b> Exploratory analysis of time series data</a>
+<li class="chapter" data-level="5" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html"><i class="fa fa-check"></i><b>5</b> Assignment: Set up your computing environment<span></span></a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#overview"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
-<li class="chapter" data-level="15.2" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#briefly-characterize-the-dataset"><i class="fa fa-check"></i><b>15.2</b> Briefly characterize the dataset</a>
+<li class="chapter" data-level="5.1" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#the-r-programming-language-and-related-resources"><i class="fa fa-check"></i><b>5.1</b> The R programming language, and related resources<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#git-and-github"><i class="fa fa-check"></i><b>5.2</b> Git and Github<span></span></a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#examine-subsets-of-the-data"><i class="fa fa-check"></i><b>15.2.1</b> Examine subsets of the data</a></li>
+<li class="chapter" data-level="5.2.1" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#using-personal-tokens-to-access-github"><i class="fa fa-check"></i><b>5.2.1</b> Using personal tokens to access Github<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#plot-the-time-series"><i class="fa fa-check"></i><b>15.3</b> Plot the time series</a></li>
-<li class="chapter" data-level="15.4" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#sesaonal-plots"><i class="fa fa-check"></i><b>15.4</b> Sesaonal plots</a>
+<li class="chapter" data-level="5.3" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#markdown-and-r-markdown"><i class="fa fa-check"></i><b>5.3</b> Markdown and R Markdown<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#bibliographic-resources-zotero-and-bibtex"><i class="fa fa-check"></i><b>5.4</b> Bibliographic resources: Zotero and Bibtex<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="assignment-set-up-your-computing-environment.html"><a href="assignment-set-up-your-computing-environment.html#general-course-web-resources"><i class="fa fa-check"></i><b>5.5</b> General course web resources<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>III Data Acquisition and Preparation<span></span></b></span></li>
+<li class="chapter" data-level="6" data-path="finding-a-dataset-for-your-project.html"><a href="finding-a-dataset-for-your-project.html"><i class="fa fa-check"></i><b>6</b> Finding a dataset for your project<span></span></a>
 <ul>
-<li class="chapter" data-level="15.4.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#example-virginia-monthly-electricity"><i class="fa fa-check"></i><b>15.4.1</b> Example: Virginia monthly electricity</a></li>
-<li class="chapter" data-level="15.4.2" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#example-australian-production"><i class="fa fa-check"></i><b>15.4.2</b> Example: Australian production</a></li>
-<li class="chapter" data-level="15.4.3" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#seasonal-subseries-plots"><i class="fa fa-check"></i><b>15.4.3</b> Seasonal subseries plots</a></li>
+<li class="chapter" data-level="6.1" data-path="finding-a-dataset-for-your-project.html"><a href="finding-a-dataset-for-your-project.html#appropriate-data-sets-for-time-series-analysis"><i class="fa fa-check"></i><b>6.1</b> Appropriate data sets for time series analysis<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="finding-a-dataset-for-your-project.html"><a href="finding-a-dataset-for-your-project.html#data-resources"><i class="fa fa-check"></i><b>6.2</b> Data resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.5" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#scatterplots"><i class="fa fa-check"></i><b>15.5</b> Scatterplots</a>
+<li class="chapter" data-level="7" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html"><i class="fa fa-check"></i><b>7</b> Data acquisition and extraction<span></span></a>
 <ul>
-<li class="chapter" data-level="15.5.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#a-scatterplot-matrix"><i class="fa fa-check"></i><b>15.5.1</b> A Scatterplot matrix</a></li>
+<li class="chapter" data-level="7.1" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html#access-protocols-and-permissions"><i class="fa fa-check"></i><b>7.1</b> Access protocols and permissions<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html#accessing-databases"><i class="fa fa-check"></i><b>7.2</b> Accessing databases<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="data-acquisition-and-extraction.html"><a href="data-acquisition-and-extraction.html#other-comments"><i class="fa fa-check"></i><b>7.3</b> Other comments<span></span></a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html"><i class="fa fa-check"></i><b>16</b> Time series decomposition</a>
+<li class="chapter" data-level="8" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html"><i class="fa fa-check"></i><b>8</b> Assignment: Update your concept and get your data<span></span></a>
 <ul>
-<li class="chapter" data-level="16.0.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#example-gross-domestic-product-data"><i class="fa fa-check"></i><b>16.0.1</b> Example: Gross Domestic Product data</a></li>
-<li class="chapter" data-level="16.0.2" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#fitting-data-to-simple-models"><i class="fa fa-check"></i><b>16.0.2</b> Fitting data to simple models</a></li>
-<li class="chapter" data-level="16.0.3" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#work-with-lngdp"><i class="fa fa-check"></i><b>16.0.3</b> Work with ln(GDP)</a></li>
-<li class="chapter" data-level="16.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#producing-forecasts"><i class="fa fa-check"></i><b>16.1</b> Producing forecasts</a>
+<li class="chapter" data-level="8.1" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#refine-your-concept-note"><i class="fa fa-check"></i><b>8.1</b> Refine your concept note<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#identify-a-time-series-data-set-you-want-to-work-with"><i class="fa fa-check"></i><b>8.2</b> Identify a time series data set you want to work with<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#acquire-the-data-from-its-source-location-reproducibly"><i class="fa fa-check"></i><b>8.3</b> Acquire the data from its source location, reproducibly<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#stage-your-raw-data"><i class="fa fa-check"></i><b>8.4</b> Stage your raw data<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#submission-procedure-1"><i class="fa fa-check"></i><b>8.5</b> Submission procedure<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="assignment-update-your-concept-and-get-your-data.html"><a href="assignment-update-your-concept-and-get-your-data.html#other-comments-1"><i class="fa fa-check"></i><b>8.6</b> Other comments<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html"><i class="fa fa-check"></i><b>9</b> Data preparation strategy<span></span></a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#model-residuals-vs.-forecast-errors"><i class="fa fa-check"></i><b>16.1.1</b> Model residuals vs. forecast errors</a></li>
-<li class="chapter" data-level="16.1.2" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#are-the-model-residuals-auto-correlated"><i class="fa fa-check"></i><b>16.1.2</b> Are the model residuals auto-correlated?</a></li>
-</ul></li>
-<li class="chapter" data-level="16.2" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#example-gdp-several-countries"><i class="fa fa-check"></i><b>16.2</b> Example: GDP, several countries</a>
+<li class="chapter" data-level="9.1" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#overview-extraction-transformation-and-loading-of-data"><i class="fa fa-check"></i><b>9.1</b> Overview: Extraction, transformation, and loading of data<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#organize-your-data-into-a-tidy-data-frame"><i class="fa fa-check"></i><b>9.2</b> Organize your data into a <em>tidy</em> data frame<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#convert-your-data-into-a-tsibble-object"><i class="fa fa-check"></i><b>9.3</b> Convert your data into a <code>tsibble</code> object<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#data-preparation-strategy-design-your-end-point-data-tables"><i class="fa fa-check"></i><b>9.4</b> Data preparation strategy: Design your end-point data table(s)<span></span></a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#plot-lagged-values"><i class="fa fa-check"></i><b>16.2.1</b> Plot lagged values</a></li>
+<li class="chapter" data-level="9.4.1" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#design-your-end-point-first-at-least-in-your-head."><i class="fa fa-check"></i><b>9.4.1</b> Design your end point first (at least, in your head).<span></span></a></li>
+<li class="chapter" data-level="9.4.2" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#ts-table"><i class="fa fa-check"></i><b>9.4.2</b> Typical structure for a time series data table<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="9.5" data-path="data-preparation-strategy.html"><a href="data-preparation-strategy.html#additional-resources-and-next-steps"><i class="fa fa-check"></i><b>9.5</b> Additional resources and next steps<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>17</b> Autocorrelation</a>
+<li class="chapter" data-level="10" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html"><i class="fa fa-check"></i><b>10</b> Reading in data from source files<span></span></a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="autocorrelation.html"><a href="autocorrelation.html#heere-be-monsters"><i class="fa fa-check"></i><b>17.1</b> Heere be monsters</a></li>
-</ul></li>
-<li class="part"><span><b>V Model Specification and Estimation</b></span></li>
-<li class="chapter" data-level="18" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html"><i class="fa fa-check"></i><b>18</b> The data-generating process</a>
+<li class="chapter" data-level="10.1" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html#first-examine-text-files-in-a-text-editor"><i class="fa fa-check"></i><b>10.1</b> First, examine text files in a text editor<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html#read-in-csv-files"><i class="fa fa-check"></i><b>10.2</b> Read in CSV files<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#the-white-noise-process"><i class="fa fa-check"></i><b>18.1</b> The white noise process</a>
+<li class="chapter" data-level="10.2.1" data-path="reading-in-data-from-source-files.html"><a href="reading-in-data-from-source-files.html#declaring-data-types"><i class="fa fa-check"></i><b>10.2.1</b> Declaring data types<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>11</b> Data cleaning<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#stationarity"><i class="fa fa-check"></i><b>18.1.1</b> Stationarity</a></li>
-<li class="chapter" data-level="18.1.2" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#no-autocorrelation"><i class="fa fa-check"></i><b>18.1.2</b> No autocorrelation</a></li>
+<li class="chapter" data-level="11.1" data-path="data-cleaning.html"><a href="data-cleaning.html#dropping-empty-rows-and-columns"><i class="fa fa-check"></i><b>11.1</b> Dropping empty rows and columns<span></span></a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html"><i class="fa fa-check"></i><b>19</b> The normal linear model</a>
+<li class="chapter" data-level="12" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html"><i class="fa fa-check"></i><b>12</b> Transform a data frame to <code>tsibble</code> object<span></span></a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#assumptions-of-the-linear-model"><i class="fa fa-check"></i><b>19.1</b> Assumptions of the linear model</a></li>
-<li class="chapter" data-level="19.2" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#examples-of-the-normal-linear-model"><i class="fa fa-check"></i><b>19.2</b> Examples of the normal linear model</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>20</b> Ordinary least squares estimation</a></li>
-<li class="chapter" data-level="21" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html"><i class="fa fa-check"></i><b>21</b> Assignment: Project proposal</a>
+<li class="chapter" data-level="12.1" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#time-indexing"><i class="fa fa-check"></i><b>12.1</b> Time indexing<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#running-diagnostics-on-your-tsibble"><i class="fa fa-check"></i><b>12.2</b> Running diagnostics on your tsibble<span></span></a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#introduction"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
-<li class="chapter" data-level="21.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#the-data-and-the-data-generating-process"><i class="fa fa-check"></i><b>21.2</b> The data and the data-generating process</a></li>
-<li class="chapter" data-level="21.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>21.3</b> Exploratory data analysis</a></li>
-<li class="chapter" data-level="21.4" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plot-the-time-series."><i class="fa fa-check"></i><b>21.4</b> Plot the time series.</a></li>
-<li class="chapter" data-level="21.5" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#perform-and-report-the-results-of-other-exploratory-data-analysis"><i class="fa fa-check"></i><b>21.5</b> Perform and report the results of other exploratory data analysis</a>
+<li class="chapter" data-level="12.2.1" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#duplicate-values"><i class="fa fa-check"></i><b>12.2.1</b> Duplicate values<span></span></a></li>
+<li class="chapter" data-level="12.2.2" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#missing-values"><i class="fa fa-check"></i><b>12.2.2</b> Missing values<span></span></a></li>
+<li class="chapter" data-level="12.2.3" data-path="transform-a-data-frame-to-tsibble-object.html"><a href="transform-a-data-frame-to-tsibble-object.html#irregular-time-intervals"><i class="fa fa-check"></i><b>12.2.3</b> Irregular time intervals<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html"><i class="fa fa-check"></i><b>13</b> Saving and loading data files<span></span></a>
 <ul>
-<li class="chapter" data-level="21.5.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#stl-decomposition"><i class="fa fa-check"></i><b>21.5.1</b> STL decomposition</a></li>
-<li class="chapter" data-level="21.5.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#fitting-data-to-simple-models-1"><i class="fa fa-check"></i><b>21.5.2</b> Fitting data to simple models</a></li>
-<li class="chapter" data-level="21.5.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#work-with-lngdp-1"><i class="fa fa-check"></i><b>21.5.3</b> Work with ln(GDP)</a></li>
+<li class="chapter" data-level="13.1" data-path="saving-and-loading-data-files.html"><a href="saving-and-loading-data-files.html#fast-file-reading-and-writing-the-arrow-package"><i class="fa fa-check"></i><b>13.1</b> Fast file reading and writing: The <code>arrow</code> package<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="21.6" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#statistical-model"><i class="fa fa-check"></i><b>21.6</b> Statistical model</a>
+<li class="chapter" data-level="14" data-path="assignment-prepare-your-data.html"><a href="assignment-prepare-your-data.html"><i class="fa fa-check"></i><b>14</b> Assignment: Prepare your data<span></span></a>
 <ul>
-<li class="chapter" data-level="21.6.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#formal-model-of-data-generating-process"><i class="fa fa-check"></i><b>21.6.1</b> Formal model of data-generating process</a></li>
-<li class="chapter" data-level="21.6.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#discussion-of-the-statistical-model"><i class="fa fa-check"></i><b>21.6.2</b> Discussion of the statistical model</a></li>
+<li class="chapter" data-level="14.1" data-path="assignment-prepare-your-data.html"><a href="assignment-prepare-your-data.html#generate-at-least-one-table-or-figure"><i class="fa fa-check"></i><b>14.1</b> Generate at least one table or figure<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="21.7" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plan-for-data-analysis"><i class="fa fa-check"></i><b>21.7</b> Plan for data analysis</a></li>
-<li class="chapter" data-level="21.8" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#submission-requirements"><i class="fa fa-check"></i><b>21.8</b> Submission requirements</a></li>
-<li class="chapter" data-level="21.9" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#comment"><i class="fa fa-check"></i><b>21.9</b> Comment</a></li>
-<li class="chapter" data-level="21.10" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#references"><i class="fa fa-check"></i><b>21.10</b> References</a></li>
-</ul></li>
-<li class="part"><span><b>VI Model evaluation</b></span></li>
-<li class="chapter" data-level="22" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html"><i class="fa fa-check"></i><b>22</b> Evaluating model residuals</a>
+<li class="part"><span><b>IV Exploratory Data Analysis<span></span></b></span></li>
+<li class="chapter" data-level="15" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html"><i class="fa fa-check"></i><b>15</b> Exploratory analysis of time series data<span></span></a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#model-residuals-vs.-forecast-errors-1"><i class="fa fa-check"></i><b>22.1</b> Model residuals vs. forecast errors</a></li>
-<li class="chapter" data-level="22.2" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#are-the-model-residuals-auto-correlated-1"><i class="fa fa-check"></i><b>22.2</b> Are the model residuals auto-correlated?</a></li>
-<li class="chapter" data-level="22.3" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#example-gdp-several-models-several-countries"><i class="fa fa-check"></i><b>22.3</b> Example: GDP, several models, several countries</a></li>
-</ul></li>
-<li class="part"><span><b>VII Forecasting</b></span></li>
-<li class="chapter" data-level="23" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html"><i class="fa fa-check"></i><b>23</b> Producing forecasts</a></li>
-<li class="chapter" data-level="24" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html"><i class="fa fa-check"></i><b>24</b> Communicating forecast uncertainty</a>
+<li class="chapter" data-level="15.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#overview"><i class="fa fa-check"></i><b>15.1</b> Overview<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#briefly-characterize-the-dataset"><i class="fa fa-check"></i><b>15.2</b> Briefly characterize the dataset<span></span></a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html#the-red-river-flood-of-1997"><i class="fa fa-check"></i><b>24.1</b> The Red River Flood of 1997</a></li>
+<li class="chapter" data-level="15.2.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#examine-subsets-of-the-data"><i class="fa fa-check"></i><b>15.2.1</b> Examine subsets of the data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="15.3" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#plot-the-time-series"><i class="fa fa-check"></i><b>15.3</b> Plot the time series<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#sesaonal-plots"><i class="fa fa-check"></i><b>15.4</b> Sesaonal plots<span></span></a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#example-virginia-monthly-electricity"><i class="fa fa-check"></i><b>15.4.1</b> Example: Virginia monthly electricity<span></span></a></li>
+<li class="chapter" data-level="15.4.2" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#example-australian-production"><i class="fa fa-check"></i><b>15.4.2</b> Example: Australian production<span></span></a></li>
+<li class="chapter" data-level="15.4.3" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#seasonal-subseries-plots"><i class="fa fa-check"></i><b>15.4.3</b> Seasonal subseries plots<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#scatterplots"><i class="fa fa-check"></i><b>15.5</b> Scatterplots<span></span></a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="exploratory-analysis-of-time-series-data.html"><a href="exploratory-analysis-of-time-series-data.html#a-scatterplot-matrix"><i class="fa fa-check"></i><b>15.5.1</b> A Scatterplot matrix<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html"><i class="fa fa-check"></i><b>16</b> Time series decomposition<span></span></a>
+<ul>
+<li class="chapter" data-level="16.0.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#example-gross-domestic-product-data"><i class="fa fa-check"></i><b>16.0.1</b> Example: Gross Domestic Product data<span></span></a></li>
+<li class="chapter" data-level="16.0.2" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#fitting-data-to-simple-models"><i class="fa fa-check"></i><b>16.0.2</b> Fitting data to simple models<span></span></a></li>
+<li class="chapter" data-level="16.0.3" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#work-with-lngdp"><i class="fa fa-check"></i><b>16.0.3</b> Work with ln(GDP)<span></span></a></li>
+<li class="chapter" data-level="16.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#producing-forecasts"><i class="fa fa-check"></i><b>16.1</b> Producing forecasts<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#model-residuals-vs.-forecast-errors"><i class="fa fa-check"></i><b>16.1.1</b> Model residuals vs. forecast errors<span></span></a></li>
+<li class="chapter" data-level="16.1.2" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#are-the-model-residuals-auto-correlated"><i class="fa fa-check"></i><b>16.1.2</b> Are the model residuals auto-correlated?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#example-gdp-several-countries"><i class="fa fa-check"></i><b>16.2</b> Example: GDP, several countries<span></span></a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="time-series-decomposition.html"><a href="time-series-decomposition.html#plot-lagged-values"><i class="fa fa-check"></i><b>16.2.1</b> Plot lagged values<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>17</b> Autocorrelation<span></span></a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="autocorrelation.html"><a href="autocorrelation.html#heere-be-monsters"><i class="fa fa-check"></i><b>17.1</b> Heere be monsters<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>V Model Specification and Estimation<span></span></b></span></li>
+<li class="chapter" data-level="18" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html"><i class="fa fa-check"></i><b>18</b> The data-generating process<span></span></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#the-white-noise-process"><i class="fa fa-check"></i><b>18.1</b> The white noise process<span></span></a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#stationarity"><i class="fa fa-check"></i><b>18.1.1</b> Stationarity<span></span></a></li>
+<li class="chapter" data-level="18.1.2" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#no-autocorrelation"><i class="fa fa-check"></i><b>18.1.2</b> No autocorrelation<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html"><i class="fa fa-check"></i><b>19</b> The normal linear model<span></span></a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#assumptions-of-the-linear-model"><i class="fa fa-check"></i><b>19.1</b> Assumptions of the linear model<span></span></a></li>
+<li class="chapter" data-level="19.2" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#examples-of-the-normal-linear-model"><i class="fa fa-check"></i><b>19.2</b> Examples of the normal linear model<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>20</b> Ordinary least squares estimation<span></span></a></li>
+<li class="chapter" data-level="21" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html"><i class="fa fa-check"></i><b>21</b> Assignment: Project proposal<span></span></a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#introduction"><i class="fa fa-check"></i><b>21.1</b> Introduction<span></span></a></li>
+<li class="chapter" data-level="21.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#the-data-and-the-data-generating-process"><i class="fa fa-check"></i><b>21.2</b> The data and the data-generating process<span></span></a></li>
+<li class="chapter" data-level="21.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>21.3</b> Exploratory data analysis<span></span></a></li>
+<li class="chapter" data-level="21.4" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plot-the-time-series."><i class="fa fa-check"></i><b>21.4</b> Plot the time series.<span></span></a></li>
+<li class="chapter" data-level="21.5" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#perform-and-report-the-results-of-other-exploratory-data-analysis"><i class="fa fa-check"></i><b>21.5</b> Perform and report the results of other exploratory data analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#stl-decomposition"><i class="fa fa-check"></i><b>21.5.1</b> STL decomposition<span></span></a></li>
+<li class="chapter" data-level="21.5.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#fitting-data-to-simple-models-1"><i class="fa fa-check"></i><b>21.5.2</b> Fitting data to simple models<span></span></a></li>
+<li class="chapter" data-level="21.5.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#work-with-lngdp-1"><i class="fa fa-check"></i><b>21.5.3</b> Work with ln(GDP)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#statistical-model"><i class="fa fa-check"></i><b>21.6</b> Statistical model<span></span></a>
+<ul>
+<li class="chapter" data-level="21.6.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#formal-model-of-data-generating-process"><i class="fa fa-check"></i><b>21.6.1</b> Formal model of data-generating process<span></span></a></li>
+<li class="chapter" data-level="21.6.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#discussion-of-the-statistical-model"><i class="fa fa-check"></i><b>21.6.2</b> Discussion of the statistical model<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="21.7" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plan-for-data-analysis"><i class="fa fa-check"></i><b>21.7</b> Plan for data analysis<span></span></a></li>
+<li class="chapter" data-level="21.8" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#submission-requirements"><i class="fa fa-check"></i><b>21.8</b> Submission requirements<span></span></a></li>
+<li class="chapter" data-level="21.9" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#comment"><i class="fa fa-check"></i><b>21.9</b> Comment<span></span></a></li>
+<li class="chapter" data-level="21.10" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#references"><i class="fa fa-check"></i><b>21.10</b> References<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>VI Model evaluation<span></span></b></span></li>
+<li class="chapter" data-level="22" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html"><i class="fa fa-check"></i><b>22</b> Evaluating model residuals<span></span></a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#model-residuals-vs.-forecast-errors-1"><i class="fa fa-check"></i><b>22.1</b> Model residuals vs. forecast errors<span></span></a></li>
+<li class="chapter" data-level="22.2" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#are-the-model-residuals-auto-correlated-1"><i class="fa fa-check"></i><b>22.2</b> Are the model residuals auto-correlated?<span></span></a></li>
+<li class="chapter" data-level="22.3" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#example-gdp-several-models-several-countries"><i class="fa fa-check"></i><b>22.3</b> Example: GDP, several models, several countries<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>VII Forecasting<span></span></b></span></li>
+<li class="chapter" data-level="23" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html"><i class="fa fa-check"></i><b>23</b> Producing forecasts<span></span></a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#example-gross-domestic-product-data-1"><i class="fa fa-check"></i><b>23.1</b> Example: Gross Domestic Product data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html"><i class="fa fa-check"></i><b>24</b> Communicating forecast uncertainty<span></span></a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html#the-red-river-flood-of-1997"><i class="fa fa-check"></i><b>24.1</b> The Red River Flood of 1997<span></span></a></li>
+</ul></li>
+<li><a href="references-1.html#references-1">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -412,14 +414,14 @@ A Project-based Approach with R</a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="time-series-decomposition" class="section level1" number="16">
-<h1><span class="header-section-number">Chapter 16</span> Time series decomposition</h1>
+<div id="time-series-decomposition" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Time series decomposition<a href="time-series-decomposition.html#time-series-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Readings: FPP3, Sections 3.1, 3.2</p>
-<div id="example-gross-domestic-product-data" class="section level3" number="16.0.1">
-<h3><span class="header-section-number">16.0.1</span> Example: Gross Domestic Product data</h3>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="time-series-decomposition.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
-<span id="cb70-2"><a href="time-series-decomposition.html#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-3"><a href="time-series-decomposition.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(global_economy)</span></code></pre></div>
+<div id="example-gross-domestic-product-data" class="section level3 hasAnchor" number="16.0.1">
+<h3><span class="header-section-number">16.0.1</span> Example: Gross Domestic Product data<a href="time-series-decomposition.html#example-gross-domestic-product-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="time-series-decomposition.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
+<span id="cb78-2"><a href="time-series-decomposition.html#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="time-series-decomposition.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(global_economy)</span></code></pre></div>
 <pre><code>## # A tsibble: 15,150 x 9 [1Y]
 ## # Key:       Country [263]
 ##    Country     Code   Year         GDP Growth   CPI Imports Exports Population
@@ -435,7 +437,7 @@ A Project-based Approach with R</a>
 ##  9 Afghanistan AFG    1968 1373333367.     NA    NA   15.2     8.90   10604346
 ## 10 Afghanistan AFG    1969 1408888922.     NA    NA   15.0    10.1    10854428
 ## # … with 15,140 more rows</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="time-series-decomposition.html#cb72-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">print</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="time-series-decomposition.html#cb80-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">print</span>()</span></code></pre></div>
 <pre><code>## # A tsibble: 58 x 9 [1Y]
 ## # Key:       Country [1]
 ##    Country Code   Year          GDP Growth   CPI Imports Exports Population
@@ -451,17 +453,17 @@ A Project-based Approach with R</a>
 ##  9 Sweden  SWE    1968 29143383491.   3.64 12.5     21.6    21.6    7912273
 ## 10 Sweden  SWE    1969 31649203886.   5.01 12.8     23.0    22.8    7968072
 ## # … with 48 more rows</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="time-series-decomposition.html#cb74-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span></span>
-<span id="cb74-2"><a href="time-series-decomposition.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb74-3"><a href="time-series-decomposition.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(GDP) <span class="sc">+</span></span>
-<span id="cb74-4"><a href="time-series-decomposition.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;GDP for Sweden&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="time-series-decomposition.html#cb82-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span></span>
+<span id="cb82-2"><a href="time-series-decomposition.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb82-3"><a href="time-series-decomposition.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(GDP) <span class="sc">+</span></span>
+<span id="cb82-4"><a href="time-series-decomposition.html#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;GDP for Sweden&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
-<div id="fitting-data-to-simple-models" class="section level3" number="16.0.2">
-<h3><span class="header-section-number">16.0.2</span> Fitting data to simple models</h3>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="time-series-decomposition.html#cb75-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span> <span class="fu">model</span>(<span class="at">trend_model =</span> <span class="fu">TSLM</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>())) <span class="ot">-&gt;</span> fit</span>
-<span id="cb75-2"><a href="time-series-decomposition.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-3"><a href="time-series-decomposition.html#cb75-3" aria-hidden="true" tabindex="-1"></a>fit</span></code></pre></div>
+<div id="fitting-data-to-simple-models" class="section level3 hasAnchor" number="16.0.2">
+<h3><span class="header-section-number">16.0.2</span> Fitting data to simple models<a href="time-series-decomposition.html#fitting-data-to-simple-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="time-series-decomposition.html#cb83-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span> <span class="fu">model</span>(<span class="at">trend_model =</span> <span class="fu">TSLM</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>())) <span class="ot">-&gt;</span> fit</span>
+<span id="cb83-2"><a href="time-series-decomposition.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="time-series-decomposition.html#cb83-3" aria-hidden="true" tabindex="-1"></a>fit</span></code></pre></div>
 <pre><code>## # A mable: 263 x 2
 ## # Key:     Country [263]
 ##    Country             trend_model
@@ -477,7 +479,7 @@ A Project-based Approach with R</a>
 ##  9 Argentina                &lt;TSLM&gt;
 ## 10 Armenia                  &lt;TSLM&gt;
 ## # … with 253 more rows</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="time-series-decomposition.html#cb77-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="time-series-decomposition.html#cb85-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>()</span></code></pre></div>
 <pre><code>## # A tsibble: 58 x 4 [1Y]
 ## # Key:       Country, .model [1]
 ##    Country .model       Year       .resid
@@ -493,30 +495,30 @@ A Project-based Approach with R</a>
 ##  9 Sweden  trend_model  1968 12930653974.
 ## 10 Sweden  trend_model  1969  5268492989.
 ## # … with 48 more rows</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="time-series-decomposition.html#cb79-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>() <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(.resid)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-27-1.png" width="672" /></p>
-</div>
-<div id="work-with-lngdp" class="section level3" number="16.0.3">
-<h3><span class="header-section-number">16.0.3</span> Work with ln(GDP)</h3>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="time-series-decomposition.html#cb80-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span></span>
-<span id="cb80-2"><a href="time-series-decomposition.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb80-3"><a href="time-series-decomposition.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">log</span>(GDP)) <span class="sc">+</span></span>
-<span id="cb80-4"><a href="time-series-decomposition.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;ln(GDP) for Sweden&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="time-series-decomposition.html#cb87-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>() <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(.resid)</span></code></pre></div>
 <p><img src="graphics/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="time-series-decomposition.html#cb81-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span></span>
-<span id="cb81-2"><a href="time-series-decomposition.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">trend_model =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">trend</span>())) <span class="ot">-&gt;</span> logfit</span></code></pre></div>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="time-series-decomposition.html#cb82-1" aria-hidden="true" tabindex="-1"></a>logfit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>() <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-30-1.png" width="672" /></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="time-series-decomposition.html#cb83-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span> <span class="fu">model</span>(<span class="at">trend_model =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">log</span>(Population))) <span class="ot">-&gt;</span> fit3</span>
-<span id="cb83-2"><a href="time-series-decomposition.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-3"><a href="time-series-decomposition.html#cb83-3" aria-hidden="true" tabindex="-1"></a>fit3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>() <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
-<div id="producing-forecasts" class="section level2" number="16.1">
-<h2><span class="header-section-number">16.1</span> Producing forecasts</h2>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="time-series-decomposition.html#cb84-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">&quot;3 years&quot;</span>) <span class="ot">-&gt;</span> fcast3yrs</span>
-<span id="cb84-2"><a href="time-series-decomposition.html#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="time-series-decomposition.html#cb84-3" aria-hidden="true" tabindex="-1"></a>fcast3yrs</span></code></pre></div>
+<div id="work-with-lngdp" class="section level3 hasAnchor" number="16.0.3">
+<h3><span class="header-section-number">16.0.3</span> Work with ln(GDP)<a href="time-series-decomposition.html#work-with-lngdp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="time-series-decomposition.html#cb88-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span></span>
+<span id="cb88-2"><a href="time-series-decomposition.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb88-3"><a href="time-series-decomposition.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(<span class="fu">log</span>(GDP)) <span class="sc">+</span></span>
+<span id="cb88-4"><a href="time-series-decomposition.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;ln(GDP) for Sweden&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="time-series-decomposition.html#cb89-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span></span>
+<span id="cb89-2"><a href="time-series-decomposition.html#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">trend_model =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">trend</span>())) <span class="ot">-&gt;</span> logfit</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="time-series-decomposition.html#cb90-1" aria-hidden="true" tabindex="-1"></a>logfit <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>() <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="time-series-decomposition.html#cb91-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">%&gt;%</span> <span class="fu">model</span>(<span class="at">trend_model =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">log</span>(Population))) <span class="ot">-&gt;</span> fit3</span>
+<span id="cb91-2"><a href="time-series-decomposition.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="time-series-decomposition.html#cb91-3" aria-hidden="true" tabindex="-1"></a>fit3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">residuals</span>() <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="producing-forecasts" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Producing forecasts<a href="time-series-decomposition.html#producing-forecasts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="time-series-decomposition.html#cb92-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> <span class="fu">forecast</span>(<span class="at">h =</span> <span class="st">&quot;3 years&quot;</span>) <span class="ot">-&gt;</span> fcast3yrs</span>
+<span id="cb92-2"><a href="time-series-decomposition.html#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="time-series-decomposition.html#cb92-3" aria-hidden="true" tabindex="-1"></a>fcast3yrs</span></code></pre></div>
 <pre><code>## # A fable: 789 x 5 [1Y]
 ## # Key:     Country, .model [263]
 ##    Country        .model       Year                 GDP         .mean
@@ -532,7 +534,7 @@ A Project-based Approach with R</a>
 ##  9 Algeria        trend_model  2020 N(1.6e+11, 9.4e+20) 164306750811.
 ## 10 American Samoa trend_model  2018 N(6.8e+08, 1.7e+15)    682475000 
 ## # … with 779 more rows</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="time-series-decomposition.html#cb86-1" aria-hidden="true" tabindex="-1"></a>fcast3yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>, Year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> <span class="fu">str</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="time-series-decomposition.html#cb94-1" aria-hidden="true" tabindex="-1"></a>fcast3yrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>, Year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> <span class="fu">str</span>()</span></code></pre></div>
 <pre><code>## fbl_ts [1 × 5] (S3: fbl_ts/tbl_ts/tbl_df/tbl/data.frame)
 ##  $ Country: Factor w/ 263 levels &quot;Afghanistan&quot;,..: 232
 ##  $ .model : chr &quot;trend_model&quot;
@@ -559,19 +561,19 @@ A Project-based Approach with R</a>
 ##  - attr(*, &quot;response&quot;)= chr &quot;GDP&quot;
 ##  - attr(*, &quot;dist&quot;)= chr &quot;GDP&quot;
 ##  - attr(*, &quot;model_cn&quot;)= chr &quot;.model&quot;</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="time-series-decomposition.html#cb88-1" aria-hidden="true" tabindex="-1"></a>fcast3yrs <span class="sc">%&gt;%</span></span>
-<span id="cb88-2"><a href="time-series-decomposition.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb88-3"><a href="time-series-decomposition.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(global_economy) <span class="sc">+</span></span>
-<span id="cb88-4"><a href="time-series-decomposition.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;GDP for Sweden&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="time-series-decomposition.html#cb96-1" aria-hidden="true" tabindex="-1"></a>fcast3yrs <span class="sc">%&gt;%</span></span>
+<span id="cb96-2"><a href="time-series-decomposition.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country<span class="sc">==</span><span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb96-3"><a href="time-series-decomposition.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(global_economy) <span class="sc">+</span></span>
+<span id="cb96-4"><a href="time-series-decomposition.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;GDP for Sweden&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;$US billions&quot;</span>)</span></code></pre></div>
 <p><img src="graphics/visualize%20forecasts-1.png" width="672" /></p>
-<div id="model-residuals-vs.-forecast-errors" class="section level3" number="16.1.1">
-<h3><span class="header-section-number">16.1.1</span> Model residuals vs. forecast errors</h3>
+<div id="model-residuals-vs.-forecast-errors" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> Model residuals vs. forecast errors<a href="time-series-decomposition.html#model-residuals-vs.-forecast-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Model residuals:</p>
 <p>Your data: <span class="math inline">\(y_1, y_2, \ldots, y_T\)</span></p>
 <p>Fitted values: <span class="math inline">\(\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_T\)</span></p>
 <p>Model residuals: <span class="math inline">\(e_t = y_t - \hat{y}_t\)</span></p>
 <p>Forecast errors:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="time-series-decomposition.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="time-series-decomposition.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit)</span></code></pre></div>
 <pre><code>## # A tsibble: 15,150 x 7 [1Y]
 ## # Key:       Country, .model [263]
 ##    Country     .model       Year         GDP      .fitted      .resid     .innov
@@ -587,35 +589,35 @@ A Project-based Approach with R</a>
 ##  9 Afghanistan trend_model  1968 1373333367.   866277332.  507056034.     5.07e8
 ## 10 Afghanistan trend_model  1969 1408888922.  1173053819.  235835103.     2.36e8
 ## # … with 15,140 more rows</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="time-series-decomposition.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb91-2"><a href="time-series-decomposition.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb91-3"><a href="time-series-decomposition.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb91-4"><a href="time-series-decomposition.html#cb91-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-35-1.png" width="672" /></p>
-</div>
-<div id="are-the-model-residuals-auto-correlated" class="section level3" number="16.1.2">
-<h3><span class="header-section-number">16.1.2</span> Are the model residuals auto-correlated?</h3>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="time-series-decomposition.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden</span>
-<span id="cb92-2"><a href="time-series-decomposition.html#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="time-series-decomposition.html#cb92-3" aria-hidden="true" tabindex="-1"></a>augSweden <span class="sc">%&gt;%</span></span>
-<span id="cb92-4"><a href="time-series-decomposition.html#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
-<span id="cb92-5"><a href="time-series-decomposition.html#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="time-series-decomposition.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb99-2"><a href="time-series-decomposition.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb99-3"><a href="time-series-decomposition.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb99-4"><a href="time-series-decomposition.html#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
 <p><img src="graphics/unnamed-chunk-36-1.png" width="672" /></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="time-series-decomposition.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit3) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden3</span>
-<span id="cb93-2"><a href="time-series-decomposition.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-3"><a href="time-series-decomposition.html#cb93-3" aria-hidden="true" tabindex="-1"></a>augSweden3 <span class="sc">%&gt;%</span></span>
-<span id="cb93-4"><a href="time-series-decomposition.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
-<span id="cb93-5"><a href="time-series-decomposition.html#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+</div>
+<div id="are-the-model-residuals-auto-correlated" class="section level3 hasAnchor" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> Are the model residuals auto-correlated?<a href="time-series-decomposition.html#are-the-model-residuals-auto-correlated" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="time-series-decomposition.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden</span>
+<span id="cb100-2"><a href="time-series-decomposition.html#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="time-series-decomposition.html#cb100-3" aria-hidden="true" tabindex="-1"></a>augSweden <span class="sc">%&gt;%</span></span>
+<span id="cb100-4"><a href="time-series-decomposition.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
+<span id="cb100-5"><a href="time-series-decomposition.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
 <p><img src="graphics/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="time-series-decomposition.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit3) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden3</span>
+<span id="cb101-2"><a href="time-series-decomposition.html#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-3"><a href="time-series-decomposition.html#cb101-3" aria-hidden="true" tabindex="-1"></a>augSweden3 <span class="sc">%&gt;%</span></span>
+<span id="cb101-4"><a href="time-series-decomposition.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
+<span id="cb101-5"><a href="time-series-decomposition.html#cb101-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-38-1.png" width="672" /></p>
 </div>
 </div>
-<div id="example-gdp-several-countries" class="section level2" number="16.2">
-<h2><span class="header-section-number">16.2</span> Example: GDP, several countries</h2>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="time-series-decomposition.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
-<span id="cb94-2"><a href="time-series-decomposition.html#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-3"><a href="time-series-decomposition.html#cb94-3" aria-hidden="true" tabindex="-1"></a>nordic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sweden&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Finland&quot;</span>)</span>
-<span id="cb94-4"><a href="time-series-decomposition.html#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-5"><a href="time-series-decomposition.html#cb94-5" aria-hidden="true" tabindex="-1"></a>(global_economy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">%in%</span> nordic) <span class="ot">-&gt;</span> nordic_economy)</span></code></pre></div>
+<div id="example-gdp-several-countries" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Example: GDP, several countries<a href="time-series-decomposition.html#example-gdp-several-countries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="time-series-decomposition.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
+<span id="cb102-2"><a href="time-series-decomposition.html#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="time-series-decomposition.html#cb102-3" aria-hidden="true" tabindex="-1"></a>nordic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sweden&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Finland&quot;</span>)</span>
+<span id="cb102-4"><a href="time-series-decomposition.html#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="time-series-decomposition.html#cb102-5" aria-hidden="true" tabindex="-1"></a>(global_economy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">%in%</span> nordic) <span class="ot">-&gt;</span> nordic_economy)</span></code></pre></div>
 <pre><code>## # A tsibble: 232 x 9 [1Y]
 ## # Key:       Country [4]
 ##    Country Code   Year          GDP Growth   CPI Imports Exports Population
@@ -631,17 +633,17 @@ A Project-based Approach with R</a>
 ##  9 Denmark DNK    1968 13196541952   3.97  13.2     29.7    27.7    4864883
 ## 10 Denmark DNK    1969 15009384585.  6.32  13.7     30.4    27.6    4891860
 ## # … with 222 more rows</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="time-series-decomposition.html#cb96-1" aria-hidden="true" tabindex="-1"></a>nordic_economy <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(GDP)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-39-1.png" width="672" /></p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="time-series-decomposition.html#cb97-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="ot">&lt;-</span> nordic_economy <span class="sc">%&gt;%</span></span>
-<span id="cb97-2"><a href="time-series-decomposition.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb97-3"><a href="time-series-decomposition.html#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model =</span> <span class="fu">TSLM</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>()),</span>
-<span id="cb97-4"><a href="time-series-decomposition.html#cb97-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model_ln =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">trend</span>()),</span>
-<span id="cb97-5"><a href="time-series-decomposition.html#cb97-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ets =</span> <span class="fu">ETS</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>(<span class="st">&quot;A&quot;</span>)),</span>
-<span id="cb97-6"><a href="time-series-decomposition.html#cb97-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima =</span> <span class="fu">ARIMA</span>(GDP)</span>
-<span id="cb97-7"><a href="time-series-decomposition.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb97-8"><a href="time-series-decomposition.html#cb97-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-9"><a href="time-series-decomposition.html#cb97-9" aria-hidden="true" tabindex="-1"></a>fitnord</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="time-series-decomposition.html#cb104-1" aria-hidden="true" tabindex="-1"></a>nordic_economy <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(GDP)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="time-series-decomposition.html#cb105-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="ot">&lt;-</span> nordic_economy <span class="sc">%&gt;%</span></span>
+<span id="cb105-2"><a href="time-series-decomposition.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb105-3"><a href="time-series-decomposition.html#cb105-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model =</span> <span class="fu">TSLM</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>()),</span>
+<span id="cb105-4"><a href="time-series-decomposition.html#cb105-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model_ln =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">trend</span>()),</span>
+<span id="cb105-5"><a href="time-series-decomposition.html#cb105-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ets =</span> <span class="fu">ETS</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>(<span class="st">&quot;A&quot;</span>)),</span>
+<span id="cb105-6"><a href="time-series-decomposition.html#cb105-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima =</span> <span class="fu">ARIMA</span>(GDP)</span>
+<span id="cb105-7"><a href="time-series-decomposition.html#cb105-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb105-8"><a href="time-series-decomposition.html#cb105-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-9"><a href="time-series-decomposition.html#cb105-9" aria-hidden="true" tabindex="-1"></a>fitnord</span></code></pre></div>
 <pre><code>## # A mable: 4 x 5
 ## # Key:     Country [4]
 ##   Country trend_model trend_model_ln          ets          arima
@@ -650,9 +652,9 @@ A Project-based Approach with R</a>
 ## 2 Finland      &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(0,1,2)&gt;
 ## 3 Norway       &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(0,1,1)&gt;
 ## 4 Sweden       &lt;TSLM&gt;         &lt;TSLM&gt; &lt;ETS(M,A,N)&gt; &lt;ARIMA(0,1,2)&gt;</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="time-series-decomposition.html#cb99-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span></span>
-<span id="cb99-2"><a href="time-series-decomposition.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(arima) <span class="sc">%&gt;%</span></span>
-<span id="cb99-3"><a href="time-series-decomposition.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="time-series-decomposition.html#cb107-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span></span>
+<span id="cb107-2"><a href="time-series-decomposition.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(arima) <span class="sc">%&gt;%</span></span>
+<span id="cb107-3"><a href="time-series-decomposition.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 7
 ##   Country .model term  estimate std.error statistic    p.value
 ##   &lt;fct&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -667,11 +669,11 @@ A Project-based Approach with R</a>
 <p>Finland: MA(2)</p>
 <p>Norway: MA(1)</p>
 <p>Sweden: MA(2)</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="time-series-decomposition.html#cb101-1" aria-hidden="true" tabindex="-1"></a>nordic_economy <span class="sc">%&gt;%</span></span>
-<span id="cb101-2"><a href="time-series-decomposition.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">arima_constrained =</span> <span class="fu">ARIMA</span>(GDP <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">2</span>))) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(arima_constrained) <span class="sc">%&gt;%</span> <span class="fu">coef</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="time-series-decomposition.html#cb109-1" aria-hidden="true" tabindex="-1"></a>nordic_economy <span class="sc">%&gt;%</span></span>
+<span id="cb109-2"><a href="time-series-decomposition.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">arima_constrained =</span> <span class="fu">ARIMA</span>(GDP <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">2</span>))) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(arima_constrained) <span class="sc">%&gt;%</span> <span class="fu">coef</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 0 × 4
 ## # … with 4 variables: Country &lt;fct&gt;, .model &lt;chr&gt;, term &lt;chr&gt;, estimate &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="time-series-decomposition.html#cb103-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span> <span class="fu">coef</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="time-series-decomposition.html#cb111-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span> <span class="fu">coef</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 39 × 7
 ##    Country .model         term         estimate std.error statistic   p.value
 ##    &lt;fct&gt;   &lt;chr&gt;          &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -686,7 +688,7 @@ A Project-based Approach with R</a>
 ##  9 Denmark arima          ar1         -3.90e- 1   2.06e-1     -1.89  6.36e- 2
 ## 10 Denmark arima          ma1          7.24e- 1   1.43e-1      5.05  4.84e- 6
 ## # … with 29 more rows</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="time-series-decomposition.html#cb105-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span>  <span class="fu">glance</span>()  </span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="time-series-decomposition.html#cb113-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span>  <span class="fu">glance</span>()  </span></code></pre></div>
 <pre><code>## # A tibble: 16 × 21
 ##    Country .model     r_squared adj_r_squared   sigma2 statistic   p_value    df
 ##    &lt;fct&gt;   &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
@@ -709,7 +711,7 @@ A Project-based Approach with R</a>
 ## # … with 13 more variables: log_lik &lt;dbl&gt;, AIC &lt;dbl&gt;, AICc &lt;dbl&gt;, BIC &lt;dbl&gt;,
 ## #   CV &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, rank &lt;int&gt;, MSE &lt;dbl&gt;,
 ## #   AMSE &lt;dbl&gt;, MAE &lt;dbl&gt;, ar_roots &lt;list&gt;, ma_roots &lt;list&gt;</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="time-series-decomposition.html#cb107-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(arima) <span class="sc">%&gt;%</span> <span class="fu">report</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="time-series-decomposition.html#cb115-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Denmark&quot;</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(arima) <span class="sc">%&gt;%</span> <span class="fu">report</span>()</span></code></pre></div>
 <pre><code>## Series: GDP 
 ## Model: ARIMA(1,1,1) 
 ## 
@@ -720,71 +722,71 @@ A Project-based Approach with R</a>
 ## 
 ## sigma^2 estimated as 2.407e+20:  log likelihood=-1417.5
 ## AIC=2840.99   AICc=2841.45   BIC=2847.12</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="time-series-decomposition.html#cb109-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span></span>
-<span id="cb109-2"><a href="time-series-decomposition.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb109-3"><a href="time-series-decomposition.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Country, MPE)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="time-series-decomposition.html#cb117-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span></span>
+<span id="cb117-2"><a href="time-series-decomposition.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb117-3"><a href="time-series-decomposition.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Country, MPE)</span></code></pre></div>
 <pre><code>## # A tibble: 16 × 11
-##    Country .model   .type         ME     RMSE     MAE     MPE   MAPE  MASE RMSSE
-##    &lt;fct&gt;   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Denmark trend_m… Train… -1.12e+10  6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
-##  2 Denmark ets      Train…  4.50e+ 7  1.65e10 1.04e10   0.518   7.09 0.946 1.02 
-##  3 Denmark arima    Train…  4.40e+ 9  1.51e10 1.04e10   5.05    8.16 0.945 0.930
-##  4 Denmark trend_m… Train… -2.20e- 6  3.23e10 2.63e10  51.1    80.8  2.40  1.99 
-##  5 Finland trend_m… Train… -8.61e+ 9  5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
-##  6 Finland ets      Train…  1.36e+ 8  1.47e10 9.41e 9   0.795   8.36 0.927 0.996
-##  7 Finland arima    Train…  3.54e+ 9  1.34e10 9.14e 9   5.03    8.92 0.900 0.906
-##  8 Finland trend_m… Train…  2.33e- 6  2.66e10 2.21e10  46.1    80.5  2.18  1.80 
-##  9 Norway  trend_m… Train… -1.31e+10  8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
-## 10 Norway  ets      Train… -5.29e+ 8  2.75e10 1.37e10   0.755   6.94 0.870 1.01 
-## 11 Norway  arima    Train…  4.90e+ 9  2.56e10 1.40e10   5.04    8.11 0.890 0.938
-## 12 Norway  trend_m… Train… -1.10e- 5  6.67e10 5.48e10 130.    181.   3.49  2.45 
-## 13 Sweden  trend_m… Train… -1.18e+10  8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
-## 14 Sweden  ets      Train…  1.19e+ 9  3.02e10 1.86e10   0.745   7.64 0.875 0.984
-## 15 Sweden  arima    Train…  8.48e+ 9  2.89e10 2.01e10   5.18    9.37 0.942 0.944
-## 16 Sweden  trend_m… Train…  3.22e- 6  5.05e10 3.90e10  29.4    53.3  1.83  1.65 
+##    Country .model     .type        ME    RMSE     MAE     MPE   MAPE  MASE RMSSE
+##    &lt;fct&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Denmark trend_mod… Trai… -1.12e+10 6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
+##  2 Denmark ets        Trai…  4.50e+ 7 1.65e10 1.04e10   0.518   7.09 0.946 1.02 
+##  3 Denmark arima      Trai…  4.40e+ 9 1.51e10 1.04e10   5.05    8.16 0.945 0.930
+##  4 Denmark trend_mod… Trai… -2.06e- 6 3.23e10 2.63e10  51.1    80.8  2.40  1.99 
+##  5 Finland trend_mod… Trai… -8.61e+ 9 5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
+##  6 Finland ets        Trai…  1.36e+ 8 1.47e10 9.41e 9   0.795   8.36 0.927 0.996
+##  7 Finland arima      Trai…  3.54e+ 9 1.34e10 9.14e 9   5.03    8.92 0.900 0.906
+##  8 Finland trend_mod… Trai…  9.54e- 7 2.66e10 2.21e10  46.1    80.5  2.18  1.80 
+##  9 Norway  trend_mod… Trai… -1.31e+10 8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
+## 10 Norway  ets        Trai… -5.29e+ 8 2.75e10 1.37e10   0.755   6.94 0.870 1.01 
+## 11 Norway  arima      Trai…  4.90e+ 9 2.56e10 1.40e10   5.04    8.11 0.890 0.938
+## 12 Norway  trend_mod… Trai…  2.09e- 6 6.67e10 5.48e10 130.    181.   3.49  2.45 
+## 13 Sweden  trend_mod… Trai… -1.18e+10 8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
+## 14 Sweden  ets        Trai…  1.19e+ 9 3.02e10 1.86e10   0.745   7.64 0.875 0.984
+## 15 Sweden  arima      Trai…  8.48e+ 9 2.89e10 2.01e10   5.18    9.37 0.942 0.944
+## 16 Sweden  trend_mod… Trai…  2.10e- 6 5.05e10 3.90e10  29.4    53.3  1.83  1.65 
 ## # … with 1 more variable: ACF1 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="time-series-decomposition.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ETS forecasts</span></span>
-<span id="cb111-2"><a href="time-series-decomposition.html#cb111-2" aria-hidden="true" tabindex="-1"></a>USAccDeaths <span class="sc">%&gt;%</span></span>
-<span id="cb111-3"><a href="time-series-decomposition.html#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ets</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb111-4"><a href="time-series-decomposition.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb111-5"><a href="time-series-decomposition.html#cb111-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="time-series-decomposition.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(taylor)</span>
-<span id="cb112-2"><a href="time-series-decomposition.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(taylor)</span></code></pre></div>
-<div id="plot-lagged-values" class="section level3" number="16.2.1">
-<h3><span class="header-section-number">16.2.1</span> Plot lagged values</h3>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="time-series-decomposition.html#cb113-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts  <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">month</span>(Month) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)) <span class="sc">%&gt;%</span> <span class="fu">gg_lag</span>(sales_GWh, <span class="at">lags =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="time-series-decomposition.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ETS forecasts</span></span>
+<span id="cb119-2"><a href="time-series-decomposition.html#cb119-2" aria-hidden="true" tabindex="-1"></a>USAccDeaths <span class="sc">%&gt;%</span></span>
+<span id="cb119-3"><a href="time-series-decomposition.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ets</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb119-4"><a href="time-series-decomposition.html#cb119-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb119-5"><a href="time-series-decomposition.html#cb119-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="time-series-decomposition.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(taylor)</span>
+<span id="cb120-2"><a href="time-series-decomposition.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(taylor)</span></code></pre></div>
+<div id="plot-lagged-values" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> Plot lagged values<a href="time-series-decomposition.html#plot-lagged-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="time-series-decomposition.html#cb121-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts  <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">month</span>(Month) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>)) <span class="sc">%&gt;%</span> <span class="fu">gg_lag</span>(sales_GWh, <span class="at">lags =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="graphics/plot%20lagged%20values-1.png" width="672" /></p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="time-series-decomposition.html#cb114-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts  <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">month</span>(Month) <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">gg_lag</span>(sales_GWh, <span class="at">lags =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="time-series-decomposition.html#cb122-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts  <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">month</span>(Month) <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">gg_lag</span>(sales_GWh, <span class="at">lags =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="graphics/plot%20lagged%20values-2.png" width="672" /></p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="time-series-decomposition.html#cb115-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span> <span class="fu">ACF</span>(sales_GWh) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-49-1.png" width="672" /></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="time-series-decomposition.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># decompose(vaelsales_tbl_ts)</span></span></code></pre></div>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="time-series-decomposition.html#cb117-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
-<span id="cb117-2"><a href="time-series-decomposition.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(sales_GWh <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window=</span><span class="dv">21</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">window=</span><span class="st">&#39;periodic&#39;</span>), <span class="at">robust =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb117-3"><a href="time-series-decomposition.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb117-4"><a href="time-series-decomposition.html#cb117-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="time-series-decomposition.html#cb123-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span> <span class="fu">ACF</span>(sales_GWh) <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>()</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="time-series-decomposition.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># decompose(vaelsales_tbl_ts)</span></span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="time-series-decomposition.html#cb125-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
+<span id="cb125-2"><a href="time-series-decomposition.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(sales_GWh <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window=</span><span class="dv">21</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">window=</span><span class="st">&#39;periodic&#39;</span>), <span class="at">robust =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb125-3"><a href="time-series-decomposition.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb125-4"><a href="time-series-decomposition.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
 <p><img src="graphics/perform%20additive%20STL%20decomposition%20of%20the%20VA%20electricity%20sales%20time%20series-1.png" width="672" /></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="time-series-decomposition.html#cb118-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
-<span id="cb118-2"><a href="time-series-decomposition.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ln_sales_GWh =</span> <span class="fu">log</span>(sales_GWh)) <span class="sc">%&gt;%</span></span>
-<span id="cb118-3"><a href="time-series-decomposition.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(ln_sales_GWh <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window=</span><span class="dv">21</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">window=</span><span class="st">&#39;periodic&#39;</span>),</span>
-<span id="cb118-4"><a href="time-series-decomposition.html#cb118-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">robust =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb118-5"><a href="time-series-decomposition.html#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb118-6"><a href="time-series-decomposition.html#cb118-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="time-series-decomposition.html#cb126-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
+<span id="cb126-2"><a href="time-series-decomposition.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ln_sales_GWh =</span> <span class="fu">log</span>(sales_GWh)) <span class="sc">%&gt;%</span></span>
+<span id="cb126-3"><a href="time-series-decomposition.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(ln_sales_GWh <span class="sc">~</span> <span class="fu">trend</span>(<span class="at">window=</span><span class="dv">21</span>) <span class="sc">+</span> <span class="fu">season</span>(<span class="at">window=</span><span class="st">&#39;periodic&#39;</span>),</span>
+<span id="cb126-4"><a href="time-series-decomposition.html#cb126-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">robust =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb126-5"><a href="time-series-decomposition.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">components</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb126-6"><a href="time-series-decomposition.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>()</span></code></pre></div>
 <p><img src="graphics/perform%20multiplicative%20STL%20decomposition%20of%20the%20VA%20electricity%20sales%20time%20series-1.png" width="672" /></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="time-series-decomposition.html#cb119-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
-<span id="cb119-2"><a href="time-series-decomposition.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(sales_GWh, feat_stl)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="time-series-decomposition.html#cb127-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
+<span id="cb127-2"><a href="time-series-decomposition.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(sales_GWh, feat_stl)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 9
-##   trend_strength seasonal_strength… seasonal_peak_y… seasonal_trough_… spikiness
-##            &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt;     &lt;dbl&gt;
-## 1          0.609              0.869                7                 4   747395.
+##   trend_strength seasonal_strength_… seasonal_peak_y… seasonal_trough… spikiness
+##            &lt;dbl&gt;               &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1          0.609               0.869                7                4   747395.
 ## # … with 4 more variables: linearity &lt;dbl&gt;, curvature &lt;dbl&gt;, stl_e_acf1 &lt;dbl&gt;,
 ## #   stl_e_acf10 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="time-series-decomposition.html#cb121-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
-<span id="cb121-2"><a href="time-series-decomposition.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(sales_GWh, <span class="fu">feature_set</span>(<span class="at">pkgs=</span><span class="st">&quot;feasts&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="time-series-decomposition.html#cb129-1" aria-hidden="true" tabindex="-1"></a>vaelsales_tbl_ts <span class="sc">%&gt;%</span></span>
+<span id="cb129-2"><a href="time-series-decomposition.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">features</span>(sales_GWh, <span class="fu">feature_set</span>(<span class="at">pkgs=</span><span class="st">&quot;feasts&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 47
-##   trend_strength seasonal_strength… seasonal_peak_y… seasonal_trough_… spikiness
-##            &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt;     &lt;dbl&gt;
-## 1          0.609              0.869                7                 4   747395.
+##   trend_strength seasonal_strength_… seasonal_peak_y… seasonal_trough… spikiness
+##            &lt;dbl&gt;               &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1          0.609               0.869                7                4   747395.
 ## # … with 42 more variables: linearity &lt;dbl&gt;, curvature &lt;dbl&gt;, stl_e_acf1 &lt;dbl&gt;,
 ## #   stl_e_acf10 &lt;dbl&gt;, acf1 &lt;dbl&gt;, acf10 &lt;dbl&gt;, diff1_acf1 &lt;dbl&gt;,
 ## #   diff1_acf10 &lt;dbl&gt;, diff2_acf1 &lt;dbl&gt;, diff2_acf10 &lt;dbl&gt;, season_acf1 &lt;dbl&gt;,
