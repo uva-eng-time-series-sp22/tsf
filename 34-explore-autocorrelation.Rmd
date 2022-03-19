@@ -2,6 +2,26 @@
 
 Readings: FPP3 Sections 2.7-2.9, 4.2, 4.5
 
+```{r, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(feasts)
+library(tsibble) # Reference: https://tsibble.tidyverts.org/articles/intro-tsibble.html
+
+
+```
+
+```{r, include=FALSE}
+esales <- arrow::read_feather("data/esales.feather")
+esales %>%
+  dplyr::select(date, sales_GWh = value) -> esales_tbl
+esales_tbl %>% as_tsibble(index = date) -> elsales_tbl_ts
+
+elsales_tbl_ts %>%
+  mutate(Month = tsibble::yearmonth(date)) %>%
+  as_tsibble(index = Month) %>%
+  dplyr::select(Month,sales_GWh) -> vaelsales_tbl_ts
+```
 
 
 

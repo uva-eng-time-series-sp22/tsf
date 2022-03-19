@@ -4,11 +4,6 @@
 %
 \documentclass[
 ]{book}
-\title{Time Series and Forecasting:
-A Project-based Approach with R}
-\author{Arthur Small}
-\date{Version of: 2022-02-21}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -120,6 +115,11 @@ A Project-based Approach with R}
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
+\title{Time Series and Forecasting:
+A Project-based Approach with R}
+\author{Arthur Small}
+\date{Version of: 2022-03-19}
+
 \begin{document}
 \maketitle
 
@@ -127,14 +127,64 @@ A Project-based Approach with R}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{section}{%
-\chapter*{}\label{section}}
-\addcontentsline{toc}{chapter}{}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
 
 This document is a compilation of class notes for SYS 5581 \emph{Time Series and Forecasting}, University of Virginia, Spring, 2021.
 
-\hypertarget{preface}{%
-\chapter*{Preface}\label{preface}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(fpp3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages -------------------------------------------- fpp3 0.4.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v lubridate   1.8.0     v feasts      0.2.2
+## v tsibble     1.1.1     v fable       0.3.1
+## v tsibbledata 0.4.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------------- fpp3_conflicts --
+## x lubridate::date()    masks base::date()
+## x dplyr::filter()      masks stats::filter()
+## x tsibble::intersect() masks base::intersect()
+## x tsibble::interval()  masks lubridate::interval()
+## x dplyr::lag()         masks stats::lag()
+## x tsibble::setdiff()   masks base::setdiff()
+## x tsibble::union()     masks base::union()
+\end{verbatim}
+
+\hypertarget{preface-1}{%
+\chapter*{Preface}\label{preface-1}}
 \addcontentsline{toc}{chapter}{Preface}
 
 This document contains class notes and other materials related to SYS 5581 \emph{Time Series and Forecasting} at the University of Virginia.
@@ -462,7 +512,7 @@ Let \(y_1, \ldots, y_T\) denote the high temperature in Charlottesville on March
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-3-1.pdf}
+\includegraphics{graphics/unnamed-chunk-4-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -470,7 +520,7 @@ Let \(y_1, \ldots, y_T\) denote the high temperature in Charlottesville on March
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-4-1.pdf}
+\includegraphics{graphics/unnamed-chunk-5-1.pdf}
 
 \hypertarget{white-noise-model}{%
 \section{Write down your model of the data generating process}\label{white-noise-model}}
@@ -579,7 +629,7 @@ For this case, ordinary least squares (OLS) estimation is just fine.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-5-1.pdf}
+\includegraphics{graphics/unnamed-chunk-6-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -587,7 +637,7 @@ For this case, ordinary least squares (OLS) estimation is just fine.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-6-1.pdf}
+\includegraphics{graphics/unnamed-chunk-7-1.pdf}
 
 \hypertarget{use-your-calibrated-model-to-address-your-original-question}{%
 \section{Use your calibrated model to address your original question}\label{use-your-calibrated-model-to-address-your-original-question}}
@@ -866,7 +916,7 @@ As you proceed in creating your documents, you will probably want to access addi
 
 }
 
-\caption{New York City 311 calls by time of day, September 8--15, 2010. Source: [Wired Magazine](https://www.wired.com/2010/11/ff_311_new_york/)}\label{fig:unnamed-chunk-9}
+\caption{New York City 311 calls by time of day, September 8--15, 2010. Source: [Wired Magazine](https://www.wired.com/2010/11/ff_311_new_york/)}\label{fig:unnamed-chunk-10}
 \end{figure}
 
 Readings:
@@ -1538,7 +1588,7 @@ Previously we extracted monthly electricity sales data for Virginia from a remot
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(elsales\_tbl\_ts}\SpecialCharTok{$}\NormalTok{sales\_GWh, }\AttributeTok{breaks=}\DecValTok{40}\NormalTok{) }\CommentTok{\#  Make a histogram of monthly sales}
+\FunctionTok{hist}\NormalTok{(esales}\SpecialCharTok{$}\NormalTok{value, }\AttributeTok{breaks=}\DecValTok{40}\NormalTok{) }\CommentTok{\#  Make a histogram of monthly sales}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1709,18 +1759,6 @@ Ref: FPP3, Section 2.2
 
 \includegraphics{graphics/use ggplot2 to generate a plot-1.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# feasts::autoplot() is handy for quickly generating time series plots}
-
-\FunctionTok{autoplot}\NormalTok{(vaelsales\_tbl\_ts, sales\_GWh) }\SpecialCharTok{+}
-  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Virginia monthly total electricity sales (GWh)"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)  }\CommentTok{\# Leave horiz. axis label blank}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{graphics/use feasts autoplot-1.pdf}
-
 \hypertarget{sesaonal-plots}{%
 \section{Sesaonal plots}\label{sesaonal-plots}}
 
@@ -1762,9 +1800,9 @@ Recall how we readied these data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# This plot won\textquotesingle{}t work. Why not?}
-\NormalTok{elsales\_tbl\_ts }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  feasts}\SpecialCharTok{::}\FunctionTok{gg\_season}\NormalTok{(sales\_GWh, }\AttributeTok{labels =} \StringTok{"both"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Virginia electricity sales (GWh)"}\NormalTok{)}
+\DocumentationTok{\#\#\# This plot won\textquotesingle{}t work. Why not?}
+\CommentTok{\# elsales\_tbl\_ts \%\textgreater{}\%}
+\CommentTok{\#   feasts::gg\_season(sales\_GWh, labels = "both") + ylab("Virginia electricity sales (GWh)")}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1801,11 +1839,23 @@ Recall how we readied these data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# feasts::autoplot() is handy for quickly generating time series plots}
+
+\FunctionTok{autoplot}\NormalTok{(vaelsales\_tbl\_ts, sales\_GWh) }\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Virginia monthly total electricity sales (GWh)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)  }\CommentTok{\# Leave horiz. axis label blank}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{graphics/use feasts autoplot-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{vaelsales\_tbl\_ts }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{gg\_season}\NormalTok{(sales\_GWh, }\AttributeTok{labels =} \StringTok{"both"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Virginia electricity sales (GWh)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-15-1.pdf}
+\includegraphics{graphics/unnamed-chunk-16-1.pdf}
 
 \hypertarget{example-australian-production}{%
 \subsection{Example: Australian production}\label{example-australian-production}}
@@ -1842,7 +1892,7 @@ Recall how we readied these data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-16-1.pdf}
+\includegraphics{graphics/unnamed-chunk-17-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1850,7 +1900,7 @@ Recall how we readied these data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-16-2.pdf}
+\includegraphics{graphics/unnamed-chunk-17-2.pdf}
 
 \hypertarget{seasonal-subseries-plots}{%
 \subsection{Seasonal subseries plots}\label{seasonal-subseries-plots}}
@@ -1868,7 +1918,7 @@ Ref: FPP3, Section 2.5
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-17-1.pdf}
+\includegraphics{graphics/unnamed-chunk-18-1.pdf}
 
 \hypertarget{scatterplots}{%
 \section{Scatterplots}\label{scatterplots}}
@@ -1935,7 +1985,7 @@ Investigating relationships between two variables. Scatterplots. Correlation. Sc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-18-1.pdf}
+\includegraphics{graphics/unnamed-chunk-19-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1949,7 +1999,7 @@ Investigating relationships between two variables. Scatterplots. Correlation. Sc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-19-1.pdf}
+\includegraphics{graphics/unnamed-chunk-20-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1962,7 +2012,7 @@ Investigating relationships between two variables. Scatterplots. Correlation. Sc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-20-1.pdf}
+\includegraphics{graphics/unnamed-chunk-21-1.pdf}
 
 \hypertarget{a-scatterplot-matrix}{%
 \subsection{A Scatterplot matrix}\label{a-scatterplot-matrix}}
@@ -1996,7 +2046,7 @@ Investigating relationships between two variables. Scatterplots. Correlation. Sc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-21-1.pdf}
+\includegraphics{graphics/unnamed-chunk-22-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2008,7 +2058,7 @@ Investigating relationships between two variables. Scatterplots. Correlation. Sc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-21-2.pdf}
+\includegraphics{graphics/unnamed-chunk-22-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2019,7 +2069,7 @@ Investigating relationships between two variables. Scatterplots. Correlation. Sc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-21-3.pdf}
+\includegraphics{graphics/unnamed-chunk-22-3.pdf}
 
 \hypertarget{time-series-decomposition}{%
 \chapter{Time series decomposition}\label{time-series-decomposition}}
@@ -2088,7 +2138,7 @@ Readings: FPP3, Sections 3.1, 3.2
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-24-1.pdf}
+\includegraphics{graphics/unnamed-chunk-25-1.pdf}
 
 \hypertarget{fitting-data-to-simple-models}{%
 \subsection{Fitting data to simple models}\label{fitting-data-to-simple-models}}
@@ -2149,7 +2199,7 @@ Readings: FPP3, Sections 3.1, 3.2
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-27-1.pdf}
+\includegraphics{graphics/unnamed-chunk-28-1.pdf}
 
 \hypertarget{work-with-lngdp}{%
 \subsection{Work with ln(GDP)}\label{work-with-lngdp}}
@@ -2163,7 +2213,7 @@ Readings: FPP3, Sections 3.1, 3.2
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-28-1.pdf}
+\includegraphics{graphics/unnamed-chunk-29-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2178,7 +2228,7 @@ Readings: FPP3, Sections 3.1, 3.2
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-30-1.pdf}
+\includegraphics{graphics/unnamed-chunk-31-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2188,7 +2238,7 @@ Readings: FPP3, Sections 3.1, 3.2
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-31-1.pdf}
+\includegraphics{graphics/unnamed-chunk-32-1.pdf}
 
 \hypertarget{producing-forecasts}{%
 \section{Producing forecasts}\label{producing-forecasts}}
@@ -2311,7 +2361,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-35-1.pdf}
+\includegraphics{graphics/unnamed-chunk-36-1.pdf}
 
 \hypertarget{are-the-model-residuals-auto-correlated}{%
 \subsection{Are the model residuals auto-correlated?}\label{are-the-model-residuals-auto-correlated}}
@@ -2326,7 +2376,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-36-1.pdf}
+\includegraphics{graphics/unnamed-chunk-37-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2338,7 +2388,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-37-1.pdf}
+\includegraphics{graphics/unnamed-chunk-38-1.pdf}
 
 \hypertarget{example-gdp-several-countries}{%
 \section{Example: GDP, several countries}\label{example-gdp-several-countries}}
@@ -2377,7 +2427,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-39-1.pdf}
+\includegraphics{graphics/unnamed-chunk-40-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2528,24 +2578,24 @@ Sweden: MA(2)
 
 \begin{verbatim}
 ## # A tibble: 16 x 11
-##    Country .model   .type         ME     RMSE     MAE     MPE   MAPE  MASE RMSSE
-##    <fct>   <chr>    <chr>      <dbl>    <dbl>   <dbl>   <dbl>  <dbl> <dbl> <dbl>
-##  1 Denmark trend_m~ Train~ -1.12e+10  6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
-##  2 Denmark ets      Train~  4.50e+ 7  1.65e10 1.04e10   0.518   7.09 0.946 1.02 
-##  3 Denmark arima    Train~  4.40e+ 9  1.51e10 1.04e10   5.05    8.16 0.945 0.930
-##  4 Denmark trend_m~ Train~ -2.20e- 6  3.23e10 2.63e10  51.1    80.8  2.40  1.99 
-##  5 Finland trend_m~ Train~ -8.61e+ 9  5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
-##  6 Finland ets      Train~  1.36e+ 8  1.47e10 9.41e 9   0.795   8.36 0.927 0.996
-##  7 Finland arima    Train~  3.54e+ 9  1.34e10 9.14e 9   5.03    8.92 0.900 0.906
-##  8 Finland trend_m~ Train~  2.33e- 6  2.66e10 2.21e10  46.1    80.5  2.18  1.80 
-##  9 Norway  trend_m~ Train~ -1.31e+10  8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
-## 10 Norway  ets      Train~ -5.29e+ 8  2.75e10 1.37e10   0.755   6.94 0.870 1.01 
-## 11 Norway  arima    Train~  4.90e+ 9  2.56e10 1.40e10   5.04    8.11 0.890 0.938
-## 12 Norway  trend_m~ Train~ -1.10e- 5  6.67e10 5.48e10 130.    181.   3.49  2.45 
-## 13 Sweden  trend_m~ Train~ -1.18e+10  8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
-## 14 Sweden  ets      Train~  1.19e+ 9  3.02e10 1.86e10   0.745   7.64 0.875 0.984
-## 15 Sweden  arima    Train~  8.48e+ 9  2.89e10 2.01e10   5.18    9.37 0.942 0.944
-## 16 Sweden  trend_m~ Train~  3.22e- 6  5.05e10 3.90e10  29.4    53.3  1.83  1.65 
+##    Country .model     .type        ME    RMSE     MAE     MPE   MAPE  MASE RMSSE
+##    <fct>   <chr>      <chr>     <dbl>   <dbl>   <dbl>   <dbl>  <dbl> <dbl> <dbl>
+##  1 Denmark trend_mod~ Trai~ -1.12e+10 6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
+##  2 Denmark ets        Trai~  4.50e+ 7 1.65e10 1.04e10   0.518   7.09 0.946 1.02 
+##  3 Denmark arima      Trai~  4.40e+ 9 1.51e10 1.04e10   5.05    8.16 0.945 0.930
+##  4 Denmark trend_mod~ Trai~ -2.06e- 6 3.23e10 2.63e10  51.1    80.8  2.40  1.99 
+##  5 Finland trend_mod~ Trai~ -8.61e+ 9 5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
+##  6 Finland ets        Trai~  1.36e+ 8 1.47e10 9.41e 9   0.795   8.36 0.927 0.996
+##  7 Finland arima      Trai~  3.54e+ 9 1.34e10 9.14e 9   5.03    8.92 0.900 0.906
+##  8 Finland trend_mod~ Trai~  9.54e- 7 2.66e10 2.21e10  46.1    80.5  2.18  1.80 
+##  9 Norway  trend_mod~ Trai~ -1.31e+10 8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
+## 10 Norway  ets        Trai~ -5.29e+ 8 2.75e10 1.37e10   0.755   6.94 0.870 1.01 
+## 11 Norway  arima      Trai~  4.90e+ 9 2.56e10 1.40e10   5.04    8.11 0.890 0.938
+## 12 Norway  trend_mod~ Trai~  2.09e- 6 6.67e10 5.48e10 130.    181.   3.49  2.45 
+## 13 Sweden  trend_mod~ Trai~ -1.18e+10 8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
+## 14 Sweden  ets        Trai~  1.19e+ 9 3.02e10 1.86e10   0.745   7.64 0.875 0.984
+## 15 Sweden  arima      Trai~  8.48e+ 9 2.89e10 2.01e10   5.18    9.37 0.942 0.944
+## 16 Sweden  trend_mod~ Trai~  2.10e- 6 5.05e10 3.90e10  29.4    53.3  1.83  1.65 
 ## # ... with 1 more variable: ACF1 <dbl>
 \end{verbatim}
 
@@ -2591,7 +2641,7 @@ Sweden: MA(2)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-49-1.pdf}
+\includegraphics{graphics/unnamed-chunk-50-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2632,9 +2682,9 @@ Sweden: MA(2)
 
 \begin{verbatim}
 ## # A tibble: 1 x 9
-##   trend_strength seasonal_strength~ seasonal_peak_y~ seasonal_trough_~ spikiness
-##            <dbl>              <dbl>            <dbl>             <dbl>     <dbl>
-## 1          0.609              0.869                7                 4   747395.
+##   trend_strength seasonal_strength_~ seasonal_peak_y~ seasonal_trough~ spikiness
+##            <dbl>               <dbl>            <dbl>            <dbl>     <dbl>
+## 1          0.609               0.869                7                4   747395.
 ## # ... with 4 more variables: linearity <dbl>, curvature <dbl>,
 ## #   stl_e_acf1 <dbl>, stl_e_acf10 <dbl>
 \end{verbatim}
@@ -2648,9 +2698,9 @@ Sweden: MA(2)
 
 \begin{verbatim}
 ## # A tibble: 1 x 47
-##   trend_strength seasonal_strength~ seasonal_peak_y~ seasonal_trough_~ spikiness
-##            <dbl>              <dbl>            <dbl>             <dbl>     <dbl>
-## 1          0.609              0.869                7                 4   747395.
+##   trend_strength seasonal_strength_~ seasonal_peak_y~ seasonal_trough~ spikiness
+##            <dbl>               <dbl>            <dbl>            <dbl>     <dbl>
+## 1          0.609               0.869                7                4   747395.
 ## # ... with 42 more variables: linearity <dbl>, curvature <dbl>,
 ## #   stl_e_acf1 <dbl>, stl_e_acf10 <dbl>, acf1 <dbl>, acf10 <dbl>,
 ## #   diff1_acf1 <dbl>, diff1_acf10 <dbl>, diff2_acf1 <dbl>, diff2_acf10 <dbl>,
@@ -2687,7 +2737,7 @@ Readings: FPP3 Sections 2.7-2.9, 4.2, 4.5
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-52-1.pdf}
+\includegraphics{graphics/unnamed-chunk-55-1.pdf}
 
 \hypertarget{heere-be-monsters}{%
 \section{Heere be monsters}\label{heere-be-monsters}}
@@ -2698,7 +2748,7 @@ Readings: FPP3 Sections 2.7-2.9, 4.2, 4.5
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=56.89in]{graphics/horst_acf/horst_acf_1}
+\includegraphics{graphics/horst_acf/horst_acf_1.jpg}
 
 \hypertarget{part-model-specification-and-estimation}{%
 \part{Model Specification and Estimation}\label{part-model-specification-and-estimation}}
@@ -2794,7 +2844,7 @@ There are (of course) statistical tests for stationarity one can apply to a time
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-54-1.pdf}
+\includegraphics{graphics/unnamed-chunk-57-1.pdf}
 
 Just by visual inspection, there doesn't \emph{seem} to be much of a trend.
 
@@ -2806,7 +2856,7 @@ Fitting a linear model to the data and plotting the regression line reveals a ve
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-55-1.pdf}
+\includegraphics{graphics/unnamed-chunk-58-1.pdf}
 
 Hmmm. Is this trend ``real''? Or did it just happen that, by random chance, the data later in the series happen to have slightly lower values on average than those generated earlier?
 
@@ -2974,9 +3024,9 @@ Provide a brief example of the data, showing how they are structured.
 
 \begin{verbatim}
 ## # A tibble: 1 x 9
-##   trend_strength seasonal_strength~ seasonal_peak_y~ seasonal_trough_~ spikiness
-##            <dbl>              <dbl>            <dbl>             <dbl>     <dbl>
-## 1          0.609              0.869                7                 4   747395.
+##   trend_strength seasonal_strength_~ seasonal_peak_y~ seasonal_trough~ spikiness
+##            <dbl>               <dbl>            <dbl>            <dbl>     <dbl>
+## 1          0.609               0.869                7                4   747395.
 ## # ... with 4 more variables: linearity <dbl>, curvature <dbl>,
 ## #   stl_e_acf1 <dbl>, stl_e_acf10 <dbl>
 \end{verbatim}
@@ -2989,9 +3039,9 @@ Provide a brief example of the data, showing how they are structured.
 
 \begin{verbatim}
 ## # A tibble: 1 x 47
-##   trend_strength seasonal_strength~ seasonal_peak_y~ seasonal_trough_~ spikiness
-##            <dbl>              <dbl>            <dbl>             <dbl>     <dbl>
-## 1          0.609              0.869                7                 4   747395.
+##   trend_strength seasonal_strength_~ seasonal_peak_y~ seasonal_trough~ spikiness
+##            <dbl>               <dbl>            <dbl>            <dbl>     <dbl>
+## 1          0.609               0.869                7                4   747395.
 ## # ... with 42 more variables: linearity <dbl>, curvature <dbl>,
 ## #   stl_e_acf1 <dbl>, stl_e_acf10 <dbl>, acf1 <dbl>, acf10 <dbl>,
 ## #   diff1_acf1 <dbl>, diff1_acf10 <dbl>, diff2_acf1 <dbl>, diff2_acf10 <dbl>,
@@ -3060,7 +3110,7 @@ Provide a brief example of the data, showing how they are structured.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-61-1.pdf}
+\includegraphics{graphics/unnamed-chunk-64-1.pdf}
 
 \hypertarget{work-with-lngdp-1}{%
 \subsection{Work with ln(GDP)}\label{work-with-lngdp-1}}
@@ -3074,7 +3124,7 @@ Provide a brief example of the data, showing how they are structured.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-62-1.pdf}
+\includegraphics{graphics/unnamed-chunk-65-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3089,7 +3139,7 @@ Provide a brief example of the data, showing how they are structured.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-64-1.pdf}
+\includegraphics{graphics/unnamed-chunk-67-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3099,7 +3149,7 @@ Provide a brief example of the data, showing how they are structured.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-65-1.pdf}
+\includegraphics{graphics/unnamed-chunk-68-1.pdf}
 
 \hypertarget{statistical-model}{%
 \section{Statistical model}\label{statistical-model}}
@@ -3196,7 +3246,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-67-1.pdf}
+\includegraphics{graphics/unnamed-chunk-70-1.pdf}
 
 \hypertarget{are-the-model-residuals-auto-correlated-1}{%
 \section{Are the model residuals auto-correlated?}\label{are-the-model-residuals-auto-correlated-1}}
@@ -3211,7 +3261,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-68-1.pdf}
+\includegraphics{graphics/unnamed-chunk-71-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3223,7 +3273,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-69-1.pdf}
+\includegraphics{graphics/unnamed-chunk-72-1.pdf}
 
 \hypertarget{example-gdp-several-models-several-countries}{%
 \section{Example: GDP, several models, several countries}\label{example-gdp-several-models-several-countries}}
@@ -3262,7 +3312,7 @@ Forecast errors:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{graphics/unnamed-chunk-71-1.pdf}
+\includegraphics{graphics/unnamed-chunk-74-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3361,24 +3411,24 @@ Sweden: MA(2)
 
 \begin{verbatim}
 ## # A tibble: 16 x 11
-##    Country .model   .type         ME     RMSE     MAE     MPE   MAPE  MASE RMSSE
-##    <fct>   <chr>    <chr>      <dbl>    <dbl>   <dbl>   <dbl>  <dbl> <dbl> <dbl>
-##  1 Denmark trend_m~ Train~ -1.12e+10  6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
-##  2 Denmark ets      Train~  4.50e+ 7  1.65e10 1.04e10   0.518   7.09 0.946 1.02 
-##  3 Denmark arima    Train~  4.40e+ 9  1.51e10 1.04e10   5.05    8.16 0.945 0.930
-##  4 Denmark trend_m~ Train~ -2.20e- 6  3.23e10 2.63e10  51.1    80.8  2.40  1.99 
-##  5 Finland trend_m~ Train~ -8.61e+ 9  5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
-##  6 Finland ets      Train~  1.36e+ 8  1.47e10 9.41e 9   0.795   8.36 0.927 0.996
-##  7 Finland arima    Train~  3.54e+ 9  1.34e10 9.14e 9   5.03    8.92 0.900 0.906
-##  8 Finland trend_m~ Train~  2.33e- 6  2.66e10 2.21e10  46.1    80.5  2.18  1.80 
-##  9 Norway  trend_m~ Train~ -1.31e+10  8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
-## 10 Norway  ets      Train~ -5.29e+ 8  2.75e10 1.37e10   0.755   6.94 0.870 1.01 
-## 11 Norway  arima    Train~  4.90e+ 9  2.56e10 1.40e10   5.04    8.11 0.890 0.938
-## 12 Norway  trend_m~ Train~ -1.10e- 5  6.67e10 5.48e10 130.    181.   3.49  2.45 
-## 13 Sweden  trend_m~ Train~ -1.18e+10  8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
-## 14 Sweden  ets      Train~  1.19e+ 9  3.02e10 1.86e10   0.745   7.64 0.875 0.984
-## 15 Sweden  arima    Train~  8.48e+ 9  2.89e10 2.01e10   5.18    9.37 0.942 0.944
-## 16 Sweden  trend_m~ Train~  3.22e- 6  5.05e10 3.90e10  29.4    53.3  1.83  1.65 
+##    Country .model     .type        ME    RMSE     MAE     MPE   MAPE  MASE RMSSE
+##    <fct>   <chr>      <chr>     <dbl>   <dbl>   <dbl>   <dbl>  <dbl> <dbl> <dbl>
+##  1 Denmark trend_mod~ Trai~ -1.12e+10 6.89e10 3.67e10  -5.17   28.0  3.34  4.24 
+##  2 Denmark ets        Trai~  4.50e+ 7 1.65e10 1.04e10   0.518   7.09 0.946 1.02 
+##  3 Denmark arima      Trai~  4.40e+ 9 1.51e10 1.04e10   5.05    8.16 0.945 0.930
+##  4 Denmark trend_mod~ Trai~ -2.06e- 6 3.23e10 2.63e10  51.1    80.8  2.40  1.99 
+##  5 Finland trend_mod~ Trai~ -8.61e+ 9 5.64e10 2.99e10  -5.53   28.6  2.95  3.82 
+##  6 Finland ets        Trai~  1.36e+ 8 1.47e10 9.41e 9   0.795   8.36 0.927 0.996
+##  7 Finland arima      Trai~  3.54e+ 9 1.34e10 9.14e 9   5.03    8.92 0.900 0.906
+##  8 Finland trend_mod~ Trai~  9.54e- 7 2.66e10 2.21e10  46.1    80.5  2.18  1.80 
+##  9 Norway  trend_mod~ Trai~ -1.31e+10 8.20e10 3.51e10  -4.24   24.9  2.24  3.01 
+## 10 Norway  ets        Trai~ -5.29e+ 8 2.75e10 1.37e10   0.755   6.94 0.870 1.01 
+## 11 Norway  arima      Trai~  4.90e+ 9 2.56e10 1.40e10   5.04    8.11 0.890 0.938
+## 12 Norway  trend_mod~ Trai~  2.09e- 6 6.67e10 5.48e10 130.    181.   3.49  2.45 
+## 13 Sweden  trend_mod~ Trai~ -1.18e+10 8.23e10 4.79e10  -3.96   23.7  2.25  2.68 
+## 14 Sweden  ets        Trai~  1.19e+ 9 3.02e10 1.86e10   0.745   7.64 0.875 0.984
+## 15 Sweden  arima      Trai~  8.48e+ 9 2.89e10 2.01e10   5.18    9.37 0.942 0.944
+## 16 Sweden  trend_mod~ Trai~  2.10e- 6 5.05e10 3.90e10  29.4    53.3  1.83  1.65 
 ## # ... with 1 more variable: ACF1 <dbl>
 \end{verbatim}
 
@@ -3387,6 +3437,16 @@ Sweden: MA(2)
 
 \hypertarget{producing-forecasts-1}{%
 \chapter{Producing forecasts}\label{producing-forecasts-1}}
+
+\hypertarget{example-gross-domestic-product-data-1}{%
+\section{Example: Gross Domestic Product data}\label{example-gross-domestic-product-data-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tsibbledata) }\CommentTok{\# Data sets package}
+\NormalTok{global\_economy }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{model}\NormalTok{(}\AttributeTok{trend\_model =} \FunctionTok{TSLM}\NormalTok{(GDP }\SpecialCharTok{\textasciitilde{}} \FunctionTok{trend}\NormalTok{())) }\OtherTok{{-}\textgreater{}}\NormalTok{ fit}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3463,16 +3523,16 @@ Sweden: MA(2)
 \hypertarget{communicating-forecast-uncertainty}{%
 \chapter{Communicating forecast uncertainty}\label{communicating-forecast-uncertainty}}
 
-\includegraphics[width=6.25in]{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/nas-completing_the_forecast-cover_image}
+\includegraphics{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/nas-completing_the_forecast-cover_image.jpg}
 
 \hypertarget{the-red-river-flood-of-1997}{%
 \section{The Red River Flood of 1997}\label{the-red-river-flood-of-1997}}
 
-\includegraphics[width=17.75in]{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/Headline_from_The_Forum_newspaper_April_24_1997}
+\includegraphics{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/Headline_from_The_Forum_newspaper_April_24_1997.png}
 
-\includegraphics[width=15.89in]{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/Deterministic_forecasts_issued_by_NWS_prior_to_the_Red_River_flood_of_1997}
+\includegraphics{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/Deterministic_forecasts_issued_by_NWS_prior_to_the_Red_River_flood_of_1997.png}
 
-\includegraphics[width=16.25in]{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/Probabilistic_river_stage_forecast_from_AHPS-SOURCE_NWS}
+\includegraphics{/Users/aas9z/GitRepos/Teaching/time-series/tsf/graphics/forecast_communications/Probabilistic_river_stage_forecast_from_AHPS-SOURCE_NWS.png}
 
   \bibliography{book.bib,packages.bib}
 

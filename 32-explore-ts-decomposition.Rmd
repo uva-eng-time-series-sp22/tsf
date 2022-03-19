@@ -171,6 +171,7 @@ Finland: MA(2)
 
 Norway: MA(1)
 
+
 Sweden: MA(2)
 
 ```{r}

@@ -46,7 +46,7 @@ esales <- read_feather("data/esales.feather")
 print(esales)    # print the data as a table
 summary(esales)  # compute basic summary statistics about the data
 boxplot(esales)
-hist(elsales_tbl_ts$sales_GWh, breaks=40) #  Make a histogram of monthly sales
+hist(esales$value, breaks=40) #  Make a histogram of monthly sales
 ```
 
 
@@ -99,14 +99,6 @@ ggplot(data=esales, aes(x=date,y=value)) +
   geom_line() + xlab("Year") + ylab("Virginia monthly total electricity sales (GWh)")
 ```
 
-```{r use feasts autoplot}
-# feasts::autoplot() is handy for quickly generating time series plots
-
-autoplot(vaelsales_tbl_ts, sales_GWh) +
-  ylab("Virginia monthly total electricity sales (GWh)") +
-  xlab("")  # Leave horiz. axis label blank
-```
-
 
 ## Sesaonal plots
 
@@ -128,9 +120,9 @@ print(elsales_tbl_ts)
 
 
 ```{r, eval=FALSE}
-# This plot won't work. Why not?
-elsales_tbl_ts %>%
-  feasts::gg_season(sales_GWh, labels = "both") + ylab("Virginia electricity sales (GWh)")
+### This plot won't work. Why not?
+# elsales_tbl_ts %>%
+#   feasts::gg_season(sales_GWh, labels = "both") + ylab("Virginia electricity sales (GWh)")
 ```
 
 ```{r Change the tsibble so index is monthly}
@@ -145,6 +137,13 @@ elsales_tbl_ts %>%
 print(vaelsales_tbl_ts)
 ```
 
+```{r use feasts autoplot}
+# feasts::autoplot() is handy for quickly generating time series plots
+
+autoplot(vaelsales_tbl_ts, sales_GWh) +
+  ylab("Virginia monthly total electricity sales (GWh)") +
+  xlab("")  # Leave horiz. axis label blank
+```
 
 ```{r , warning=FALSE}
 vaelsales_tbl_ts %>% gg_season(sales_GWh, labels = "both") + ylab("Virginia electricity sales (GWh)")
