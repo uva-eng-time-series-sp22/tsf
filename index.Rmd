@@ -9,23 +9,13 @@ output:
       toc:
         collapse: section
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib, packages.bib,tsf.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Class notes for University of Virginia SYS 5581, Spring 2021"
+description: "Class notes for University of Virginia SYS 5581"
 ---
 
-# Preface {-}
-
-This document is a compilation of class notes for SYS 5581 *Time Series and Forecasting*, University of Virginia, Spring, 2021.
-
-
-
-
-```{r}
-library(tidyverse)
-library(fpp3)
-```
+# {-}
 
 
 ```{r setup, include=FALSE, cache=F, message=F, warning=F, results="show"}
@@ -34,5 +24,10 @@ knitr::opts_chunk$set(fig.path='graphics/')
 knitr::opts_chunk$set(cache.path='_cache/')
 knitr::opts_chunk$set(warning=F, message=F)
 # knitr::opts_knit$get(kable.force.latex = TRUE)
+```
+
+```{r load initial packages, include=FALSE}
+library(tidyverse)
+library(fpp3)
 ```
 

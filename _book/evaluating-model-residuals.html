@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 22 Evaluating model residuals | Time Series and Forecasting: A Project-based Approach with R</title>
-  <meta name="description" content="Class notes for University of Virginia SYS 5581, Spring 2021" />
+  <title>Chapter 23 Evaluating model residuals | Time Series and Forecasting: A Project-based Approach with R</title>
+  <meta name="description" content="Class notes for University of Virginia SYS 5581" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 22 Evaluating model residuals | Time Series and Forecasting: A Project-based Approach with R" />
+  <meta property="og:title" content="Chapter 23 Evaluating model residuals | Time Series and Forecasting: A Project-based Approach with R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Class notes for University of Virginia SYS 5581, Spring 2021" />
+  <meta property="og:description" content="Class notes for University of Virginia SYS 5581" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 22 Evaluating model residuals | Time Series and Forecasting: A Project-based Approach with R" />
+  <meta name="twitter:title" content="Chapter 23 Evaluating model residuals | Time Series and Forecasting: A Project-based Approach with R" />
   
-  <meta name="twitter:description" content="Class notes for University of Virginia SYS 5581, Spring 2021" />
+  <meta name="twitter:description" content="Class notes for University of Virginia SYS 5581" />
   
 
 <meta name="author" content="Arthur Small" />
@@ -157,17 +157,17 @@ div.csl-indent {
 <li><a href="./">Time Series and Forecasting</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#preface">Preface<span></span></a></li>
-<li><a href="preface-1.html#preface-1">Preface<span></span></a>
+<li><a href="index.html#section"></a></li>
+<li><a href="preface.html#preface">Preface<span></span></a>
 <ul>
-<li><a href="preface-1.html#readings-and-references">Readings and references<span></span></a>
+<li><a href="preface.html#readings-and-references">Readings and references<span></span></a>
 <ul>
-<li><a href="preface-1.html#time-series">Time series<span></span></a></li>
-<li><a href="preface-1.html#statistics-with-r">Statistics with R<span></span></a></li>
-<li><a href="preface-1.html#data-science-with-r-general">Data science with R, general<span></span></a></li>
-<li><a href="preface-1.html#other-references-on-zotero">Other references on Zotero<span></span></a></li>
+<li><a href="preface.html#time-series">Time series<span></span></a></li>
+<li><a href="preface.html#statistics-with-r">Statistics with R<span></span></a></li>
+<li><a href="preface.html#data-science-with-r-general">Data science with R, general<span></span></a></li>
+<li><a href="preface.html#other-references-on-zotero">Other references on Zotero<span></span></a></li>
 </ul></li>
-<li><a href="preface-1.html#acknowledgements">Acknowledgements<span></span></a></li>
+<li><a href="preface.html#acknowledgements">Acknowledgements<span></span></a></li>
 </ul></li>
 <li><a href="course-syllabus.html#course-syllabus">Course Syllabus<span></span></a>
 <ul>
@@ -339,58 +339,59 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="17.1" data-path="autocorrelation.html"><a href="autocorrelation.html#heere-be-monsters"><i class="fa fa-check"></i><b>17.1</b> Heere be monsters<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="18" data-path="more-features.html"><a href="more-features.html"><i class="fa fa-check"></i><b>18</b> More Features<span></span></a></li>
 <li class="part"><span><b>V Model Specification and Estimation<span></span></b></span></li>
-<li class="chapter" data-level="18" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html"><i class="fa fa-check"></i><b>18</b> The data-generating process<span></span></a>
+<li class="chapter" data-level="19" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html"><i class="fa fa-check"></i><b>19</b> The data-generating process<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#the-white-noise-process"><i class="fa fa-check"></i><b>18.1</b> The white noise process<span></span></a>
+<li class="chapter" data-level="19.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#the-white-noise-process"><i class="fa fa-check"></i><b>19.1</b> The white noise process<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#stationarity"><i class="fa fa-check"></i><b>18.1.1</b> Stationarity<span></span></a></li>
-<li class="chapter" data-level="18.1.2" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#no-autocorrelation"><i class="fa fa-check"></i><b>18.1.2</b> No autocorrelation<span></span></a></li>
+<li class="chapter" data-level="19.1.1" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#stationarity"><i class="fa fa-check"></i><b>19.1.1</b> Stationarity<span></span></a></li>
+<li class="chapter" data-level="19.1.2" data-path="the-data-generating-process.html"><a href="the-data-generating-process.html#no-autocorrelation"><i class="fa fa-check"></i><b>19.1.2</b> No autocorrelation<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html"><i class="fa fa-check"></i><b>19</b> The normal linear model<span></span></a>
+<li class="chapter" data-level="20" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html"><i class="fa fa-check"></i><b>20</b> The normal linear model<span></span></a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#assumptions-of-the-linear-model"><i class="fa fa-check"></i><b>19.1</b> Assumptions of the linear model<span></span></a></li>
-<li class="chapter" data-level="19.2" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#examples-of-the-normal-linear-model"><i class="fa fa-check"></i><b>19.2</b> Examples of the normal linear model<span></span></a></li>
+<li class="chapter" data-level="20.1" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#assumptions-of-the-linear-model"><i class="fa fa-check"></i><b>20.1</b> Assumptions of the linear model<span></span></a></li>
+<li class="chapter" data-level="20.2" data-path="the-normal-linear-model.html"><a href="the-normal-linear-model.html#examples-of-the-normal-linear-model"><i class="fa fa-check"></i><b>20.2</b> Examples of the normal linear model<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>20</b> Ordinary least squares estimation<span></span></a></li>
-<li class="chapter" data-level="21" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html"><i class="fa fa-check"></i><b>21</b> Assignment: Project proposal<span></span></a>
+<li class="chapter" data-level="21" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>21</b> Ordinary least squares estimation<span></span></a></li>
+<li class="chapter" data-level="22" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html"><i class="fa fa-check"></i><b>22</b> Assignment: Project proposal<span></span></a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#introduction"><i class="fa fa-check"></i><b>21.1</b> Introduction<span></span></a></li>
-<li class="chapter" data-level="21.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#the-data-and-the-data-generating-process"><i class="fa fa-check"></i><b>21.2</b> The data and the data-generating process<span></span></a></li>
-<li class="chapter" data-level="21.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>21.3</b> Exploratory data analysis<span></span></a></li>
-<li class="chapter" data-level="21.4" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plot-the-time-series."><i class="fa fa-check"></i><b>21.4</b> Plot the time series.<span></span></a></li>
-<li class="chapter" data-level="21.5" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#perform-and-report-the-results-of-other-exploratory-data-analysis"><i class="fa fa-check"></i><b>21.5</b> Perform and report the results of other exploratory data analysis<span></span></a>
+<li class="chapter" data-level="22.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#introduction"><i class="fa fa-check"></i><b>22.1</b> Introduction<span></span></a></li>
+<li class="chapter" data-level="22.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#the-data-and-the-data-generating-process"><i class="fa fa-check"></i><b>22.2</b> The data and the data-generating process<span></span></a></li>
+<li class="chapter" data-level="22.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>22.3</b> Exploratory data analysis<span></span></a></li>
+<li class="chapter" data-level="22.4" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plot-the-time-series."><i class="fa fa-check"></i><b>22.4</b> Plot the time series.<span></span></a></li>
+<li class="chapter" data-level="22.5" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#perform-and-report-the-results-of-other-exploratory-data-analysis"><i class="fa fa-check"></i><b>22.5</b> Perform and report the results of other exploratory data analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="21.5.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#stl-decomposition"><i class="fa fa-check"></i><b>21.5.1</b> STL decomposition<span></span></a></li>
-<li class="chapter" data-level="21.5.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#fitting-data-to-simple-models-1"><i class="fa fa-check"></i><b>21.5.2</b> Fitting data to simple models<span></span></a></li>
-<li class="chapter" data-level="21.5.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#work-with-lngdp-1"><i class="fa fa-check"></i><b>21.5.3</b> Work with ln(GDP)<span></span></a></li>
+<li class="chapter" data-level="22.5.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#stl-decomposition"><i class="fa fa-check"></i><b>22.5.1</b> STL decomposition<span></span></a></li>
+<li class="chapter" data-level="22.5.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#fitting-data-to-simple-models-1"><i class="fa fa-check"></i><b>22.5.2</b> Fitting data to simple models<span></span></a></li>
+<li class="chapter" data-level="22.5.3" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#work-with-lngdp-1"><i class="fa fa-check"></i><b>22.5.3</b> Work with ln(GDP)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="21.6" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#statistical-model"><i class="fa fa-check"></i><b>21.6</b> Statistical model<span></span></a>
+<li class="chapter" data-level="22.6" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#statistical-model"><i class="fa fa-check"></i><b>22.6</b> Statistical model<span></span></a>
 <ul>
-<li class="chapter" data-level="21.6.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#formal-model-of-data-generating-process"><i class="fa fa-check"></i><b>21.6.1</b> Formal model of data-generating process<span></span></a></li>
-<li class="chapter" data-level="21.6.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#discussion-of-the-statistical-model"><i class="fa fa-check"></i><b>21.6.2</b> Discussion of the statistical model<span></span></a></li>
+<li class="chapter" data-level="22.6.1" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#formal-model-of-data-generating-process"><i class="fa fa-check"></i><b>22.6.1</b> Formal model of data-generating process<span></span></a></li>
+<li class="chapter" data-level="22.6.2" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#discussion-of-the-statistical-model"><i class="fa fa-check"></i><b>22.6.2</b> Discussion of the statistical model<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="21.7" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plan-for-data-analysis"><i class="fa fa-check"></i><b>21.7</b> Plan for data analysis<span></span></a></li>
-<li class="chapter" data-level="21.8" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#submission-requirements"><i class="fa fa-check"></i><b>21.8</b> Submission requirements<span></span></a></li>
-<li class="chapter" data-level="21.9" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#comment"><i class="fa fa-check"></i><b>21.9</b> Comment<span></span></a></li>
-<li class="chapter" data-level="21.10" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#references"><i class="fa fa-check"></i><b>21.10</b> References<span></span></a></li>
+<li class="chapter" data-level="22.7" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#plan-for-data-analysis"><i class="fa fa-check"></i><b>22.7</b> Plan for data analysis<span></span></a></li>
+<li class="chapter" data-level="22.8" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#submission-requirements"><i class="fa fa-check"></i><b>22.8</b> Submission requirements<span></span></a></li>
+<li class="chapter" data-level="22.9" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#comment"><i class="fa fa-check"></i><b>22.9</b> Comment<span></span></a></li>
+<li class="chapter" data-level="22.10" data-path="assignment-project-proposal.html"><a href="assignment-project-proposal.html#references"><i class="fa fa-check"></i><b>22.10</b> References<span></span></a></li>
 </ul></li>
 <li class="part"><span><b>VI Model evaluation<span></span></b></span></li>
-<li class="chapter" data-level="22" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html"><i class="fa fa-check"></i><b>22</b> Evaluating model residuals<span></span></a>
+<li class="chapter" data-level="23" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html"><i class="fa fa-check"></i><b>23</b> Evaluating model residuals<span></span></a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#model-residuals-vs.-forecast-errors-1"><i class="fa fa-check"></i><b>22.1</b> Model residuals vs. forecast errors<span></span></a></li>
-<li class="chapter" data-level="22.2" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#are-the-model-residuals-auto-correlated-1"><i class="fa fa-check"></i><b>22.2</b> Are the model residuals auto-correlated?<span></span></a></li>
-<li class="chapter" data-level="22.3" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#example-gdp-several-models-several-countries"><i class="fa fa-check"></i><b>22.3</b> Example: GDP, several models, several countries<span></span></a></li>
+<li class="chapter" data-level="23.1" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#model-residuals-vs.-forecast-errors-1"><i class="fa fa-check"></i><b>23.1</b> Model residuals vs. forecast errors<span></span></a></li>
+<li class="chapter" data-level="23.2" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#are-the-model-residuals-auto-correlated-1"><i class="fa fa-check"></i><b>23.2</b> Are the model residuals auto-correlated?<span></span></a></li>
+<li class="chapter" data-level="23.3" data-path="evaluating-model-residuals.html"><a href="evaluating-model-residuals.html#example-gdp-several-models-several-countries"><i class="fa fa-check"></i><b>23.3</b> Example: GDP, several models, several countries<span></span></a></li>
 </ul></li>
 <li class="part"><span><b>VII Forecasting<span></span></b></span></li>
-<li class="chapter" data-level="23" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html"><i class="fa fa-check"></i><b>23</b> Producing forecasts<span></span></a>
+<li class="chapter" data-level="24" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html"><i class="fa fa-check"></i><b>24</b> Producing forecasts<span></span></a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#example-gross-domestic-product-data-1"><i class="fa fa-check"></i><b>23.1</b> Example: Gross Domestic Product data<span></span></a></li>
+<li class="chapter" data-level="24.1" data-path="producing-forecasts-1.html"><a href="producing-forecasts-1.html#example-gross-domestic-product-data-1"><i class="fa fa-check"></i><b>24.1</b> Example: Gross Domestic Product data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html"><i class="fa fa-check"></i><b>24</b> Communicating forecast uncertainty<span></span></a>
+<li class="chapter" data-level="25" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html"><i class="fa fa-check"></i><b>25</b> Communicating forecast uncertainty<span></span></a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html#the-red-river-flood-of-1997"><i class="fa fa-check"></i><b>24.1</b> The Red River Flood of 1997<span></span></a></li>
+<li class="chapter" data-level="25.1" data-path="communicating-forecast-uncertainty.html"><a href="communicating-forecast-uncertainty.html#the-red-river-flood-of-1997"><i class="fa fa-check"></i><b>25.1</b> The Red River Flood of 1997<span></span></a></li>
 </ul></li>
 <li><a href="references-1.html#references-1">References<span></span></a></li>
 <li class="divider"></li>
@@ -414,16 +415,16 @@ A Project-based Approach with R</a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="evaluating-model-residuals" class="section level1 hasAnchor" number="22">
-<h1><span class="header-section-number">Chapter 22</span> Evaluating model residuals<a href="evaluating-model-residuals.html#evaluating-model-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="model-residuals-vs.-forecast-errors-1" class="section level2 hasAnchor" number="22.1">
-<h2><span class="header-section-number">22.1</span> Model residuals vs. forecast errors<a href="evaluating-model-residuals.html#model-residuals-vs.-forecast-errors-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="evaluating-model-residuals" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Chapter 23</span> Evaluating model residuals<a href="evaluating-model-residuals.html#evaluating-model-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="model-residuals-vs.-forecast-errors-1" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> Model residuals vs. forecast errors<a href="evaluating-model-residuals.html#model-residuals-vs.-forecast-errors-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Model residuals:</p>
 <p>Your data: <span class="math inline">\(y_1, y_2, \ldots, y_T\)</span></p>
 <p>Fitted values: <span class="math inline">\(\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_T\)</span></p>
 <p>Model residuals: <span class="math inline">\(e_t = y_t - \hat{y}_t\)</span></p>
 <p>Forecast errors:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="evaluating-model-residuals.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="evaluating-model-residuals.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit)</span></code></pre></div>
 <pre><code>## # A tsibble: 15,150 x 7 [1Y]
 ## # Key:       Country, .model [263]
 ##    Country     .model       Year         GDP      .fitted      .resid     .innov
@@ -439,34 +440,34 @@ A Project-based Approach with R</a>
 ##  9 Afghanistan trend_model  1968 1373333367.   866277332.  507056034.     5.07e8
 ## 10 Afghanistan trend_model  1969 1408888922.  1173053819.  235835103.     2.36e8
 ## # … with 15,140 more rows</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="evaluating-model-residuals.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb159-2"><a href="evaluating-model-residuals.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb159-3"><a href="evaluating-model-residuals.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb159-4"><a href="evaluating-model-residuals.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="evaluating-model-residuals.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb177-2"><a href="evaluating-model-residuals.html#cb177-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb177-3"><a href="evaluating-model-residuals.html#cb177-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb177-4"><a href="evaluating-model-residuals.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-82-1.png" width="672" /></p>
 </div>
-<div id="are-the-model-residuals-auto-correlated-1" class="section level2 hasAnchor" number="22.2">
-<h2><span class="header-section-number">22.2</span> Are the model residuals auto-correlated?<a href="evaluating-model-residuals.html#are-the-model-residuals-auto-correlated-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="evaluating-model-residuals.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden</span>
-<span id="cb160-2"><a href="evaluating-model-residuals.html#cb160-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-3"><a href="evaluating-model-residuals.html#cb160-3" aria-hidden="true" tabindex="-1"></a>augSweden <span class="sc">%&gt;%</span></span>
-<span id="cb160-4"><a href="evaluating-model-residuals.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
-<span id="cb160-5"><a href="evaluating-model-residuals.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-71-1.png" width="672" /></p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="evaluating-model-residuals.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit3) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden3</span>
-<span id="cb161-2"><a href="evaluating-model-residuals.html#cb161-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb161-3"><a href="evaluating-model-residuals.html#cb161-3" aria-hidden="true" tabindex="-1"></a>augSweden3 <span class="sc">%&gt;%</span></span>
-<span id="cb161-4"><a href="evaluating-model-residuals.html#cb161-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
-<span id="cb161-5"><a href="evaluating-model-residuals.html#cb161-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-72-1.png" width="672" /></p>
+<div id="are-the-model-residuals-auto-correlated-1" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> Are the model residuals auto-correlated?<a href="evaluating-model-residuals.html#are-the-model-residuals-auto-correlated-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="evaluating-model-residuals.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden</span>
+<span id="cb178-2"><a href="evaluating-model-residuals.html#cb178-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-3"><a href="evaluating-model-residuals.html#cb178-3" aria-hidden="true" tabindex="-1"></a>augSweden <span class="sc">%&gt;%</span></span>
+<span id="cb178-4"><a href="evaluating-model-residuals.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
+<span id="cb178-5"><a href="evaluating-model-residuals.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-83-1.png" width="672" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="evaluating-model-residuals.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(fit3) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Sweden&quot;</span>) <span class="ot">-&gt;</span> augSweden3</span>
+<span id="cb179-2"><a href="evaluating-model-residuals.html#cb179-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="evaluating-model-residuals.html#cb179-3" aria-hidden="true" tabindex="-1"></a>augSweden3 <span class="sc">%&gt;%</span></span>
+<span id="cb179-4"><a href="evaluating-model-residuals.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ACF</span>(.resid) <span class="sc">%&gt;%</span></span>
+<span id="cb179-5"><a href="evaluating-model-residuals.html#cb179-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;ACF of residuals&quot;</span>)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-84-1.png" width="672" /></p>
 </div>
-<div id="example-gdp-several-models-several-countries" class="section level2 hasAnchor" number="22.3">
-<h2><span class="header-section-number">22.3</span> Example: GDP, several models, several countries<a href="evaluating-model-residuals.html#example-gdp-several-models-several-countries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="evaluating-model-residuals.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
-<span id="cb162-2"><a href="evaluating-model-residuals.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-3"><a href="evaluating-model-residuals.html#cb162-3" aria-hidden="true" tabindex="-1"></a>nordic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sweden&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Finland&quot;</span>)</span>
-<span id="cb162-4"><a href="evaluating-model-residuals.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-5"><a href="evaluating-model-residuals.html#cb162-5" aria-hidden="true" tabindex="-1"></a>(global_economy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">%in%</span> nordic) <span class="ot">-&gt;</span> nordic_economy)</span></code></pre></div>
+<div id="example-gdp-several-models-several-countries" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">23.3</span> Example: GDP, several models, several countries<a href="evaluating-model-residuals.html#example-gdp-several-models-several-countries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="evaluating-model-residuals.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibbledata) <span class="co"># Data sets package</span></span>
+<span id="cb180-2"><a href="evaluating-model-residuals.html#cb180-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-3"><a href="evaluating-model-residuals.html#cb180-3" aria-hidden="true" tabindex="-1"></a>nordic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sweden&quot;</span>, <span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Finland&quot;</span>)</span>
+<span id="cb180-4"><a href="evaluating-model-residuals.html#cb180-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-5"><a href="evaluating-model-residuals.html#cb180-5" aria-hidden="true" tabindex="-1"></a>(global_economy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Country <span class="sc">%in%</span> nordic) <span class="ot">-&gt;</span> nordic_economy)</span></code></pre></div>
 <pre><code>## # A tsibble: 232 x 9 [1Y]
 ## # Key:       Country [4]
 ##    Country Code   Year          GDP Growth   CPI Imports Exports Population
@@ -482,17 +483,17 @@ A Project-based Approach with R</a>
 ##  9 Denmark DNK    1968 13196541952   3.97  13.2     29.7    27.7    4864883
 ## 10 Denmark DNK    1969 15009384585.  6.32  13.7     30.4    27.6    4891860
 ## # … with 222 more rows</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="evaluating-model-residuals.html#cb164-1" aria-hidden="true" tabindex="-1"></a>nordic_economy <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(GDP)</span></code></pre></div>
-<p><img src="graphics/unnamed-chunk-74-1.png" width="672" /></p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="evaluating-model-residuals.html#cb165-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="ot">&lt;-</span> nordic_economy <span class="sc">%&gt;%</span></span>
-<span id="cb165-2"><a href="evaluating-model-residuals.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
-<span id="cb165-3"><a href="evaluating-model-residuals.html#cb165-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model =</span> <span class="fu">TSLM</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>()),</span>
-<span id="cb165-4"><a href="evaluating-model-residuals.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model_ln =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">trend</span>()),</span>
-<span id="cb165-5"><a href="evaluating-model-residuals.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ets =</span> <span class="fu">ETS</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>(<span class="st">&quot;A&quot;</span>)),</span>
-<span id="cb165-6"><a href="evaluating-model-residuals.html#cb165-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima =</span> <span class="fu">ARIMA</span>(GDP)</span>
-<span id="cb165-7"><a href="evaluating-model-residuals.html#cb165-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb165-8"><a href="evaluating-model-residuals.html#cb165-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-9"><a href="evaluating-model-residuals.html#cb165-9" aria-hidden="true" tabindex="-1"></a>fitnord</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="evaluating-model-residuals.html#cb182-1" aria-hidden="true" tabindex="-1"></a>nordic_economy <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(GDP)</span></code></pre></div>
+<p><img src="graphics/unnamed-chunk-86-1.png" width="672" /></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="evaluating-model-residuals.html#cb183-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="ot">&lt;-</span> nordic_economy <span class="sc">%&gt;%</span></span>
+<span id="cb183-2"><a href="evaluating-model-residuals.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(</span>
+<span id="cb183-3"><a href="evaluating-model-residuals.html#cb183-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model =</span> <span class="fu">TSLM</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>()),</span>
+<span id="cb183-4"><a href="evaluating-model-residuals.html#cb183-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend_model_ln =</span> <span class="fu">TSLM</span>(<span class="fu">log</span>(GDP) <span class="sc">~</span> <span class="fu">trend</span>()),</span>
+<span id="cb183-5"><a href="evaluating-model-residuals.html#cb183-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ets =</span> <span class="fu">ETS</span>(GDP <span class="sc">~</span> <span class="fu">trend</span>(<span class="st">&quot;A&quot;</span>)),</span>
+<span id="cb183-6"><a href="evaluating-model-residuals.html#cb183-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">arima =</span> <span class="fu">ARIMA</span>(GDP)</span>
+<span id="cb183-7"><a href="evaluating-model-residuals.html#cb183-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb183-8"><a href="evaluating-model-residuals.html#cb183-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-9"><a href="evaluating-model-residuals.html#cb183-9" aria-hidden="true" tabindex="-1"></a>fitnord</span></code></pre></div>
 <pre><code>## # A mable: 4 x 5
 ## # Key:     Country [4]
 ##   Country trend_model trend_model_ln          ets          arima
@@ -505,7 +506,7 @@ A Project-based Approach with R</a>
 <p>Finland: MA(2)</p>
 <p>Norway: MA(1)</p>
 <p>Sweden: MA(2)</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="evaluating-model-residuals.html#cb167-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span> <span class="fu">coef</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="evaluating-model-residuals.html#cb185-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span> <span class="fu">coef</span>() </span></code></pre></div>
 <pre><code>## # A tibble: 39 × 7
 ##    Country .model         term         estimate std.error statistic   p.value
 ##    &lt;fct&gt;   &lt;chr&gt;          &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -520,7 +521,7 @@ A Project-based Approach with R</a>
 ##  9 Denmark arima          ar1         -3.90e- 1   2.06e-1     -1.89  6.36e- 2
 ## 10 Denmark arima          ma1          7.24e- 1   1.43e-1      5.05  4.84e- 6
 ## # … with 29 more rows</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="evaluating-model-residuals.html#cb169-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span>  <span class="fu">glance</span>()  </span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="evaluating-model-residuals.html#cb187-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span>  <span class="fu">glance</span>()  </span></code></pre></div>
 <pre><code>## # A tibble: 16 × 21
 ##    Country .model     r_squared adj_r_squared   sigma2 statistic   p_value    df
 ##    &lt;fct&gt;   &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
@@ -543,9 +544,9 @@ A Project-based Approach with R</a>
 ## # … with 13 more variables: log_lik &lt;dbl&gt;, AIC &lt;dbl&gt;, AICc &lt;dbl&gt;, BIC &lt;dbl&gt;,
 ## #   CV &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, rank &lt;int&gt;, MSE &lt;dbl&gt;,
 ## #   AMSE &lt;dbl&gt;, MAE &lt;dbl&gt;, ar_roots &lt;list&gt;, ma_roots &lt;list&gt;</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="evaluating-model-residuals.html#cb171-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span></span>
-<span id="cb171-2"><a href="evaluating-model-residuals.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb171-3"><a href="evaluating-model-residuals.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Country, MPE)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="evaluating-model-residuals.html#cb189-1" aria-hidden="true" tabindex="-1"></a>fitnord <span class="sc">%&gt;%</span></span>
+<span id="cb189-2"><a href="evaluating-model-residuals.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">accuracy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb189-3"><a href="evaluating-model-residuals.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Country, MPE)</span></code></pre></div>
 <pre><code>## # A tibble: 16 × 11
 ##    Country .model     .type        ME    RMSE     MAE     MPE   MAPE  MASE RMSSE
 ##    &lt;fct&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;

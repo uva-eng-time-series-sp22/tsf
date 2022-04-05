@@ -39,8 +39,11 @@ Each student will make a presentation on their data analysis project. Students w
 
 ### Readings  {-}
 
-The primary text for the course will be [*Forecasting: Principles and Practice*, 3rd ed.](https://otexts.com/fpp3/) by
-Rob J. Hyndman and George Athanasopoulos. This resource is available for free online and is linked from the Collab site. The text includes example code in R, and covers several useful R packages related to time series and forecasting.
+The primary text for the course will be [*Forecasting: Principles and Practice*, 3rd ed.](https://otexts.com/fpp3/)[@robjhyndmanForecastingPrinciplesPractice2021] (FPP3) by Rob J. Hyndman and George Athanasopoulos. This resource is available for free online and is linked from the Collab site. The text includes example code in R, and covers several useful R packages related to time series and forecasting.
+
+FPP3 will be sufficient for most students. For those looking to understand the theory of time series more thoroughly, the following texts can be recommended:
+
+* @brockwellIntroductionTimeSeries2016
 
 Additional readings including relevant articles will be provided as the course progresses. The choice of readings will depend in part on student interests, as conveyed through their choice of projects. 
 

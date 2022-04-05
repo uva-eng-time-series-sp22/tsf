@@ -1,0 +1,76 @@
+# More Features
+
+Focus here on use of the `feasts::features()` function. Useful for computing many features, potentially from many linked time series at once.
+
+```{r, include = FALSE, message=FALSE}
+library(tsibble)
+library(tidyverse)
+library(fpp3)
+```
+
+
+```{r}
+tourism
+```
+```{r}
+tourism %>%
+  features(Trips, list(mean = mean)) %>%
+  arrange(mean)
+```
+
+```{r}
+tourism %>% features(Trips, quantile)
+```
+```{r}
+tourism %>% features(Trips, feat_acf)
+```
+```{r}
+tourism %>%
+  features(Trips, feat_stl) %>%
+  arrange(seasonal_strength_year)
+```
+```{r}
+tourism %>%
+  features(Trips, feat_stl) %>%
+  ggplot(aes(x = trend_strength, y = seasonal_strength_year,
+             col = Purpose)) +
+  geom_point() +
+  facet_wrap(vars(State))
+```
+
+```{r , warning=FALSE}
+tourism_features <- tourism %>%
+  features(Trips, feature_set(pkgs = "feasts"))
+
+tourism_features
+```
+
+
+```{r , warning=FALSE, message=FALSE}
+# library(glue)
+
+tourism_features %>%
+  select((contains("season")), Purpose) %>%
+  mutate(
+    seasonal_peak_year   = seasonal_peak_year   + 4*(seasonal_peak_year==0),   # Relabel Q0 as Q4
+    seasonal_trough_year = seasonal_trough_year + 4*(seasonal_trough_year==0), # Relabel Q0 as Q4
+    seasonal_peak_year   = glue("Q{seasonal_peak_year}"),
+    seasonal_trough_year = glue("Q{seasonal_trough_year}"),
+  ) %>%
+  GGally::ggpairs(mapping = aes(colour = Purpose))
+```
+
+```{r}
+library(broom)
+
+pcs <- tourism_features %>%
+  select(-State, -Region, -Purpose) %>%
+  prcomp(scale = TRUE) %>%
+  augment(tourism_features)
+
+pcs %>%
+  ggplot(aes(x = .fittedPC1, y = .fittedPC2, col = Purpose)) +
+  geom_point() +
+  theme(aspect.ratio = 1)
+```
+

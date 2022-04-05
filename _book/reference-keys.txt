@@ -1,4 +1,4 @@
-fig:unnamed-chunk-10
+fig:unnamed-chunk-9
 intro
 what-is-time-series-analysis
 time-series-data
@@ -95,6 +95,7 @@ example-gdp-several-countries
 plot-lagged-values
 autocorrelation
 heere-be-monsters
+more-features
 the-data-generating-process
 the-white-noise-process
 stationarity

@@ -74,9 +74,9 @@ esales %>%
 ```{r}
 # library(lubridate) # Make it easy to deal with dates
 
-esales %>% filter(month==3)                   # These three lines of code
-esales %>% filter(month(date)==3)             #   all do
-esales %>% filter(lubridate::month(date)==3)  #   the same thing.
+esales %>% filter(month==3)                   # These three lines of code...
+esales %>% filter(month(date)==3)             #   ...all do...
+esales %>% filter(lubridate::month(date)==3)  #   ...the same thing.
 
 # We don't have to keep the 'year' and 'month' column: can recover them if needed
 

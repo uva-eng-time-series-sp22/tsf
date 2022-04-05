@@ -1,3 +1,21 @@
 # Ordinary least squares estimation
 
 Regression coefficients $\beta$ and error variance $\sigma^2$ are unobserved: their values must be estimated from the data. Various estimation techniques may be used.
+
+
+```{r}
+mtcars
+lmfit <- lm(mpg ~ wt, mtcars)
+lmfit
+```
+```{r}
+library(broom)
+broom::tidy(lmfit)
+stats::coef(lmfit)
+
+ggplot(mtcars, aes(x=wt,y=mpg)) + geom_point() + geom_smooth(method = "lm")
+```
+```{r}
+broom::augment(lmfit, interval = "prediction", se_fit = TRUE)
+```
+
